@@ -5,6 +5,11 @@ public class DiscountCard {
     private long id;
     private int discount;
 
+    public DiscountCard(long id, int discount) {
+        this.id = id;
+        this.discount = discount;
+    }
+
     public long getId() {
         return id;
     }
