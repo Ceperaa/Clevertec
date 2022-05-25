@@ -16,7 +16,7 @@ import ru.clevertec.check.runner.model.ExceptionObject;
 @RestControllerAdvice
 public class ControllerAdvice {
 
-    //@ExceptionHandler(value = {InvalidFormatException.class})
+    @ExceptionHandler(value = {Exception.class})
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ExceptionObject response400(@RequestBody Exception e) {
         return aggregate(e.getMessage(), HttpStatus.BAD_REQUEST);

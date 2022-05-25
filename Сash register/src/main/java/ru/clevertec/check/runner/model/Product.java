@@ -4,15 +4,14 @@ public class Product {
 
     private long id;
     private String name;
-    private int count;
+    private int amount;
     private int discountPercent;
     private int price;
-    private int totalPriceForEverything;
 
-    public Product(long id, String name, int count, int discountPercent, int price) {
+    public Product(long id, String name, int amount, int discountPercent, int price) {
         this.id = id;
         this.name = name;
-        this.count = count;
+        this.amount = amount;
         this.discountPercent = discountPercent;
         this.price = price;
     }
@@ -37,14 +36,6 @@ public class Product {
         this.price = price;
     }
 
-    public int getTotalPriceForEverything() {
-        return totalPriceForEverything;
-    }
-
-    public void setTotalPriceForEverything(int totalPriceForEverything) {
-        this.totalPriceForEverything = totalPriceForEverything;
-    }
-
     public void setId(long id) {
         this.id = id;
     }
@@ -57,11 +48,11 @@ public class Product {
         this.name = name;
     }
 
-    public int getCount() {
-        return count;
+    public int getAmount() {
+        return amount;
     }
 
-    public void setCount(int count) {
-        this.count = count;
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 }
