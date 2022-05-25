@@ -7,6 +7,11 @@ import org.springframework.web.bind.annotation.RestController;
 import ru.clevertec.check.runner.services.CheckRunnerServices;
 import ru.clevertec.check.runner.model.Check;
 
+/**
+ *
+ * @author Sergey Degtyarev
+ */
+
 @RestController
 @RequestMapping("/check")
 public class CheckRunnerController {
@@ -19,7 +24,7 @@ public class CheckRunnerController {
     }
 
     @GetMapping("/runner")
-    public Check runner(String[] itemIdQuantity , int idCard) throws Exception {
-        return checkRunner.run(itemIdQuantity, idCard);
+    public Check runner(String[] itemIdQuantity , Integer idCard) throws Exception {
+        return checkRunner.creatCheck(itemIdQuantity, idCard);
     }
 }

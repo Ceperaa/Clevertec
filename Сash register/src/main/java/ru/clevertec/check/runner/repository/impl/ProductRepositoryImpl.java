@@ -7,6 +7,11 @@ import ru.clevertec.check.runner.repository.ProductRepository;
 
 import java.util.Map;
 
+/**
+ *
+ * @author Sergey Degtyarev
+ */
+
 @Repository
 public class ProductRepositoryImpl implements ProductRepository {
 

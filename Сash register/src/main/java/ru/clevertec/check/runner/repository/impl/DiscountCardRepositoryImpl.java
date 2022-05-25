@@ -7,6 +7,11 @@ import ru.clevertec.check.runner.repository.DiscountCardRepository;
 
 import java.util.Map;
 
+/**
+ *
+ * @author Sergey Degtyarev
+ */
+
 @Repository
 public class DiscountCardRepositoryImpl implements DiscountCardRepository {
 
@@ -17,7 +22,7 @@ public class DiscountCardRepositoryImpl implements DiscountCardRepository {
         this.discountCardMap = discountCardMap;
     }
 
-    public DiscountCard get(long id){
+    public DiscountCard get(Integer id){
         return discountCardMap.get(id);
     }
 }

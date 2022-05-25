@@ -4,5 +4,5 @@ import ru.clevertec.check.runner.model.Check;
 
 public interface CheckRunnerServices {
 
-    Check run(String[] itemIdQuantity1, int idCard) throws Exception;
+    Check creatCheck(String[] itemIdQuantity1, Integer idCard) throws Exception;
 }
