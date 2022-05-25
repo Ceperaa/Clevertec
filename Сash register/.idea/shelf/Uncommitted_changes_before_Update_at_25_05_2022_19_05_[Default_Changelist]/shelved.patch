@@ -1,0 +1,16 @@
+Index: .idea/dictionaries/Sergey.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/dictionaries/Sergey.xml	(date 1653494694694)
++++ .idea/dictionaries/Sergey.xml	(date 1653494694694)
+@@ -0,0 +1,7 @@
++<component name="ProjectDictionaryState">
++  <dictionary name="Sergey">
++    <words>
++      <w>сalculation</w>
++    </words>
++  </dictionary>
++</component>
+\ No newline at end of file
