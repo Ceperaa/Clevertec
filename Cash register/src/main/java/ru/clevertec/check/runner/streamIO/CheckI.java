@@ -9,7 +9,7 @@ public class CheckI extends StreamIO {
 
     private final CheckRepository checkRepository;
     private final static String LINK_ADDRESS =
-            "E:\\Clevertec\\Cash register\\src\\main\\java\\ru\\clevertec\\check\\runner\\streamIO\\CheckFile.CSV";
+            "E:\\Clevertec\\Cash register\\src\\main\\java\\ru\\clevertec\\check\\runner\\streamIO\\files\\CheckFile.CSV";
 
 
     public CheckI(CheckRepository checkRepository) {
