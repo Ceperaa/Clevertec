@@ -1,0 +1,651 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="84c59072-c1e1-4391-9ec2-1cb75e56323c" name="Default Changelist" comment="fix">
+      <change afterPath="$PROJECT_DIR$/.gradle/6.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/6.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/6.1/fileChanges/last-build.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/6.1/fileContent/fileContent.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/6.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/6.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/6.1/gc.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/6.1/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/6.1/javaCompile/javaCompile.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/6.1/javaCompile/taskHistory.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/vcs-1/gc.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/Sergey.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_05_2022_19_05_[Default_Changelist]/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_05_2022_19_05__Default_Changelist_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/ru/clevertec/check/runner/configuration/AppConfig.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/ru/clevertec/check/runner/configuration/DispatcherServletInitializer.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/ru/clevertec/check/runner/controller/CheckRunnerController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/ru/clevertec/check/runner/controller/ControllerAdvice.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/ru/clevertec/check/runner/model/Check.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/ru/clevertec/check/runner/model/DiscountCard.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/ru/clevertec/check/runner/model/ExceptionObject.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/ru/clevertec/check/runner/model/Product.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/ru/clevertec/check/runner/model/ProductInformation.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/ru/clevertec/check/runner/repository/DiscountCardRepository.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/ru/clevertec/check/runner/repository/ProductRepository.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/ru/clevertec/check/runner/repository/impl/CheckRepository.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/ru/clevertec/check/runner/repository/impl/DiscountCardRepositoryImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/ru/clevertec/check/runner/repository/impl/ProductInformationRepository.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/ru/clevertec/check/runner/repository/impl/ProductRepositoryImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/ru/clevertec/check/runner/services/CheckRunnerServices.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/ru/clevertec/check/runner/services/impl/CheckRunnerServicesImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/ru/clevertec/check/runner/services/impl/ProductInformationService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/ru/clevertec/check/runner/util/exception/ValidationException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/libs/Сash register-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/libs/Сash register-1.0-SNAPSHOT.war" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/tmp/jar/MANIFEST.MF" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/tmp/war/MANIFEST.MF" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/configuration/AppConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/configuration/DispatcherServletInitializer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/controller/CheckRunnerController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/controller/ControllerAdvice.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/model/Check.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/model/DiscountCard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/model/ExceptionObject.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/model/Product.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/model/ProductInformation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/repository/DiscountCardRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/repository/ProductRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/repository/impl/CheckRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/repository/impl/DiscountCardRepositoryImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/repository/impl/ProductInformationRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/repository/impl/ProductRepositoryImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/repository/util/AutoIncrement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/services/CheckRunnerServices.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/services/impl/CheckRunnerServicesImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/services/impl/ProductInformationService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/streamIO/CheckFile.CSV" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/streamIO/CheckI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/streamIO/ProductInformationIO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/streamIO/StreamEntityToString.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/streamIO/StreamIO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/util/exception/FileDownloader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/util/exception/ValidationException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/log4j2.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/.gradle/6.1/executionHistory/executionHistory.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/.gradle/6.1/executionHistory/executionHistory.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/.gradle/6.1/fileChanges/last-build.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/.gradle/6.1/fileContent/fileContent.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/.gradle/6.1/fileHashes/fileHashes.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/.gradle/6.1/fileHashes/fileHashes.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/.gradle/6.1/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/.gradle/6.1/javaCompile/classAnalysis.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/.gradle/6.1/javaCompile/javaCompile.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/.gradle/6.1/javaCompile/taskHistory.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/.gradle/checksums/checksums.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/.gradle/checksums/md5-checksums.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/.gradle/checksums/sha1-checksums.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/.gradle/vcs-1/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/.idea/dictionaries/Sergey.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/.idea/shelf/Uncommitted_changes_before_Update_at_25_05_2022_19_05_[Default_Changelist]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/.idea/shelf/Uncommitted_changes_before_Update_at_25_05_2022_19_05__Default_Changelist_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/build/classes/java/main/ru/clevertec/check/runner/configuration/AppConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/build/classes/java/main/ru/clevertec/check/runner/configuration/DispatcherServletInitializer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/build/classes/java/main/ru/clevertec/check/runner/controller/CheckRunnerController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/build/classes/java/main/ru/clevertec/check/runner/controller/ControllerAdvice.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/build/classes/java/main/ru/clevertec/check/runner/model/Check.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/build/classes/java/main/ru/clevertec/check/runner/model/DiscountCard.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/build/classes/java/main/ru/clevertec/check/runner/model/ExceptionObject.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/build/classes/java/main/ru/clevertec/check/runner/model/Product.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/build/classes/java/main/ru/clevertec/check/runner/model/ProductInformation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/build/classes/java/main/ru/clevertec/check/runner/repository/DiscountCardRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/build/classes/java/main/ru/clevertec/check/runner/repository/ProductRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/build/classes/java/main/ru/clevertec/check/runner/repository/impl/DiscountCardRepositoryImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/build/classes/java/main/ru/clevertec/check/runner/repository/impl/ProductRepositoryImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/build/classes/java/main/ru/clevertec/check/runner/services/CheckRunnerServices.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/build/classes/java/main/ru/clevertec/check/runner/services/impl/CheckRunnerServicesImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/build/classes/java/main/ru/clevertec/check/runner/util/exception/ValidationException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/build/libs/Сash register-1.0-SNAPSHOT.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/build/libs/Сash register-1.0-SNAPSHOT.war" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/build/tmp/jar/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/build/tmp/war/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/src/main/java/ru/clevertec/check/runner/configuration/AppConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/src/main/java/ru/clevertec/check/runner/configuration/DispatcherServletInitializer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/src/main/java/ru/clevertec/check/runner/controller/CheckRunnerController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/src/main/java/ru/clevertec/check/runner/controller/ControllerAdvice.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/src/main/java/ru/clevertec/check/runner/model/Check.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/src/main/java/ru/clevertec/check/runner/model/DiscountCard.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/src/main/java/ru/clevertec/check/runner/model/ExceptionObject.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/src/main/java/ru/clevertec/check/runner/model/Product.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/src/main/java/ru/clevertec/check/runner/model/ProductInformation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/src/main/java/ru/clevertec/check/runner/repository/DiscountCardRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/src/main/java/ru/clevertec/check/runner/repository/ProductRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/src/main/java/ru/clevertec/check/runner/repository/impl/DiscountCardRepositoryImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/src/main/java/ru/clevertec/check/runner/repository/impl/ProductRepositoryImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/src/main/java/ru/clevertec/check/runner/services/CheckRunnerServices.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/src/main/java/ru/clevertec/check/runner/services/impl/CheckRunnerServicesImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сash register/src/main/java/ru/clevertec/check/runner/util/exception/ValidationException.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/.." value="workBranch" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="29X9nKotxvuCjxSiuee9oHGt3Bn" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.build" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="ru.clevertec.check.runner.services.streamIO" />
+      <recent name="ru.clevertec.check.runner.model" />
+      <recent name="ru.clevertec.check.runner.controller" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Clevertec\Cash register\src\main\resources" />
+      <recent name="E:\Clevertec\Cash register\src\main\java\ru\clevertec\check\runner\repository" />
+      <recent name="E:\Clevertec\Сash register\src\main" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Smart Tomcat.run">
+    <configuration name="Cash register [defaultTasks]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="defaultTasks" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="Cash register [downloadJKSFromNotProd]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="downloadJKSFromNotProd" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="Cash register [hello]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="hello" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="Сash register [build]" type="GradleRunConfiguration" factoryName="Gradle">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="Сash register [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="clean" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="Сash register [jar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="jar" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="com.poratu.idea.plugins.tomcat" factoryName="SMART_TOMCAT_FACTORY">
+      <option name="adminPort" value="8005" />
+      <option name="contextPath" value="/" />
+      <option name="docBase" value="$PROJECT_DIR$/src/main/webapp" />
+      <option name="envOptions" />
+      <option name="passParentEnvironmentVariables" value="true" />
+      <option name="port" value="8080" />
+      <option name="tomcatInfo">
+        <TomcatInfo>
+          <option name="name" value="Apache Tomcat/9.0.56" />
+          <option name="number" value="0" />
+          <option name="path" value="D:\учеба\final\apache-tomcat-9.0.56" />
+          <option name="version" value="9.0.56.0" />
+        </TomcatInfo>
+      </option>
+      <option name="vmOptions" value="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="run" type="com.poratu.idea.plugins.tomcat" factoryName="SMART_TOMCAT_FACTORY">
+      <option name="adminPort" value="8005" />
+      <option name="contextPath" value="/" />
+      <option name="docBase" value="$PROJECT_DIR$/src/main/webapp" />
+      <option name="envOptions" />
+      <option name="passParentEnvironmentVariables" value="true" />
+      <option name="port" value="8080" />
+      <option name="tomcatInfo">
+        <TomcatInfo>
+          <option name="name" value="Apache Tomcat/9.0.56" />
+          <option name="number" value="0" />
+          <option name="path" value="D:\учеба\final\apache-tomcat-9.0.56" />
+          <option name="version" value="9.0.56.0" />
+        </TomcatInfo>
+      </option>
+      <option name="vmOptions" value="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Gradle.Сash register [build]" />
+      <item itemvalue="Gradle.Сash register [clean]" />
+      <item itemvalue="Gradle.Сash register [jar]" />
+      <item itemvalue="Gradle.Cash register [defaultTasks]" />
+      <item itemvalue="Smart Tomcat.run" />
+      <item itemvalue="Gradle.Cash register [hello]" />
+      <item itemvalue="Gradle.Cash register [downloadJKSFromNotProd]" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.Cash register [downloadJKSFromNotProd]" />
+        <item itemvalue="Gradle.Cash register [hello]" />
+        <item itemvalue="Gradle.Cash register [defaultTasks]" />
+        <item itemvalue="Gradle.Сash register [jar]" />
+        <item itemvalue="Gradle.Сash register [clean]" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="84c59072-c1e1-4391-9ec2-1cb75e56323c" name="Default Changelist" comment="" />
+      <created>1653248728321</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1653248728321</updated>
+      <workItem from="1653248732783" duration="1508000" />
+      <workItem from="1653250281432" duration="726000" />
+      <workItem from="1653289232580" duration="20040000" />
+      <workItem from="1653336522662" duration="43511000" />
+      <workItem from="1653494880137" duration="1441000" />
+      <workItem from="1653583615411" duration="8886000" />
+      <workItem from="1653671878391" duration="14838000" />
+      <workItem from="1653753715127" duration="4542000" />
+    </task>
+    <task id="LOCAL-00001" summary="add">
+      <created>1653292119728</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1653292119728</updated>
+    </task>
+    <task id="LOCAL-00002" summary="native variant">
+      <created>1653308532064</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1653308532064</updated>
+    </task>
+    <task id="LOCAL-00003" summary="add swagger, spring">
+      <created>1653327094060</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1653327094060</updated>
+    </task>
+    <task id="LOCAL-00004" summary="fix">
+      <created>1653489459878</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1653489459878</updated>
+    </task>
+    <task id="LOCAL-00005" summary="fix">
+      <created>1653494701227</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1653494701227</updated>
+    </task>
+    <task id="LOCAL-00006" summary="fix">
+      <created>1653494980050</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1653494980050</updated>
+    </task>
+    <task id="LOCAL-00007" summary="fix">
+      <created>1653495089221</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1653495089221</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="add" />
+    <MESSAGE value="native variant" />
+    <MESSAGE value="add swagger, spring" />
+    <MESSAGE value="fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="586" y="198" key="#Inspections" timestamp="1653740097963">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="586" y="198" key="#Inspections/0.0.1920.1040@0.0.1920.1040" timestamp="1653740097963" />
+    <state x="440" y="94" key="#Project_Structure" timestamp="1653248818170">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="440" y="94" key="#Project_Structure/0.0.1920.1040@0.0.1920.1040" timestamp="1653248818170" />
+    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1653318829195">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1653318829195" />
+    <state x="765" y="204" key="#com.intellij.ide.util.MemberChooser" timestamp="1653738193154">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="765" y="204" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1653738193154" />
+    <state x="585" y="444" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1653734686768">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="585" y="444" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1653734686768" />
+    <state x="395" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1653725374620">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="395" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1653725374620" />
+    <state x="311" y="275" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1653740276289">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="311" y="275" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1653740276289" />
+    <state width="415" height="466" key="DebuggerActiveHint" timestamp="1653473310281">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="415" height="466" key="DebuggerActiveHint/0.0.1920.1040@0.0.1920.1040" timestamp="1653473310281" />
+    <state x="740" y="261" key="FileChooserDialogImpl" timestamp="1653655681064">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="740" y="261" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1653655681064" />
+    <state width="1877" height="258" key="GridCell.Tab.0.bottom" timestamp="1653757894851">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="258" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1653757894851" />
+    <state width="1877" height="258" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1653740218819" />
+    <state width="1877" height="258" key="GridCell.Tab.0.center" timestamp="1653757894851">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="258" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1653757894851" />
+    <state width="1877" height="258" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1653740218819" />
+    <state width="1877" height="258" key="GridCell.Tab.0.left" timestamp="1653757894851">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="258" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1653757894851" />
+    <state width="1877" height="258" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1653740218819" />
+    <state width="1877" height="258" key="GridCell.Tab.0.right" timestamp="1653757894851">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="258" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1653757894851" />
+    <state width="1877" height="258" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1653740218819" />
+    <state width="1877" height="254" key="GridCell.Tab.1.bottom" timestamp="1653667810053">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="254" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1653667810053" />
+    <state width="1877" height="254" key="GridCell.Tab.1.center" timestamp="1653667810053">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="254" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1653667810053" />
+    <state width="1877" height="254" key="GridCell.Tab.1.left" timestamp="1653667810053">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="254" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1653667810053" />
+    <state width="1877" height="254" key="GridCell.Tab.1.right" timestamp="1653667810053">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="254" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1653667810053" />
+    <state x="2381" y="165" key="SettingsEditor" timestamp="1653753591727">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2381" y="165" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1653753591727" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1653495090533">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1653495090533" />
+    <state x="722" y="342" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1653583796850">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="722" y="342" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1653583796850" />
+    <state x="540" y="175" key="editAsTableFormatDialogDimension" timestamp="1653672056819">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="540" y="175" key="editAsTableFormatDialogDimension/0.0.1920.1040@0.0.1920.1040" timestamp="1653672056819" />
+    <state x="422" y="284" key="extract.method.dialog" timestamp="1653740205534">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="422" y="284" key="extract.method.dialog/0.0.1920.1040@0.0.1920.1040" timestamp="1653740205534" />
+    <state x="667" y="83" width="585" height="873" key="find.popup" timestamp="1653667339503">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="667" y="83" width="585" height="873" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1653667339503" />
+    <state x="666" y="277" key="refactoring.ChangeSignatureDialog" timestamp="1653656418785">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="666" y="277" key="refactoring.ChangeSignatureDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1653656418785" />
+    <state x="616" y="240" key="run.anything.popup" timestamp="1653400242125">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="616" y="240" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1653400242125" />
+    <state x="2543" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1653753407769">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2543" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1653753407769" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/services/impl/CheckRunnerServicesImpl.java</url>
+          <line>63</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/streamIO/StreamEntityToString.java</url>
+          <line>61</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/repository/impl/CheckRepository.java</url>
+          <line>12</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

@@ -1,0 +1,9 @@
+
+Check id=6, totalPriceWithDiscount=40, totalPrice='40, discountAmount=0, totalPercent=0
+Check id=7, totalPriceWithDiscount=40, totalPrice='40, discountAmount=0, totalPercent=0
+Check id=0, totalPriceWithDiscount=40, totalPrice='40, discountAmount=0, totalPercent=0
+Check id=1, totalPriceWithDiscount=144, totalPrice='150, discountAmount=6, totalPercent=4
+Check id=2, totalPriceWithDiscount=144, totalPrice='150, discountAmount=6, totalPercent=4
+Check id=3, totalPriceWithDiscount=144, totalPrice='150, discountAmount=6, totalPercent=4
+Check id=4, totalPriceWithDiscount=144, totalPrice='150, discountAmount=6, totalPercent=4
+Check id=5, totalPriceWithDiscount=144, totalPrice='150, discountAmount=6, totalPercent=4
