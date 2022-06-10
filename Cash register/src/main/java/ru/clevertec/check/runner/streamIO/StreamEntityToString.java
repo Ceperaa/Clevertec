@@ -10,7 +10,7 @@ import java.util.List;
 @Component
 public class StreamEntityToString {
 
-    private final List<String> stringList = new ArrayList<>();
+    //private final List<String> stringList = new ArrayList<>();
 
     public <T> void fileOutputStream(List<T> stringList, String linkAddress, boolean isOverwrite) throws Exception {
         if (isOverwrite) {
@@ -22,6 +22,7 @@ public class StreamEntityToString {
     }
 
     public List<String> fileInputStream(String linkAddress) throws Exception {
+        List<String> stringList = new ArrayList<>();
         createFile(linkAddress);
         BufferedReader bufferedReader = null;
 

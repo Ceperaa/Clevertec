@@ -1,68 +1,99 @@
 package ru.clevertec.check.runner.services.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.clevertec.check.runner.model.Check;
 import ru.clevertec.check.runner.model.Product;
 import ru.clevertec.check.runner.model.ProductInformation;
-import ru.clevertec.check.runner.repository.DiscountCardRepository;
-import ru.clevertec.check.runner.repository.ProductRepository;
-import ru.clevertec.check.runner.repository.impl.CheckRepository;
+import ru.clevertec.check.runner.repository.RepositoryEntity;
+import ru.clevertec.check.runner.repository.impl.CheckRepositoryImpl;
 import ru.clevertec.check.runner.services.CheckRunnerServices;
-import ru.clevertec.check.runner.streamIO.CheckI;
+import ru.clevertec.check.runner.streamIO.impl.CheckIO;
 import ru.clevertec.check.runner.util.exception.ValidationException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 /**
- *
  * @author Sergey Degtyarev
  */
 
 @Service
 public class CheckRunnerServicesImpl implements CheckRunnerServices {
 
-    private final ProductRepository productRepository;
-    private final CheckRepository checkRepository;
-    private final DiscountCardRepository discountCardRepository;
-    private final CheckI checkIO;
+    private final ProductServicesImpl productServices;
+    private final RepositoryEntity<Check> checkRepository;
+    private final ProductInformationService productInformationService;
+    private final CheckIO checkIO;
 
-    @Autowired
-    public CheckRunnerServicesImpl(ProductRepository productService, CheckRepository checkRepository, DiscountCardRepository discountCardRepositoryImpl, CheckI checkIO) {
-        this.productRepository = productService;
+    public CheckRunnerServicesImpl(
+            ProductServicesImpl productServices
+            , CheckRepositoryImpl checkRepository
+            , ProductInformationService productInformationService
+            , CheckIO checkIO
+    ) {
+        this.productServices = productServices;
         this.checkRepository = checkRepository;
-        this.discountCardRepository = discountCardRepositoryImpl;
+        this.productInformationService = productInformationService;
         this.checkIO = checkIO;
     }
 
-    public Check creatCheck(String[] itemIdQuantity, Integer idCard) throws Exception {
+    public Check creatCheck(String[] itemIdQuantity, Long idCard) throws Exception {
 
-        Map<Long, Integer> integerMap = splitItemIdQuantity(itemIdQuantity);
+        Map<Long, Integer> integerMap = splitItemIdQuantity(validation(itemIdQuantity));
 
         Check check = new Check();
         List<ProductInformation> productInformationList = new ArrayList<>();
         List<Product> productList = new ArrayList<>();
+
         integerMap.entrySet().forEach(integerEntry -> {
-            Product product = productRepository.get(integerEntry.getKey());
+            Product product = productServices.findById(integerEntry.getKey());
             productList.add(product);
-            productInformationList.add(addDescriptionInCheck(integerEntry, product));
+            productInformationList.add(productInformationService.addDescriptionInCheck(integerEntry, product));
         });
+        productServices.exportAllFile();
         check.setProductList(productInformationList);
         check.setTotalPrice(totalPrice(productInformationList));
-        check.setTotalPriceWithDiscount(discountСalculation(productList, totalPriceWithDiscount(productInformationList), idCard));
+        check.setTotalPriceWithDiscount(productInformationService.discountСalculation(productList, productInformationService.totalPriceWithDiscount(productInformationList), idCard));
+
         int discountAmount = check.getTotalPrice() - check.getTotalPriceWithDiscount();
         check.setDiscountAmount(discountAmount);
-        if (check.getTotalPrice()!=0){
+
+        if (check.getTotalPrice() != 0) {
             check.setTotalPercent((discountAmount * 100) / check.getTotalPrice());
-        }else {
+        } else {
             check.setDiscountAmount(0);
         }
-        check = checkRepository.add(check);
-        checkIO.exportServiceFile(List.of(check),false);
+
+        check = add(check);
+        exportFile(check);
+
         return check;
+    }
+
+    public void exportFile(Check check) throws Exception {
+        checkIO.exportFile(List.of(check), false);
+    }
+
+    private int totalPrice(List<ProductInformation> productList) {
+        return productList.stream().map(ProductInformation::getTotalPrice).mapToInt(x -> x).sum();
+    }
+
+    //протестировать
+    private String[] validation(String[] itemIdQuantity) {
+        String[] string = new String[itemIdQuantity.length];
+        for (String s : itemIdQuantity) {
+            Pattern pattern = Pattern.compile("[0-9]*-[0-9]*");
+            Matcher matcher = pattern.matcher(s);
+            for (String s1 : string) {
+                s1 = matcher.group();
+            }
+        }
+        return string;
     }
 
     private Map<Long, Integer> splitItemIdQuantity(String[] itemIdQuantity) throws ValidationException {
@@ -78,59 +109,18 @@ public class CheckRunnerServicesImpl implements CheckRunnerServices {
         return integerMap;
     }
 
-    private ProductInformation addDescriptionInCheck(Map.Entry<Long, Integer> integerMap, Product product) {
-        ProductInformation productInformation =
-                new ProductInformation(
-                        product.getName()
-                        , product.getPrice()
-                        , subtractPercentage(product.getDiscountPercent()
-                        , product.getPrice()));
-
-        if (product.getAmount() >= integerMap.getValue()) {
-            mapDescription(productInformation, product, integerMap.getValue());
-            product.setAmount(product.getAmount() - integerMap.getValue());
-        } else {
-            mapDescription(productInformation, product, product.getAmount());
-            product.setAmount(0);
-        }
-        productRepository.save(product);
-        return productInformation;
-    }
-
-    private void mapDescription(ProductInformation productInformation, Product product, int amount) {
-        productInformation.setQty(amount);
-        productInformation.setTotalPriceWithDiscount(productInformation.getPriceWithDiscount() * amount);
-        productInformation.setTotalPrice(product.getPrice() * amount);
-    }
-
-    private int totalPrice(List<ProductInformation> productList) {
-        return productList.stream().map(ProductInformation::getTotalPrice).mapToInt(x -> x).sum();
-    }
-
-    private int totalPriceWithDiscount(List<ProductInformation> productList) {
-        return productList.stream().map(ProductInformation::getTotalPriceWithDiscount).mapToInt(x -> x).sum();
-    }
-
-    private int discountСalculation(List<Product> productList, int total, Integer idCard) {
-        if (discountCardRepository.get(idCard)!=null){
-            total = subtractPercentage(discountCardRepository.get(idCard).getDiscount(),total);
-        }
-        if (productList
-                .stream()
-                .filter(product -> product.getDiscountPercent() != 0)
-                .count() >= 5
-        ) {
-            total = subtractPercentage(10, total);
-        }
-        return total;
-    }
-
-    private int subtractPercentage(int percent, int price) {
-        return price - (price * percent) / 100;
-    }
-
-    public void saveCheck(Check check){
+    public void saveCheck(Check check) throws Exception {
         checkRepository.update(check);
+    }
+
+    public Check add(Check check) throws Exception {
+//в чек не сетится айди
+        List<ProductInformation> list = check.getProductList();
+        list.stream()
+                .peek(productInformation -> productInformation.setCheckId(check.getId()))
+                .collect(Collectors.toList());
+        productInformationService.exportFile(list);
+        return checkRepository.add(check);
     }
 }
 

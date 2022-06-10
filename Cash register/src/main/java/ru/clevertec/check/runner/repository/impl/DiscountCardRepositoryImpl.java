@@ -1,28 +1,53 @@
 package ru.clevertec.check.runner.repository.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 import ru.clevertec.check.runner.model.DiscountCard;
-import ru.clevertec.check.runner.repository.DiscountCardRepository;
+import ru.clevertec.check.runner.streamIO.IStreamIO;
 
+import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
-/**
- *
- * @author Sergey Degtyarev
- */
+@Component
+public class DiscountCardRepositoryImpl extends RepositoryEntityImpl<DiscountCard> {
 
-@Repository
-public class DiscountCardRepositoryImpl implements DiscountCardRepository {
+    private final Map<Long, DiscountCard> map;
+    private final IStreamIO discountCardIO;
+    @Value("${cardId}")
+    private long increment;
 
-    private final Map<Long,DiscountCard> discountCardMap;
-
-    @Autowired
-    public DiscountCardRepositoryImpl(Map<Long, DiscountCard> discountCardMap) {
-        this.discountCardMap = discountCardMap;
+    public DiscountCardRepositoryImpl(Map<Long, DiscountCard> map, IStreamIO discountCardIO) {
+        super(map, discountCardIO);
+        this.map = map;
+        this.discountCardIO = discountCardIO;
     }
 
-    public DiscountCard get(Integer id){
-        return discountCardMap.get(id);
+    @Override
+    public List<DiscountCard> findAll() throws Exception {
+        return (List) discountCardIO.importServiceFile();
+    }
+
+    @Override
+    public DiscountCard add(DiscountCard o) throws Exception {
+        increment++;
+        //o.setId(super.createId(o));
+        o.setId(increment);
+        map.put(o.getId(),o);
+        discountCardIO.exportFile(List.of(o),false);
+        setFieldProperty();
+        return o;
+    }
+
+    @Override
+    public DiscountCard update(DiscountCard discountCard) throws Exception {
+        super.updateId(discountCard,discountCard.getId());
+        map.put(discountCard.getId(),discountCard);
+        return discountCard;
+    }
+
+    @Override
+    protected void setProperty(Properties properties) {
+        properties.setProperty("cardId", String.valueOf(increment));
     }
 }

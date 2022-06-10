@@ -1,30 +1,31 @@
 package ru.clevertec.check.runner.repository.util;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import java.util.Map;
+import org.springframework.beans.factory.annotation.Value;
 
-@Component
+import java.util.Map;
+import java.util.Properties;
+
 public class AutoIncrement {
 
-    private final Map<Long, ?> checkMap;
+    private final Properties properties = new Properties();
+    private final Map<Long, ?> map;
+    @Value("${datasource.url}")
     long increment = 0;
 
-    @Autowired
-    public AutoIncrement(Map<Long, ?> checkMap) {
-        this.checkMap = checkMap;
+    public AutoIncrement(Map<Long, ?> map) {
+        this.map = map;
     }
 
     public long getID() {
-        for (Long e : checkMap.keySet()) {
-            if (increment < e) {
-                increment = e;
-            } else {
-                increment++;
-                return increment;
-            }
+        //for (Long e : map.keySet()) {
+        if (increment < map.entrySet().size()) {
+            return increment = map.size() + 1;
+        } else {
+            increment++;
+            return increment;
         }
-        return increment;
+        //  }
+        // return increment;
     }
 
     public void setID(long id) {
@@ -34,4 +35,7 @@ public class AutoIncrement {
             increment++;
         }
     }
+
+
 }
+

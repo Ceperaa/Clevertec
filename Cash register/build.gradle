@@ -23,6 +23,9 @@ dependencies {
     implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.36'
     testImplementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.36'
     implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.17.0'
+    //compileOnly group: 'javax.servlet', name: 'servlet-api', version: '2.5'
+    implementation group: 'org.hibernate.validator', name: 'hibernate-validator', version: '7.0.4.Final'
+
 }
 
 class FileDownLoader extends DefaultTask {
@@ -42,6 +45,7 @@ class FileDownLoader extends DefaultTask {
 }
 
 task downloadJKSFromNotProd(type: FileDownLoader) {
-    sourceUrl = ""
-    target = new File('E:\\Clevertec\\Cash register\\File.txt')
+    sourceUrl = "https://raw.githubusercontent.com/Ceperaa/Clevertec/gradleTask/Cash%20register/src/main/java/ru/clevertec/check/runner/streamIO/files/CheckFile.CSV"
+    target = new File('E:\\Clevertec\\Cash register\\src\\main\\java\\ru\\clevertec\\check\\runner\\streamIO\\files\\CheckFile.CSV')
 }
+build.dependsOn downloadJKSFromNotProd

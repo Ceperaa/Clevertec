@@ -24,7 +24,7 @@ public class CheckRunnerController {
     }
 
     @GetMapping("/runner")
-    public Check runner(String[] itemIdQuantity , Integer idCard) throws Exception {
+    public Check runner(String[] itemIdQuantity , Long idCard) throws Exception {
         return checkRunner.creatCheck(itemIdQuantity, idCard);
     }
 }

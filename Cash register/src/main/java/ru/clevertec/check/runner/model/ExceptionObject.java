@@ -1,6 +1,6 @@
 package ru.clevertec.check.runner.model;
 
-public class ExceptionObject {
+public class  ExceptionObject {
 
     private int code;
     private String status;

@@ -10,11 +10,20 @@ public class ProductInformation {
     private int totalPrice;
     private int totalPriceWithDiscount;
     private int discountPercent;
+    private long checkId;
 
     public ProductInformation(String description, int price, int priceWithDiscount) {
         this.description = description;
         this.price = price;
         this.priceWithDiscount = priceWithDiscount;
+    }
+
+    public long getCheckId() {
+        return checkId;
+    }
+
+    public void setCheckId(long checkId) {
+        this.checkId = checkId;
     }
 
     public ProductInformation() {
@@ -94,6 +103,7 @@ public class ProductInformation {
                 ", priceWithDiscount=" + priceWithDiscount +
                 ", totalPrice=" + totalPrice +
                 ", totalPriceWithDiscount=" + totalPriceWithDiscount +
+                ", checkId=" + checkId +
                 "";
     }
 }

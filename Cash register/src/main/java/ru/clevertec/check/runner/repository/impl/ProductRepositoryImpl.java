@@ -1,33 +1,54 @@
 package ru.clevertec.check.runner.repository.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 import ru.clevertec.check.runner.model.Product;
-import ru.clevertec.check.runner.repository.ProductRepository;
+import ru.clevertec.check.runner.streamIO.IStreamIO;
 
+import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
-/**
- *
- * @author Sergey Degtyarev
- */
+@Component
+public class ProductRepositoryImpl extends RepositoryEntityImpl<Product> {
 
-@Repository
-public class ProductRepositoryImpl implements ProductRepository {
+    private final Map<Long, Product> map;
+    private final IStreamIO productIO;
 
-     private final Map<Long,Product> productMap;
+    @Value("${productId}")
+    private long increment;
 
-    @Autowired
-    public ProductRepositoryImpl(Map<Long, Product> productMap) {
-        this.productMap = productMap;
+    public ProductRepositoryImpl(Map<Long, Product> map, IStreamIO productIO) {
+        super(map, productIO);
+        this.map = map;
+        this.productIO = productIO;
     }
 
-    public Product get(long id) {
-        return productMap.get(id);
+    @Override
+    protected void setProperty(Properties properties) {
+        properties.setProperty("productId", String.valueOf(increment));
     }
 
-    public void save(Product product){
-        productMap.replace(product.getId(),product);
+    @Override
+    public List<Product> findAll() throws Exception {
+        return (List) productIO.importServiceFile();
     }
 
+    @Override
+    public Product add(Product o) throws Exception {
+        //o.setId(super.createId(o));
+        increment++;
+        o.setId(increment);
+        map.put(o.getId(), o);
+        productIO.exportFile(List.of(o), false);
+        setFieldProperty();
+        return o;
+    }
+
+    @Override
+    public Product update(Product product) throws Exception {
+        super.updateId(product, product.getId());
+        map.put(product.getId(), product);
+        return product;
+    }
 }
