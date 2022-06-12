@@ -1,0 +1,17 @@
+Sun Jun 12 19:22:02 MSK 2022 4rt4-5
+Sun Jun 12 19:22:02 MSK 2022 sgtgs
+Sun Jun 12 19:22:02 MSK 2022 g-h
+Sun Jun 12 19:23:46 MSK 2022 | 4rt4-5
+Sun Jun 12 19:23:46 MSK 2022 | sgtgs
+Sun Jun 12 19:23:46 MSK 2022 | g-h
+Sun Jun 12 19:24:52 MSK 2022 | Product id=100, name=string, amount=2, price=100.233, discountPercent=0
+Sun Jun 12 19:35:49 MSK 2022 | 3fg-5
+Sun Jun 12 19:35:49 MSK 2022 | 2hj-6
+Sun Jun 12 19:46:59 MSK 2022 | Product id=99, name=string22, amount=20, price=1.0, discountPercent=2
+Sun Jun 12 19:47:11 MSK 2022 | Product id=99, name=string, amount=20, price=1.0, discountPercent=2
+Sun Jun 12 20:11:42 MSK 2022 | 3fg-5
+Sun Jun 12 20:11:42 MSK 2022 | 2hj-6
+Sun Jun 12 20:11:56 MSK 2022 | 3fg-5
+Sun Jun 12 20:11:56 MSK 2022 | 2hj-6
+Sun Jun 12 20:17:13 MSK 2022 | 3fg-5
+Sun Jun 12 20:17:13 MSK 2022 | 2hj-6

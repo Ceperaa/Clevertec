@@ -36,7 +36,6 @@ public class ProductRepositoryImpl extends RepositoryEntityImpl<Product> {
 
     @Override
     public Product add(Product o) throws Exception {
-        //o.setId(super.createId(o));
         increment++;
         o.setId(increment);
         map.put(o.getId(), o);
@@ -47,8 +46,12 @@ public class ProductRepositoryImpl extends RepositoryEntityImpl<Product> {
 
     @Override
     public Product update(Product product) throws Exception {
-        super.updateId(product, product.getId());
-        map.put(product.getId(), product);
+        long id = product.getId();
+        if (findById(id) != null) {
+            delete(id);
+        }
+        map.put(id, product);
+        productIO.exportFile(List.of(product), false);
         return product;
     }
 }

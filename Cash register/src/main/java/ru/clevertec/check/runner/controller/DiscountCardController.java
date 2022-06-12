@@ -1,11 +1,8 @@
 package ru.clevertec.check.runner.controller;
 
-import jakarta.validation.Valid;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.clevertec.check.runner.model.DiscountCard;
 import ru.clevertec.check.runner.services.impl.DiscountCardServicesImpl;
-import ru.clevertec.check.runner.streamIO.StreamEntityToString;
 
 import java.util.List;
 
@@ -19,21 +16,14 @@ import java.util.List;
 public class DiscountCardController {
 
     private final DiscountCardServicesImpl cardServices;
-    private final StreamEntityToString streamEntityToString;
 
-    public DiscountCardController(DiscountCardServicesImpl cardServices, StreamEntityToString streamEntityToString) {
+    public DiscountCardController(DiscountCardServicesImpl cardServices) {
         this.cardServices = cardServices;
-        this.streamEntityToString = streamEntityToString;
     }
 
     @GetMapping("/add")
-    public DiscountCard add(@Valid DiscountCard discountCard, BindingResult bindingResult) throws Exception {
-       if (bindingResult.hasErrors()){
-           streamEntityToString.fileOutputStream(List.of(bindingResult.getObjectName()),"E:\\Clevertec\\Cash register\\src\\main\\java\\ru\\clevertec\\check\\runner\\streamIO\\files\\invalidData.txt",false);
-           return null;
-       } else {
+    public DiscountCard add(DiscountCard discountCard) throws Exception {
            return cardServices.saveCard(discountCard);
-       }
     }
 
     @GetMapping("/all")

@@ -3,11 +3,12 @@ package ru.clevertec.check.runner.services.impl;
 import org.springframework.stereotype.Service;
 import ru.clevertec.check.runner.model.DiscountCard;
 import ru.clevertec.check.runner.repository.impl.DiscountCardRepositoryImpl;
+import ru.clevertec.check.runner.services.DiscountCardServices;
 
 import java.util.List;
 
 @Service
-public class DiscountCardServicesImpl {
+public class DiscountCardServicesImpl implements DiscountCardServices {
 
     private final DiscountCardRepositoryImpl discountCardRepo;
 
@@ -15,7 +16,7 @@ public class DiscountCardServicesImpl {
         this.discountCardRepo = discountCardRepo;
     }
 
-    public DiscountCard findById(long id){
+    public DiscountCard findById(Long id){
         return discountCardRepo.findById(id);
     }
 
@@ -25,10 +26,6 @@ public class DiscountCardServicesImpl {
 
     public DiscountCard saveCard(DiscountCard card) throws Exception {
         return discountCardRepo.add(card);
-    }
-
-    public DiscountCard update(DiscountCard card) throws Exception {
-        return discountCardRepo.update(card);
     }
 
     public void deleteCard(long id) throws Exception {

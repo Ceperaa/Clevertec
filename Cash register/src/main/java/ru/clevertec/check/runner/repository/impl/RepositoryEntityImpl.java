@@ -1,7 +1,6 @@
 package ru.clevertec.check.runner.repository.impl;
 
 import ru.clevertec.check.runner.repository.RepositoryEntity;
-import ru.clevertec.check.runner.repository.util.AutoIncrement;
 import ru.clevertec.check.runner.streamIO.IStreamIO;
 
 import java.io.FileInputStream;
@@ -14,38 +13,15 @@ import java.util.Properties;
 public abstract class RepositoryEntityImpl<E> implements RepositoryEntity<E> {
 
     private final Map<Long, E> map;
-    private final AutoIncrement autoIncrement;
     private final IStreamIO streamIO;
     private final Properties properties;
 
     public RepositoryEntityImpl(Map<Long, E> map, IStreamIO streamIO) {
         this.map = map;
         this.streamIO = streamIO;
-        this.autoIncrement = new AutoIncrement(map);
         this.properties = new Properties();
     }
 
-    protected void updateId(E check, long id) throws Exception {
-        Object check1 = findById(id);
-        if (check1 != null) {
-            delete(id);
-        } else {
-            autoIncrement.setID(id);
-        }
-        map.put(id,check);
-        map.replace(id,check);
-    }
-
-    protected long createId(E check){
-        long id;
-        if (map.isEmpty()) {
-            id = 0;
-        } else {
-            id = autoIncrement.getID();
-        }
-        map.put(id,check);
-        return id;
-    }
 
     protected abstract void setProperty(Properties property);
 
@@ -68,10 +44,6 @@ public abstract class RepositoryEntityImpl<E> implements RepositoryEntity<E> {
         map.remove(id);
         streamIO.exportFile(List.copyOf(map.values()),true);
     }
-
-//    public List<E> findAll(){
-//        return new ArrayList<>(map.values());
-//    }
 
    public abstract List<E> findAll() throws Exception;
 

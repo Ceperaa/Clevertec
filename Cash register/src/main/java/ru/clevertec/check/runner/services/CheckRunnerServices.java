@@ -1,10 +1,9 @@
 package ru.clevertec.check.runner.services;
 
-import ru.clevertec.check.runner.model.Check;
+import ru.clevertec.check.runner.dto.CheckDto;
 
 public interface CheckRunnerServices {
 
-    Check creatCheck(String[] itemIdQuantity1, Long idCard) throws Exception;
+    CheckDto creatCheck(String[] itemIdQuantity1, Long idCard) throws Exception;
 
-    void saveCheck(Check check) throws Exception;
 }

@@ -1,14 +1,16 @@
 package ru.clevertec.check.runner.model;
 
+import ru.clevertec.check.runner.dto.ProductDto;
+
 import java.util.List;
 
 public class Check {
 
     private long id;
-    private List<ProductInformation> productList;
-    private int totalPriceWithDiscount;
-    private int totalPrice;
-    private int discountAmount;
+    private List<ProductDto> productList;
+    private double totalPriceWithDiscount;
+    private double totalPrice;
+    private double discountAmount;
     private int totalPercent;
 
     public Check() {
@@ -22,11 +24,11 @@ public class Check {
         this.id = id;
     }
 
-    public int getDiscountAmount() {
+    public double getDiscountAmount() {
         return discountAmount;
     }
 
-    public void setDiscountAmount(int discountAmount) {
+    public void setDiscountAmount(double discountAmount) {
         this.discountAmount = discountAmount;
     }
 
@@ -38,26 +40,26 @@ public class Check {
         this.totalPercent = totalPercent;
     }
 
-    public int getTotalPriceWithDiscount() {
+    public double getTotalPriceWithDiscount() {
         return totalPriceWithDiscount;
     }
 
-    public void setTotalPriceWithDiscount(int totalPriceWithDiscount) {
+    public void setTotalPriceWithDiscount(double totalPriceWithDiscount) {
         this.totalPriceWithDiscount = totalPriceWithDiscount;
     }
 
-    public int getTotalPrice() {
+    public double getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(int totalPrice) {
+    public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
     }
-    public List<ProductInformation> getProductList() {
+    public List<ProductDto> getProductList() {
         return productList;
     }
 
-    public void setProductList(List<ProductInformation> productList) {
+    public void setProductList(List<ProductDto> productList) {
         this.productList = productList;
     }
 
@@ -66,6 +68,7 @@ public class Check {
         return "Check " +
                 "id=" + id +
                 ", totalPriceWithDiscount=" + totalPriceWithDiscount +
+                ", productList=" + productList +
                 ", totalPrice='" + totalPrice +
                 ", discountAmount=" + discountAmount +
                 ", totalPercent=" + totalPercent +

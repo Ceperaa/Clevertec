@@ -1,12 +1,8 @@
 package ru.clevertec.check.runner.model;
 
-import jakarta.validation.constraints.Pattern;
-
 public class DiscountCard {
 
-    @Pattern(regexp = "//d")
     private long id;
-    @Pattern(regexp = "^[0-9]{1,3}")
     private int discount;
 
     public DiscountCard(long id, int discount) {

@@ -41,7 +41,7 @@ public class DiscountCardRepositoryImpl extends RepositoryEntityImpl<DiscountCar
 
     @Override
     public DiscountCard update(DiscountCard discountCard) throws Exception {
-        super.updateId(discountCard,discountCard.getId());
+        //super.updateId(discountCard,discountCard.getId());
         map.put(discountCard.getId(),discountCard);
         return discountCard;
     }

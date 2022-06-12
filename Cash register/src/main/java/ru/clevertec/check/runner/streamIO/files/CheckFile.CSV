@@ -70,3 +70,33 @@ Check id=1, totalPriceWithDiscount=36, totalPrice='40, discountAmount=4, totalPe
 Check id=2, totalPriceWithDiscount=36, totalPrice='40, discountAmount=4, totalPercent=10
 Check id=3, totalPriceWithDiscount=36, totalPrice='40, discountAmount=4, totalPercent=10
 Check id=4, totalPriceWithDiscount=36, totalPrice='40, discountAmount=4, totalPercent=10
+Check id=41, totalPriceWithDiscount=1340, totalPrice='1380, discountAmount=40, totalPercent=2
+Check id=42, totalPriceWithDiscount=0, totalPrice='0, discountAmount=0, totalPercent=0
+Check id=43, totalPriceWithDiscount=0, totalPrice='0, discountAmount=0, totalPercent=0
+Check id=44, totalPriceWithDiscount=0, totalPrice='0, discountAmount=0, totalPercent=0
+Check id=45, totalPriceWithDiscount=0, totalPrice='0, discountAmount=0, totalPercent=0
+Check id=46, totalPriceWithDiscount=0, totalPrice='0, discountAmount=0, totalPercent=0
+Check id=47, totalPriceWithDiscount=1340, totalPrice='1380, discountAmount=40, totalPercent=2
+Check id=48, totalPriceWithDiscount=0, totalPrice='0, discountAmount=0, totalPercent=0
+Check id=49, totalPriceWithDiscount=0, totalPrice='0, discountAmount=0, totalPercent=0
+Check id=50, totalPriceWithDiscount=0, totalPrice='0, discountAmount=0, totalPercent=0
+Check id=51, totalPriceWithDiscount=0, totalPrice='0, discountAmount=0, totalPercent=0
+Check id=52, totalPriceWithDiscount=1340, totalPrice='1380, discountAmount=40, totalPercent=2
+Check id=53, totalPriceWithDiscount=1340, totalPrice='1380, discountAmount=40, totalPercent=2
+Check id=54, totalPriceWithDiscount=1340, totalPrice='1380, discountAmount=40, totalPercent=2
+Check id=55, totalPriceWithDiscount=1340, totalPrice='1380, discountAmount=40, totalPercent=2
+Check id=56, totalPriceWithDiscount=2156, totalPrice='2268, discountAmount=112, totalPercent=4
+Check id=57, totalPriceWithDiscount=2268.0, totalPrice='2268.0, discountAmount=0.0, totalPercent=0
+Check id=58, totalPriceWithDiscount=2268.0, totalPrice='2268.0, discountAmount=0.0, totalPercent=0
+Check id=59, totalPriceWithDiscount=2268.0, totalPrice='2268.0, discountAmount=0.0, totalPercent=0
+Check id=60, totalPriceWithDiscount=2268.0, totalPrice='2268.0, discountAmount=0.0, totalPercent=0
+Check id=61, totalPriceWithDiscount=2268.0, totalPrice='2268.0, discountAmount=0.0, totalPercent=0
+Check id=62, totalPriceWithDiscount=2268.0, totalPrice='2268.0, discountAmount=0.0, totalPercent=0
+Check id=63, totalPriceWithDiscount=2268.0, totalPrice='2268.0, discountAmount=0.0, totalPercent=0
+Check id=64, totalPriceWithDiscount=0.0, totalPrice='0.0, discountAmount=0.0, totalPercent=0
+Check id=65, totalPriceWithDiscount=0.0, totalPrice='0.0, discountAmount=0.0, totalPercent=0
+Check id=66, totalPriceWithDiscount=0.0, totalPrice='0.0, discountAmount=0.0, totalPercent=0
+Check id=67, totalPriceWithDiscount=0.0, productList=[ProductInformation id=0, qty=0, description='dom, price=345.0, priceWithDiscount=345.0, totalPrice=0.0, totalPriceWithDiscount=0.0, checkId=0], totalPrice='0.0, discountAmount=0.0, totalPercent=0
+Check id=68, totalPriceWithDiscount=3402.0, productList=[ProductInformation id=0, qty=3, description='stringfr45, price=567.0, priceWithDiscount=567.0, totalPrice=1701.0, totalPriceWithDiscount=1701.0, checkId=0, ProductInformation id=0, qty=0, description='dom, price=345.0, priceWithDiscount=345.0, totalPrice=0.0, totalPriceWithDiscount=0.0, checkId=0, ProductInformation id=0, qty=3, description='stringfr45, price=567.0, priceWithDiscount=567.0, totalPrice=1701.0, totalPriceWithDiscount=1701.0, checkId=0], totalPrice='3402.0, discountAmount=0.0, totalPercent=0
+Check id=69, totalPriceWithDiscount=3402.0, productList=[ProductInformation id=0, qty=3, description='stringfr45, price=567.0, priceWithDiscount=567.0, totalPrice=1701.0, totalPriceWithDiscount=1701.0, checkId=0, ProductInformation id=0, qty=0, description='dom, price=345.0, priceWithDiscount=345.0, totalPrice=0.0, totalPriceWithDiscount=0.0, checkId=0, ProductInformation id=0, qty=3, description='stringfr45, price=567.0, priceWithDiscount=567.0, totalPrice=1701.0, totalPriceWithDiscount=1701.0, checkId=0], totalPrice='3402.0, discountAmount=0.0, totalPercent=0
+Check id=70, totalPriceWithDiscount=4307.0, productList=[ProductInformation id=0, qty=2, description='stringfr45, price=567.0, priceWithDiscount=538.65, totalPrice=1134.0, totalPriceWithDiscount=1077.3, checkId=0, ProductInformation id=0, qty=3, description='stringfr45, price=567.0, priceWithDiscount=538.65, totalPrice=1701.0, totalPriceWithDiscount=1615.9499999999998, checkId=0, ProductInformation id=0, qty=3, description='stringfr45, price=567.0, priceWithDiscount=538.65, totalPrice=1701.0, totalPriceWithDiscount=1615.9499999999998, checkId=0], totalPrice='4536.0, discountAmount=229.0, totalPercent=5

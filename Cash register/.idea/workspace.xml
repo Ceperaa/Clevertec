@@ -10,28 +10,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="84c59072-c1e1-4391-9ec2-1cb75e56323c" name="Default Changelist" comment="add file">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/controller/DiscountCardController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/controller/ProductController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/repository/impl/CheckRepositoryImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/repository/impl/ProductInformationRepositoryImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/repository/impl/RepositoryEntityImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/services/impl/DiscountCardServicesImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/services/impl/ProductServicesImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/streamIO/IStreamIO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/streamIO/files/DescriptionProductFile.CSV" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/streamIO/files/DiscountCardFile.CSV" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/streamIO/files/ProductFile.CSV" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/streamIO/files/invalidData.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/streamIO/impl/DiscountCardIO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/streamIO/impl/ProductIO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/validation/modul/Autowire.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/validation/modul/ConfigProperty.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/validation/modul/Email.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/validation/modul/Operation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/validation/modul/Type.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/increment.properties" afterDir="false" />
+    <list default="true" id="84c59072-c1e1-4391-9ec2-1cb75e56323c" name="Default Changelist" comment="fix AutoIncrement">
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/dto/CheckDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/services/DiscountCardServices.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/services/ProductServices.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/util/exception/ObjectNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/util/validation/DataValidation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1/fileHashes/fileHashes.bin" afterDir="false" />
@@ -40,54 +24,55 @@
       <change beforePath="$PROJECT_DIR$/.gradle/6.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_05_2022_19_05_[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_05_2022_19_05__Default_Changelist_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/ru/clevertec/check/runner/configuration/AppConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ru/clevertec/check/runner/configuration/AppConfig.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/ru/clevertec/check/runner/controller/CheckRunnerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ru/clevertec/check/runner/controller/CheckRunnerController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ru/clevertec/check/runner/controller/ControllerAdvice.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ru/clevertec/check/runner/controller/ControllerAdvice.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ru/clevertec/check/runner/model/Check.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ru/clevertec/check/runner/model/Check.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/ru/clevertec/check/runner/model/DiscountCard.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ru/clevertec/check/runner/model/DiscountCard.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/ru/clevertec/check/runner/model/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ru/clevertec/check/runner/model/Product.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ru/clevertec/check/runner/model/ProductInformation.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ru/clevertec/check/runner/model/ProductInformation.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ru/clevertec/check/runner/repository/DiscountCardRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ru/clevertec/check/runner/repository/ProductRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ru/clevertec/check/runner/repository/impl/CheckRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ru/clevertec/check/runner/model/ProductInformation.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/ru/clevertec/check/runner/repository/impl/DiscountCardRepositoryImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ru/clevertec/check/runner/repository/impl/DiscountCardRepositoryImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ru/clevertec/check/runner/repository/impl/ProductInformationRepository.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/ru/clevertec/check/runner/repository/impl/ProductRepositoryImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ru/clevertec/check/runner/repository/impl/ProductRepositoryImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/ru/clevertec/check/runner/services/CheckRunnerServices.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ru/clevertec/check/runner/services/CheckRunnerServices.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/ru/clevertec/check/runner/services/impl/CheckRunnerServicesImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ru/clevertec/check/runner/services/impl/CheckRunnerServicesImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ru/clevertec/check/runner/services/impl/ProductInformationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ru/clevertec/check/runner/services/impl/ProductInformationService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/libs/Сash register-1.0-SNAPSHOT.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/libs/Сash register-1.0-SNAPSHOT.war" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/jar/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ru/clevertec/check/runner/services/impl/ProductInformationService.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/configuration/AppConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/configuration/AppConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/controller/CheckRunnerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/controller/CheckRunnerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/controller/ControllerAdvice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/controller/ControllerAdvice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/controller/DiscountCardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/controller/DiscountCardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/controller/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/model/Check.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/model/Check.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/model/DiscountCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/model/DiscountCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/model/ExceptionObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/model/ExceptionObject.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/model/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/model/ProductInformation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/model/ProductInformation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/repository/DiscountCardRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/repository/ProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/repository/RepositoryEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/repository/impl/CheckRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/model/ProductInformation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/dto/ProductDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/repository/impl/CheckRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/repository/impl/CheckRepositoryImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/repository/impl/DiscountCardRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/repository/impl/DiscountCardRepositoryImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/repository/impl/ProductInformationRepository.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/repository/impl/ProductRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/repository/impl/ProductRepositoryImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/repository/util/AutoIncrement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/repository/util/AutoIncrement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/repository/impl/RepositoryEntityImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/repository/impl/RepositoryEntityImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/repository/util/AutoIncrement.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/services/CheckRunnerServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/services/CheckRunnerServices.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/services/impl/CheckRunnerServicesImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/services/impl/CheckRunnerServicesImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/services/impl/ProductInformationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/services/impl/ProductInformationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/streamIO/CheckI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/streamIO/impl/CheckIO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/streamIO/ProductInformationIO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/streamIO/impl/ProductInformationIO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/services/impl/DiscountCardServicesImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/services/impl/DiscountCardServicesImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/services/impl/ProductInformationService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/services/impl/ProductServicesImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/services/impl/ProductServicesImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/streamIO/StreamEntityToString.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/streamIO/StreamEntityToString.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/streamIO/StreamIO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/streamIO/impl/StreamIO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/streamIO/files/CheckFile.CSV" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/streamIO/files/CheckFile.CSV" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/streamIO/files/DescriptionProductFile.CSV" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/streamIO/files/DescriptionProductFile.CSV" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/streamIO/files/ProductFile.CSV" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/streamIO/files/ProductFile.CSV" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/streamIO/files/invalidData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/streamIO/files/invalidData.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/streamIO/impl/ProductIO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/streamIO/impl/ProductIO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/streamIO/impl/ProductInformationIO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/validation/modul/Autowire.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/validation/modul/ConfigProperty.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/validation/modul/Email.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/validation/modul/Operation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/validation/modul/Type.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/increment.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/increment.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -992,9 +977,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
-        <option value="Interface" />
         <option value="AnnotationType" />
+        <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -1201,12 +1186,12 @@
     </configuration>
     <list>
       <item itemvalue="Application.TestArray" />
+      <item itemvalue="Application.main" />
       <item itemvalue="Gradle.Сash register [build]" />
       <item itemvalue="Gradle.Cash register [jar]" />
       <item itemvalue="Gradle.Cash register [clean]" />
       <item itemvalue="Gradle.Cash register [downloadJKSFromNotProd]" />
       <item itemvalue="Smart Tomcat.run" />
-      <item itemvalue="Application.main" />
     </list>
     <recent_temporary>
       <list>
@@ -1238,7 +1223,8 @@
       <workItem from="1653753715127" duration="35900000" />
       <workItem from="1654068761687" duration="2159000" />
       <workItem from="1654517231264" duration="601000" />
-      <workItem from="1654532869817" duration="35096000" />
+      <workItem from="1654532869817" duration="51611000" />
+      <workItem from="1655051240906" duration="5930000" />
     </task>
     <task id="LOCAL-00001" summary="add">
       <created>1653292119728</created>
@@ -1303,7 +1289,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653763862085</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="fix AutoIncrement">
+      <created>1654875837281</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1654875837281</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1328,7 +1321,8 @@
     <MESSAGE value="add swagger, spring" />
     <MESSAGE value="fix" />
     <MESSAGE value="add file" />
-    <option name="LAST_COMMIT_MESSAGE" value="add file" />
+    <MESSAGE value="fix AutoIncrement" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix AutoIncrement" />
   </component>
   <component name="WindowStateProjectService">
     <state x="586" y="198" key="#Inspections" timestamp="1653740097963">
@@ -1349,25 +1343,31 @@
     <state x="765" y="204" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/13.-1080.1920.1040@0.0.1920.1040" timestamp="1654875483866" />
     <state x="2685" y="204" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1653841719085" />
     <state x="765" y="204" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1654069540505" />
-    <state x="585" y="444" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1653734686768">
+    <state x="585" y="444" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1655056056418">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="585" y="444" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1920.1040/13.-1080.1920.1040@0.0.1920.1040" timestamp="1655056056418" />
     <state x="585" y="444" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1653734686768" />
-    <state x="743" y="385" width="467" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1654799509209">
+    <state x="743" y="385" width="435" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1654963807442">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="743" y="385" width="467" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1920.1040/0.-1080.1280.680@0.0.1920.1040" timestamp="1654799509209" />
-    <state x="743" y="385" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1920.1040/13.-1080.1920.1040@0.0.1920.1040" timestamp="1654698804678" />
-    <state x="395" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1654799363334">
+    <state x="743" y="385" width="435" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1920.1040/13.-1080.1920.1040@0.0.1920.1040" timestamp="1654963807442" />
+    <state x="743" y="390" key="#com.intellij.refactoring.move.moveInstanceMethod.MoveInstanceMethodDialog" timestamp="1654966750473">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="743" y="390" key="#com.intellij.refactoring.move.moveInstanceMethod.MoveInstanceMethodDialog/0.0.1920.1040/13.-1080.1920.1040@0.0.1920.1040" timestamp="1654966750473" />
+    <state x="395" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1655052866308">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="395" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040/0.-1080.1280.680@0.0.1920.1040" timestamp="1654799363334" />
-    <state x="395" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040/13.-1080.1920.1040@0.0.1920.1040" timestamp="1654770794281" />
+    <state x="395" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040/13.-1080.1920.1040@0.0.1920.1040" timestamp="1655052866308" />
     <state x="2315" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1653813795910" />
     <state x="395" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1654069686502" />
-    <state x="2231" y="275" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1653817293540">
-      <screen x="1920" y="0" width="1920" height="1040" />
+    <state x="311" y="275" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1655056341308">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="311" y="275" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040/13.-1080.1920.1040@0.0.1920.1040" timestamp="1655056341308" />
     <state x="2231" y="275" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1653817293540" />
     <state x="311" y="275" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1653740276289" />
     <state x="690" y="267" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog" timestamp="1654701601923">
@@ -1386,60 +1386,60 @@
     <state x="740" y="261" key="FileChooserDialogImpl/0.0.1920.1040/13.-1080.1920.1040@0.0.1920.1040" timestamp="1654861199692" />
     <state x="740" y="261" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1653913047330" />
     <state x="740" y="261" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1653655681064" />
-    <state width="1877" height="314" key="GridCell.Tab.0.bottom" timestamp="1654875657759">
+    <state width="1877" height="301" key="GridCell.Tab.0.bottom" timestamp="1655056258167">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="240" key="GridCell.Tab.0.bottom/0.0.1920.1040/0.-1080.1280.680@0.0.1920.1040" timestamp="1654804381842" />
-    <state width="1877" height="314" key="GridCell.Tab.0.bottom/0.0.1920.1040/13.-1080.1920.1040@0.0.1920.1040" timestamp="1654875657759" />
+    <state width="1877" height="301" key="GridCell.Tab.0.bottom/0.0.1920.1040/13.-1080.1920.1040@0.0.1920.1040" timestamp="1655056258167" />
     <state width="1877" height="227" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1653853354720" />
     <state width="1877" height="258" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1653740218819" />
-    <state width="1877" height="314" key="GridCell.Tab.0.center" timestamp="1654875657759">
+    <state width="1877" height="301" key="GridCell.Tab.0.center" timestamp="1655056258166">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="240" key="GridCell.Tab.0.center/0.0.1920.1040/0.-1080.1280.680@0.0.1920.1040" timestamp="1654804381842" />
-    <state width="1877" height="314" key="GridCell.Tab.0.center/0.0.1920.1040/13.-1080.1920.1040@0.0.1920.1040" timestamp="1654875657759" />
+    <state width="1877" height="301" key="GridCell.Tab.0.center/0.0.1920.1040/13.-1080.1920.1040@0.0.1920.1040" timestamp="1655056258166" />
     <state width="1877" height="227" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1653853354720" />
     <state width="1877" height="258" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1653740218819" />
-    <state width="1877" height="314" key="GridCell.Tab.0.left" timestamp="1654875657759">
+    <state width="1877" height="301" key="GridCell.Tab.0.left" timestamp="1655056258166">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="240" key="GridCell.Tab.0.left/0.0.1920.1040/0.-1080.1280.680@0.0.1920.1040" timestamp="1654804381842" />
-    <state width="1877" height="314" key="GridCell.Tab.0.left/0.0.1920.1040/13.-1080.1920.1040@0.0.1920.1040" timestamp="1654875657759" />
+    <state width="1877" height="301" key="GridCell.Tab.0.left/0.0.1920.1040/13.-1080.1920.1040@0.0.1920.1040" timestamp="1655056258166" />
     <state width="1877" height="227" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1653853354720" />
     <state width="1877" height="258" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1653740218819" />
-    <state width="1877" height="314" key="GridCell.Tab.0.right" timestamp="1654875657759">
+    <state width="1877" height="301" key="GridCell.Tab.0.right" timestamp="1655056258167">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="240" key="GridCell.Tab.0.right/0.0.1920.1040/0.-1080.1280.680@0.0.1920.1040" timestamp="1654804381842" />
-    <state width="1877" height="314" key="GridCell.Tab.0.right/0.0.1920.1040/13.-1080.1920.1040@0.0.1920.1040" timestamp="1654875657759" />
+    <state width="1877" height="301" key="GridCell.Tab.0.right/0.0.1920.1040/13.-1080.1920.1040@0.0.1920.1040" timestamp="1655056258167" />
     <state width="1877" height="227" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1653853354720" />
     <state width="1877" height="258" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1653740218819" />
-    <state width="1877" height="211" key="GridCell.Tab.1.bottom" timestamp="1654872848664">
+    <state width="1877" height="357" key="GridCell.Tab.1.bottom" timestamp="1655051156995">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="240" key="GridCell.Tab.1.bottom/0.0.1920.1040/0.-1080.1280.680@0.0.1920.1040" timestamp="1654804499233" />
-    <state width="1877" height="211" key="GridCell.Tab.1.bottom/0.0.1920.1040/13.-1080.1920.1040@0.0.1920.1040" timestamp="1654872848664" />
+    <state width="1877" height="357" key="GridCell.Tab.1.bottom/0.0.1920.1040/13.-1080.1920.1040@0.0.1920.1040" timestamp="1655051156995" />
     <state width="1877" height="227" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1653853389993" />
     <state width="1877" height="254" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1653667810053" />
-    <state width="1877" height="211" key="GridCell.Tab.1.center" timestamp="1654872848663">
+    <state width="1877" height="357" key="GridCell.Tab.1.center" timestamp="1655051156995">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="240" key="GridCell.Tab.1.center/0.0.1920.1040/0.-1080.1280.680@0.0.1920.1040" timestamp="1654804499233" />
-    <state width="1877" height="211" key="GridCell.Tab.1.center/0.0.1920.1040/13.-1080.1920.1040@0.0.1920.1040" timestamp="1654872848663" />
+    <state width="1877" height="357" key="GridCell.Tab.1.center/0.0.1920.1040/13.-1080.1920.1040@0.0.1920.1040" timestamp="1655051156995" />
     <state width="1877" height="227" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1653853389993" />
     <state width="1877" height="254" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1653667810053" />
-    <state width="1877" height="211" key="GridCell.Tab.1.left" timestamp="1654872848663">
+    <state width="1877" height="357" key="GridCell.Tab.1.left" timestamp="1655051156995">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="240" key="GridCell.Tab.1.left/0.0.1920.1040/0.-1080.1280.680@0.0.1920.1040" timestamp="1654804499233" />
-    <state width="1877" height="211" key="GridCell.Tab.1.left/0.0.1920.1040/13.-1080.1920.1040@0.0.1920.1040" timestamp="1654872848663" />
+    <state width="1877" height="357" key="GridCell.Tab.1.left/0.0.1920.1040/13.-1080.1920.1040@0.0.1920.1040" timestamp="1655051156995" />
     <state width="1877" height="227" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1653853389993" />
     <state width="1877" height="254" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1653667810053" />
-    <state width="1877" height="211" key="GridCell.Tab.1.right" timestamp="1654872848663">
+    <state width="1877" height="357" key="GridCell.Tab.1.right" timestamp="1655051156995">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="240" key="GridCell.Tab.1.right/0.0.1920.1040/0.-1080.1280.680@0.0.1920.1040" timestamp="1654804499233" />
-    <state width="1877" height="211" key="GridCell.Tab.1.right/0.0.1920.1040/13.-1080.1920.1040@0.0.1920.1040" timestamp="1654872848663" />
+    <state width="1877" height="357" key="GridCell.Tab.1.right/0.0.1920.1040/13.-1080.1920.1040@0.0.1920.1040" timestamp="1655051156995" />
     <state width="1877" height="227" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1653853389993" />
     <state width="1877" height="254" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1653667810053" />
     <state x="461" y="165" key="SettingsEditor" timestamp="1654874096906">
@@ -1447,9 +1447,10 @@
     </state>
     <state x="461" y="165" key="SettingsEditor/0.0.1920.1040/13.-1080.1920.1040@0.0.1920.1040" timestamp="1654874096906" />
     <state x="2381" y="165" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1653753591727" />
-    <state x="2472" y="253" key="Vcs.Push.Dialog.v2" timestamp="1653763865632">
-      <screen x="1920" y="0" width="1920" height="1040" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1654875847669">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040/13.-1080.1920.1040@0.0.1920.1040" timestamp="1654875847669" />
     <state x="2472" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1653763865632" />
     <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1653495090533" />
     <state x="2689" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1653758747564">
@@ -1477,11 +1478,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="342" y="80" key="new project wizard/0.0.1920.1040/13.-1080.1920.1040@0.0.1920.1040" timestamp="1653920492816" />
-    <state x="666" y="277" key="refactoring.ChangeSignatureDialog" timestamp="1654874689904">
+    <state x="666" y="277" key="refactoring.ChangeSignatureDialog" timestamp="1654962754708">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="666" y="277" key="refactoring.ChangeSignatureDialog/0.0.1920.1040/0.-1080.1280.680@0.0.1920.1040" timestamp="1654797203151" />
-    <state x="666" y="277" key="refactoring.ChangeSignatureDialog/0.0.1920.1040/13.-1080.1920.1040@0.0.1920.1040" timestamp="1654874689904" />
+    <state x="666" y="277" key="refactoring.ChangeSignatureDialog/0.0.1920.1040/13.-1080.1920.1040@0.0.1920.1040" timestamp="1654962754708" />
     <state x="2586" y="277" key="refactoring.ChangeSignatureDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1653815246933" />
     <state x="666" y="277" key="refactoring.ChangeSignatureDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1653656418785" />
     <state x="616" y="240" width="672" height="677" key="run.anything.popup" timestamp="1654698840111">
@@ -1495,20 +1496,6 @@
     <state x="2543" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1653753407769" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/services/impl/CheckRunnerServicesImpl.java</url>
-          <line>46</line>
-          <option name="timeStamp" value="28" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/ru/clevertec/check/runner/controller/DiscountCardController.java</url>
-          <line>30</line>
-          <option name="timeStamp" value="35" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="com.poratu.idea.plugins.tomcat">
         <watch expression="((HashMap)checkMap).entrySet().toArray()[1]" custom="java.util.HashMap" />

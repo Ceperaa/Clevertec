@@ -1,17 +1,14 @@
 package ru.clevertec.check.runner.model;
 
-import jakarta.validation.constraints.Pattern;
-
 public class Product {
 
     private long id;
-    @Pattern(regexp = "[A-Za-zА-Яа-я]", message = "invalid.amount")
     private String name;
     private int amount;
     private int discountPercent;
-    private int price;
+    private double price;
 
-    public Product(long id, String name, int amount, int discountPercent, int price) {
+    public Product(long id, String name, int amount, int discountPercent, double price) {
         this.id = id;
         this.name = name;
         this.amount = amount;
@@ -34,11 +31,11 @@ public class Product {
         this.discountPercent = discountPercent;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 

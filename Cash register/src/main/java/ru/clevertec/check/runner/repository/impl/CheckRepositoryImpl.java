@@ -43,7 +43,7 @@ public class CheckRepositoryImpl extends RepositoryEntityImpl<Check> {
 
     @Override
     public Check update(Check check) throws Exception {
-        super.updateId(check,check.getId());
+        //super.updateId(check,check.getId());
         map.put(check.getId(),check);
         return check;
     }
