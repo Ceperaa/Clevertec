@@ -4,11 +4,11 @@ public class Product {
 
     private long id;
     private String name;
-    private int amount;
+    private String amount;
     private int discountPercent;
-    private double price;
+    private String price;
 
-    public Product(long id, String name, int amount, int discountPercent, double price) {
+    public Product(long id, String name, String amount, int discountPercent, String price) {
         this.id = id;
         this.name = name;
         this.amount = amount;
@@ -31,11 +31,11 @@ public class Product {
         this.discountPercent = discountPercent;
     }
 
-    public double getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
@@ -51,11 +51,11 @@ public class Product {
         this.name = name;
     }
 
-    public int getAmount() {
+    public String getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(String amount) {
         this.amount = amount;
     }
 
@@ -69,5 +69,4 @@ public class Product {
                 + ", discountPercent=" + discountPercent
                 + "";
     }
-
 }

@@ -21,7 +21,7 @@ public class ProductController {
         this.productServices = productServices;
     }
 
-    @PostMapping("/add")
+    @PostMapping(value = "/add")
     public Product add(@RequestBody Product product) throws Exception {
             return productServices.saveProduct(product);
 

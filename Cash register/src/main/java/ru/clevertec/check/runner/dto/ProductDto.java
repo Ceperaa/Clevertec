@@ -5,14 +5,14 @@ public class ProductDto {
     private long id;
     private int qty;
     private String description;
-    private double price;
+    private String price;
     private double priceWithDiscount;
     private double totalPrice;
     private double totalPriceWithDiscount;
     private int discountPercent;
     private long checkId;
 
-    public ProductDto(String description, double price, double priceWithDiscount) {
+    public ProductDto(String description, String price, double priceWithDiscount) {
         this.description = description;
         this.price = price;
         this.priceWithDiscount = priceWithDiscount;
@@ -77,11 +77,11 @@ public class ProductDto {
         this.description = description;
     }
 
-    public double getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 

@@ -30,11 +30,11 @@ public class ProductIO extends StreamIO {
                     product.setName(value);
                     break;
                 case ("amount"):
-                    product.setAmount(Integer.parseInt(value));
+                    product.setAmount(value);
                     break;
                 case ("price"):
                     if (value.compareTo("null") != 0) {
-                        product.setPrice(Double.parseDouble(value));
+                        product.setPrice(value);
                     }
                     break;
                 case ("discountPercent"):

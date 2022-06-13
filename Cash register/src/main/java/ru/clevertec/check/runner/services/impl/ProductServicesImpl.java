@@ -66,14 +66,15 @@ public class ProductServicesImpl implements ProductServices {
                         product.getName()
                         , product.getPrice()
                         , subtractPercentage(product.getDiscountPercent()
-                        , product.getPrice()));
+                        , Double.parseDouble(product.getPrice())));
 
-        if (product.getAmount() >= integerMap.getValue()) {
+        if (Integer.parseInt(product.getAmount()) >= integerMap.getValue()) {
             mapDescription(productInformation, product, integerMap.getValue());
-            product.setAmount(product.getAmount() - integerMap.getValue());
+           int result = Integer.parseInt(product.getAmount()) - integerMap.getValue();
+            product.setAmount(String.valueOf(result));
         } else {
-            mapDescription(productInformation, product, product.getAmount());
-            product.setAmount(0);
+            mapDescription(productInformation, product, Integer.parseInt(product.getAmount()));
+            product.setAmount("0");
         }
         update(product);
         return productInformation;
@@ -82,7 +83,7 @@ public class ProductServicesImpl implements ProductServices {
     private void mapDescription(ProductDto productInformation, Product product, int amount) {
         productInformation.setQty(amount);
         productInformation.setTotalPriceWithDiscount(productInformation.getPriceWithDiscount() * amount);
-        productInformation.setTotalPrice(product.getPrice() * amount);
+        productInformation.setTotalPrice(Double.parseDouble(product.getPrice()) * amount);
     }
 
     public double totalPriceWithDiscount(List<ProductDto> productList) {

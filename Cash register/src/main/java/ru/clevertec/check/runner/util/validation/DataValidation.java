@@ -20,7 +20,7 @@ public class DataValidation {
             if (matcher.find()) {
                 list.add(value);
             } else {
-        inputInvalidData(value);
+                inputInvalidData(value);
             }
         }
         return list;
@@ -38,8 +38,8 @@ public class DataValidation {
         if (matcher.find()) {
             return product;
         }
-       inputInvalidData(str);
-        throw new ValidationException("not valid");
+        inputInvalidData(str);
+        throw new ValidationException("не валид");
     }
 
     private static void inputInvalidData(String str) throws Exception {
