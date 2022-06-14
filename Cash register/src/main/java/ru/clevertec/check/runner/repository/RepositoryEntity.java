@@ -8,8 +8,6 @@ public interface RepositoryEntity<E> {
 
    E add(E o) throws Exception;
 
-   E update(E element) throws Exception;
-
    void delete(long id) throws Exception;
 
    E findById(Long id);

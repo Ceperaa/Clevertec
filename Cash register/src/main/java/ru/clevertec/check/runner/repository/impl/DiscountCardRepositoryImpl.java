@@ -1,7 +1,7 @@
 package ru.clevertec.check.runner.repository.impl;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import ru.clevertec.check.runner.model.DiscountCard;
 import ru.clevertec.check.runner.streamIO.IStreamIO;
 
@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-@Component
+@Repository
 public class DiscountCardRepositoryImpl extends RepositoryEntityImpl<DiscountCard> {
 
     private final Map<Long, DiscountCard> map;
@@ -31,18 +31,22 @@ public class DiscountCardRepositoryImpl extends RepositoryEntityImpl<DiscountCar
     @Override
     public DiscountCard add(DiscountCard o) throws Exception {
         increment++;
-        //o.setId(super.createId(o));
         o.setId(increment);
-        map.put(o.getId(),o);
-        discountCardIO.exportFile(List.of(o),false);
+        map.put(o.getId(), o);
+        discountCardIO.exportFile(List.of(o), false);
         setFieldProperty();
         return o;
     }
 
     @Override
     public DiscountCard update(DiscountCard discountCard) throws Exception {
-        //super.updateId(discountCard,discountCard.getId());
-        map.put(discountCard.getId(),discountCard);
+
+        long id = discountCard.getId();
+        if (findById(id) != null) {
+            delete(id);
+        }
+        map.put(id, discountCard);
+        discountCardIO.exportFile(List.of(discountCard), false);
         return discountCard;
     }
 

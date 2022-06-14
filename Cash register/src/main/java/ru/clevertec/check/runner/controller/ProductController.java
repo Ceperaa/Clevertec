@@ -3,6 +3,7 @@ package ru.clevertec.check.runner.controller;
 import org.springframework.web.bind.annotation.*;
 import ru.clevertec.check.runner.model.Product;
 import ru.clevertec.check.runner.services.impl.ProductServicesImpl;
+import ru.clevertec.check.runner.util.validation.DataValidation;
 
 import java.util.List;
 
@@ -21,9 +22,9 @@ public class ProductController {
         this.productServices = productServices;
     }
 
-    @PostMapping(value = "/add")
+    @PostMapping("/add")
     public Product add(@RequestBody Product product) throws Exception {
-            return productServices.saveProduct(product);
+            return productServices.saveProduct(DataValidation.validator(product));
 
     }
 

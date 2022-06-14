@@ -7,7 +7,6 @@ import ru.clevertec.check.runner.repository.impl.ProductRepositoryImpl;
 import ru.clevertec.check.runner.services.ProductServices;
 import ru.clevertec.check.runner.streamIO.impl.ProductIO;
 import ru.clevertec.check.runner.util.exception.ObjectNotFoundException;
-import ru.clevertec.check.runner.util.validation.DataValidation;
 
 import java.util.List;
 import java.util.Map;
@@ -19,7 +18,11 @@ public class ProductServicesImpl implements ProductServices {
     private final ProductIO productIO;
     private final DiscountCardServicesImpl cardServices;
 
-    public ProductServicesImpl(ProductRepositoryImpl productRepo, ProductIO productIO, DiscountCardServicesImpl cardServices) {
+    public ProductServicesImpl(
+            ProductRepositoryImpl productRepo
+            , ProductIO productIO
+            , DiscountCardServicesImpl cardServices
+    ) {
         this.productRepo = productRepo;
         this.productIO = productIO;
         this.cardServices = cardServices;
@@ -38,7 +41,6 @@ public class ProductServicesImpl implements ProductServices {
     }
 
     public Product saveProduct(Product product) throws Exception {
-        DataValidation.validator(product);
         return productRepo.add(product);
     }
 
@@ -87,11 +89,10 @@ public class ProductServicesImpl implements ProductServices {
     }
 
     public double totalPriceWithDiscount(List<ProductDto> productList) {
-        return productList.stream().map(ProductDto::getTotalPriceWithDiscount).mapToInt(Double::intValue).sum();
+        return productList.stream().map(ProductDto::getTotalPriceWithDiscount).mapToDouble(Double::doubleValue).sum();
     }
 
     public double discountСalculation(List<Product> productList, double total, Long idCard) {
-        //ного нулей после точки
         if (cardServices.findById(idCard) != null) {
             total = subtractPercentage(cardServices.findById(idCard).getDiscount(), total);
         }

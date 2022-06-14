@@ -21,8 +21,8 @@ public class DiscountCardController {
         this.cardServices = cardServices;
     }
 
-    @GetMapping("/add")
-    public DiscountCard add(DiscountCard discountCard) throws Exception {
+    @PostMapping("/add")
+    public DiscountCard add(@RequestBody DiscountCard discountCard) throws Exception {
            return cardServices.saveCard(discountCard);
     }
 

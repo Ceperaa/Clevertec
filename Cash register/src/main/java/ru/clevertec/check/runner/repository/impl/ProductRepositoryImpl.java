@@ -1,7 +1,7 @@
 package ru.clevertec.check.runner.repository.impl;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import ru.clevertec.check.runner.model.Product;
 import ru.clevertec.check.runner.streamIO.IStreamIO;
 
@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-@Component
+@Repository
 public class ProductRepositoryImpl extends RepositoryEntityImpl<Product> {
 
     private final Map<Long, Product> map;
@@ -44,7 +44,6 @@ public class ProductRepositoryImpl extends RepositoryEntityImpl<Product> {
         return o;
     }
 
-    @Override
     public Product update(Product product) throws Exception {
         long id = product.getId();
         if (findById(id) != null) {

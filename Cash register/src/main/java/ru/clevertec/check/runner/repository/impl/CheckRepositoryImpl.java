@@ -1,7 +1,7 @@
 package ru.clevertec.check.runner.repository.impl;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import ru.clevertec.check.runner.model.Check;
 import ru.clevertec.check.runner.streamIO.IStreamIO;
 
@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-@Component
+@Repository
 public class CheckRepositoryImpl extends RepositoryEntityImpl<Check> {
 
     private final Map<Long,Check> map;
@@ -43,8 +43,13 @@ public class CheckRepositoryImpl extends RepositoryEntityImpl<Check> {
 
     @Override
     public Check update(Check check) throws Exception {
-        //super.updateId(check,check.getId());
-        map.put(check.getId(),check);
+
+        long id = check.getId();
+        if (findById(id) != null) {
+            delete(id);
+        }
+        map.put(id, check);
+        checkIO.exportFile(List.of(check), false);
         return check;
     }
 }

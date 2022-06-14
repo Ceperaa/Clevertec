@@ -24,7 +24,7 @@ public class ProductIO extends StreamIO {
             String value = entry.getValue();
             switch (key) {
                 case ("Product id"):
-                    product.setId(Integer.parseInt(value));
+                    product.setId(Long.parseLong(value));
                     break;
                 case ("name"):
                     product.setName(value);

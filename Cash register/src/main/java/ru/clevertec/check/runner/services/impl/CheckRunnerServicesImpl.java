@@ -10,7 +10,7 @@ import ru.clevertec.check.runner.repository.RepositoryEntity;
 import ru.clevertec.check.runner.repository.impl.CheckRepositoryImpl;
 import ru.clevertec.check.runner.services.CheckRunnerServices;
 import ru.clevertec.check.runner.streamIO.impl.CheckIO;
-import ru.clevertec.check.runner.util.validation.DataValidation;
+import ru.clevertec.check.runner.util.exception.ObjectNotFoundException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -41,26 +41,25 @@ public class CheckRunnerServicesImpl implements CheckRunnerServices {
         this.modelMapper = modelMapper;
     }
 
-    public CheckDto creatCheck(String[] itemIdQuantity, Long idCard) throws Exception {
+    public CheckDto creatCheck(List<String> itemIdQuantity, Long idCard) throws Exception {
 
+        Map<Long, Integer> integerMap = splitItemIdQuantity(itemIdQuantity);
 
-        Map<Long, Integer> integerMap = splitItemIdQuantity(DataValidation.validator(itemIdQuantity));
-
-        Check check = new Check();
         List<ProductDto> productInformationList = new ArrayList<>();
         List<Product> productList = new ArrayList<>();
-
-        for (Map.Entry<Long, Integer> integerEntry : integerMap.entrySet()) {
-            Product product = productServices.findById(integerEntry.getKey());
-            productList.add(product);
-            productInformationList.add(productServices.addDescriptionInCheck(integerEntry, product));
-        }
+        productListFromCheck(integerMap, productList, productInformationList);
         productServices.exportAllFile();
-        check.setProductList(productInformationList);
-        check.setTotalPrice(totalPrice(productInformationList));
-        check.setTotalPriceWithDiscount(productServices.discountСalculation(productList, productServices.totalPriceWithDiscount(productInformationList), idCard));
 
-        double discountAmount = check.getTotalPrice() - check.getTotalPriceWithDiscount();
+        double totalPrice = totalPrice(productInformationList);
+        double totalPriceWithDiscount = productServices.discountСalculation(productList
+                , productServices.totalPriceWithDiscount(productInformationList)
+                , idCard);
+        double discountAmount = totalPrice - totalPriceWithDiscount;
+
+        Check check = new Check();
+        check.setProductList(productInformationList);
+        check.setTotalPrice(totalPrice);
+        check.setTotalPriceWithDiscount(totalPriceWithDiscount);
         check.setDiscountAmount(discountAmount);
 
         if (check.getTotalPrice() != 0) {
@@ -75,29 +74,41 @@ public class CheckRunnerServicesImpl implements CheckRunnerServices {
         return mapToCheckDto(check);
     }
 
+    private void productListFromCheck(
+            Map<Long, Integer> map
+            , List<Product> productList
+            , List<ProductDto> productDtoList
+    ) throws ObjectNotFoundException {
+        for (Map.Entry<Long, Integer> integerEntry : map.entrySet()) {
+            Product product = productServices.findById(integerEntry.getKey());
+            productList.add(product);
+            ProductDto productDto = productServices.addDescriptionInCheck(integerEntry, product);
+            productDtoList.add(productDto);
+        }
+    }
+
     public void exportFile(Check check) throws Exception {
         checkIO.exportFile(List.of(check), false);
     }
 
-    private int totalPrice(List<ProductDto> productList) {
-        return productList.stream().map(ProductDto::getTotalPrice).mapToInt(Double::intValue).sum();
+    private double totalPrice(List<ProductDto> productList) {
+        return productList.stream().map(ProductDto::getTotalPrice).mapToDouble(Double::doubleValue).sum();
     }
 
-    public CheckDto mapToCheckDto(Check check){
-       return modelMapper.map(check,CheckDto.class);
+    public CheckDto mapToCheckDto(Check check) {
+        return modelMapper.map(check, CheckDto.class);
     }
 
     private Map<Long, Integer> splitItemIdQuantity(List<String> itemIdQuantity) {
         Map<Long, Integer> integerMap = new HashMap<>();
-            for (String s : itemIdQuantity) {
-                String[] strings = s.split("-");
-                integerMap.put(Long.parseLong(strings[0]), Integer.parseInt(strings[1]));
-            }
+        for (String s : itemIdQuantity) {
+            String[] strings = s.split("-");
+            integerMap.put(Long.parseLong(strings[0]), Integer.parseInt(strings[1]));
+        }
         return integerMap;
     }
 
     public Check add(Check check) throws Exception {
-//в чек не сетится айди
         List<ProductDto> list = check.getProductList();
         list.stream()
                 .peek(productInformation -> productInformation.setCheckId(check.getId()))

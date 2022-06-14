@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.clevertec.check.runner.dto.CheckDto;
 import ru.clevertec.check.runner.services.CheckRunnerServices;
+import ru.clevertec.check.runner.util.validation.DataValidation;
 
 /**
  *
@@ -25,6 +26,6 @@ public class CheckRunnerController {
 
     @GetMapping("/runner")
     public CheckDto runner(String[] itemIdQuantity , Long idCard) throws Exception {
-        return checkRunner.creatCheck(itemIdQuantity, idCard);
+        return checkRunner.creatCheck(DataValidation.validator(itemIdQuantity), idCard);
     }
 }
