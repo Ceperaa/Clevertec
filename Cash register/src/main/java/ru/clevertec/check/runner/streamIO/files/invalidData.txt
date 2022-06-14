@@ -1,0 +1,30 @@
+Mon Jun 13 10:13:56 MSK 2022 | Product id=110, name=string33, amount=20, price=1.00, discountPercent=2
+Mon Jun 13 10:14:15 MSK 2022 | Product id=-2, name=string33, amount=20, price=1.00, discountPercent=2
+Mon Jun 13 10:14:30 MSK 2022 | Product id=5, name=string33, amount=20, price=1.00, discountPercent=2
+
+Mon Jun 13 10:15:51 MSK 2022 | Product id=100, name=(Apple), amount=20, price=1.00, discountPercent=2
+Mon Jun 13 10:16:25 MSK 2022 | Product id=100, name=Apple2, amount=20, price=1.00, discountPercent=2
+Mon Jun 13 10:16:41 MSK 2022 | Product id=100, name=apple, amount=20, price=1.00, discountPercent=2
+Mon Jun 13 10:16:59 MSK 2022 | Product id=100, name=APPLE, amount=20, price=1.00, discountPercent=2
+Mon Jun 13 10:17:25 MSK 2022 | Product id=100, name=Ap, amount=20, price=1.00, discountPercent=2
+Mon Jun 13 10:17:38 MSK 2022 | Product id=100, name=MyApple, amount=20, price=1.00, discountPercent=2
+
+Mon Jun 13 10:18:51 MSK 2022 | Product id=100, name=Apple, amount=20, price=110.00, discountPercent=2
+Mon Jun 13 10:20:51 MSK 2022 | Product id=100, name=Apple, amount=20, price=10.001, discountPercent=2
+Mon Jun 13 10:21:23 MSK 2022 | Product id=100, name=Apple, amount=20, price=0.01, discountPercent=2
+Mon Jun 13 10:22:59 MSK 2022 | Product id=100, name=Apple, amount=20, price=10.1, discountPercent=2
+Mon Jun 13 14:13:35 MSK 2022 | Product id=100, name=Apple, amount=20, price=10.n1, discountPercent=0
+Mon Jun 13 14:16:00 MSK 2022 | Product id=100, name=Apple, amount=20, price=one, discountPercent=0
+
+Mon Jun 13 14:17:01 MSK 2022 | Product id=100, name=Apple, amount=0, price=10.00, discountPercent=0
+Mon Jun 13 14:18:32 MSK 2022 | Product id=100, name=Apple, amount=22, price=10.00, discountPercent=0
+Mon Jun 13 14:19:10 MSK 2022 | Product id=100, name=Apple, amount=-1, price=10.00, discountPercent=0
+Mon Jun 13 14:26:18 MSK 2022 | Product id=100, name=Apple, amount=2n, price=10.00, discountPercent=0
+Mon Jun 13 14:26:36 MSK 2022 | Product id=100, name=Apple, amount=one, price=10.00, discountPercent=0
+Mon Jun 13 16:07:02 MSK 2022 | Product id=1, name=null, amount=null, price=null, discountPercent=0
+Tue Jun 14 23:30:20 MSK 2022 | Product id=0, name=null, amount=null, price=null, discountPercent=0
+Tue Jun 14 23:31:34 MSK 2022 | Product id=0, name=null, amount=null, price=null, discountPercent=0
+Tue Jun 14 23:38:07 MSK 2022 | Product id=0, name=null, amount=null, price=null, discountPercent=0
+Tue Jun 14 23:38:56 MSK 2022 | Product id=0, name=null, amount=null, price=null, discountPercent=0
+Tue Jun 14 23:45:36 MSK 2022 | Product id=0, name=null, amount=null, price=null, discountPercent=0
+Wed Jun 15 00:07:31 MSK 2022 | Product id=0, name=null, amount=null, price=null, discountPercent=0
