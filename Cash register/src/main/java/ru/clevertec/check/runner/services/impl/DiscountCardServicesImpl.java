@@ -2,7 +2,7 @@ package ru.clevertec.check.runner.services.impl;
 
 import org.springframework.stereotype.Service;
 import ru.clevertec.check.runner.model.DiscountCard;
-import ru.clevertec.check.runner.repository.impl.DiscountCardRepositoryImpl;
+import ru.clevertec.check.runner.repository.RepositoryEntity;
 import ru.clevertec.check.runner.services.DiscountCardServices;
 
 import java.util.List;
@@ -10,9 +10,9 @@ import java.util.List;
 @Service
 public class DiscountCardServicesImpl implements DiscountCardServices {
 
-    private final DiscountCardRepositoryImpl discountCardRepo;
+    private final RepositoryEntity<DiscountCard> discountCardRepo;
 
-    public DiscountCardServicesImpl(DiscountCardRepositoryImpl discountCardRepo) {
+    public DiscountCardServicesImpl(RepositoryEntity<DiscountCard> discountCardRepo) {
         this.discountCardRepo = discountCardRepo;
     }
 

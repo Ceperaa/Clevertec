@@ -5,13 +5,12 @@ import lombok.*;
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
-//@EqualsAndHashCode
 public class ProductDto {
 
     private long id;
-    private int qty;
+    //private int qty;
     @NonNull
-    private String description;
+    private String name;
     @NonNull
     private String price;
     @NonNull
@@ -19,19 +18,19 @@ public class ProductDto {
     private double totalPrice;
     private double totalPriceWithDiscount;
     private int discountPercent;
-    private long checkId;
+   // private long checkId;
 
     @Override
     public String toString() {
         return "ProductInformation " +
                 "id=" + id +
-                ", qty=" + qty +
-                ", description='" + description +
+                //", qty=" + qty +
+                ", name='" + name +
                 ", price=" + price +
                 ", priceWithDiscount=" + priceWithDiscount +
                 ", totalPrice=" + totalPrice +
                 ", totalPriceWithDiscount=" + totalPriceWithDiscount +
-                ", checkId=" + checkId +
+               // ", checkId=" + checkId +
                 "";
     }
 

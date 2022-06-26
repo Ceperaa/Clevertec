@@ -2,7 +2,6 @@ package ru.clevertec.check.runner.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.clevertec.check.runner.dto.ProductDto;
 
 import java.util.List;
 
@@ -11,7 +10,7 @@ import java.util.List;
 public class Check {
 
     private long id;
-    private List<ProductDto> productList;
+    private List<Product> productList;
     private double totalPriceWithDiscount;
     private double totalPrice;
     private double discountAmount;

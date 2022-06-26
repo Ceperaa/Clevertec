@@ -2,7 +2,7 @@ package ru.clevertec.check.runner.controller;
 
 import org.springframework.web.bind.annotation.*;
 import ru.clevertec.check.runner.model.DiscountCard;
-import ru.clevertec.check.runner.services.impl.DiscountCardServicesImpl;
+import ru.clevertec.check.runner.services.DiscountCardServices;
 
 import java.util.List;
 
@@ -15,13 +15,13 @@ import java.util.List;
 @RequestMapping("/card")
 public class DiscountCardController {
 
-    private final DiscountCardServicesImpl cardServices;
+    private final DiscountCardServices cardServices;
 
-    public DiscountCardController(DiscountCardServicesImpl cardServices) {
+    public DiscountCardController(DiscountCardServices cardServices) {
         this.cardServices = cardServices;
     }
 
-    @PostMapping("/add")
+    @PutMapping("/add")
     public DiscountCard add(@RequestBody DiscountCard discountCard) throws Exception {
            return cardServices.saveCard(discountCard);
     }

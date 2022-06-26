@@ -16,6 +16,7 @@ public class Product {
     private String amount;
     private Integer discountPercent;
     private String price;
+    private ProductInformation productInformation;
 
     @Override
     public String toString() {

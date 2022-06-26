@@ -5,8 +5,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.modelmapper.ModelMapper;
 import ru.clevertec.check.runner.dto.ProductDto;
 import ru.clevertec.check.runner.model.Product;
+import ru.clevertec.check.runner.model.ProductInformation;
+import ru.clevertec.check.runner.repository.RepositoryEntity;
 import ru.clevertec.check.runner.repository.impl.ProductRepositoryImpl;
 import ru.clevertec.check.runner.services.ProductServices;
 import ru.clevertec.check.runner.streamIO.impl.ProductIO;
@@ -25,12 +28,16 @@ class ProductServicesImplTest {
     private ProductIO productIO;
     @Mock
     private DiscountCardServicesImpl discountCardServices;
+    @Mock
+    private ModelMapper modelMapper;
+    @Mock
+    private RepositoryEntity<ProductInformation> informationRepositoryEntity;
 
     private Product product;
 
     ProductServicesImplTest() {
         MockitoAnnotations.initMocks(this);
-        this.productServices = new ProductServicesImpl(repository, productIO, discountCardServices);
+        this.productServices = new ProductServicesImpl(repository, productIO, discountCardServices, modelMapper, informationRepositoryEntity);
     }
 
     @BeforeEach
@@ -75,7 +82,6 @@ class ProductServicesImplTest {
         Product product1 = productServices.update(product);
         Assertions.assertEquals(product, product1);
     }
-
 
     @Test
     void totalPriceWithDiscount() {

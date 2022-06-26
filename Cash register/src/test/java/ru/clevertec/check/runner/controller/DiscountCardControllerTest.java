@@ -8,8 +8,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import ru.clevertec.check.runner.model.DiscountCard;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 class DiscountCardControllerTest implements ControllerTest {
@@ -25,7 +24,7 @@ class DiscountCardControllerTest implements ControllerTest {
 
     @Test
     void add() throws Exception {
-        mvc.perform(post("/card/add")
+        mvc.perform(put("/card/add")
                 .content(objectMapper.writeValueAsString(new DiscountCard()))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());

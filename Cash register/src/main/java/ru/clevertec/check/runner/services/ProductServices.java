@@ -21,7 +21,7 @@ public interface ProductServices {
 
     void deleteProduct(long id) throws Exception;
 
-    ProductDto addDescriptionInCheck(Map.Entry<Long, Integer> integerMap, Product product);
+    ProductDto addDescriptionInCheck(Map.Entry<Long, Integer> integerMap, Product product) throws Exception;
 
     double totalPriceWithDiscount(List<ProductDto> productList);
 

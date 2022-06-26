@@ -7,16 +7,15 @@ import ru.clevertec.check.runner.dto.ProductDto;
 import ru.clevertec.check.runner.model.Check;
 import ru.clevertec.check.runner.model.Product;
 import ru.clevertec.check.runner.repository.RepositoryEntity;
-import ru.clevertec.check.runner.repository.impl.CheckRepositoryImpl;
 import ru.clevertec.check.runner.services.CheckRunnerServices;
+import ru.clevertec.check.runner.services.ProductServices;
 import ru.clevertec.check.runner.streamIO.impl.CheckIO;
-import ru.clevertec.check.runner.util.exception.ObjectNotFoundException;
+import ru.clevertec.check.runner.util.validation.DoubleFormatting;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * @author Sergey Degtyarev
@@ -25,14 +24,14 @@ import java.util.stream.Collectors;
 @Service
 public class CheckRunnerServicesImpl implements CheckRunnerServices {
 
-    private final ProductServicesImpl productServices;
+    private final ProductServices productServices;
     private final RepositoryEntity<Check> checkRepository;
     private final CheckIO checkIO;
     private final ModelMapper modelMapper;
 
     public CheckRunnerServicesImpl(
-            ProductServicesImpl productServices
-            , CheckRepositoryImpl checkRepository
+            ProductServices productServices
+            , RepositoryEntity<Check> checkRepository
             , CheckIO checkIO,
             ModelMapper modelMapper) {
         this.productServices = productServices;
@@ -57,10 +56,10 @@ public class CheckRunnerServicesImpl implements CheckRunnerServices {
         double discountAmount = totalPrice - totalPriceWithDiscount;
 
         Check check = new Check();
-        check.setProductList(productInformationList);
+        check.setProductList(productList);
         check.setTotalPrice(totalPrice);
         check.setTotalPriceWithDiscount(totalPriceWithDiscount);
-        check.setDiscountAmount(discountAmount);
+        check.setDiscountAmount(DoubleFormatting.formatting(discountAmount));
 
         if (check.getTotalPrice() != 0) {
             check.setTotalPercent((int) ((discountAmount * 100) / check.getTotalPrice()));
@@ -71,20 +70,20 @@ public class CheckRunnerServicesImpl implements CheckRunnerServices {
         check = add(check);
         exportFile(check);
 
-        return mapToCheckDto(check);
+        return mapToCheckDto(check,productInformationList);
     }
 
     private void productListFromCheck(
             Map<Long, Integer> map
             , List<Product> productList
             , List<ProductDto> productDtoList
-    ) throws ObjectNotFoundException {
-        for (Map.Entry<Long, Integer> integerEntry : map.entrySet()) {
-            Product product = productServices.findById(integerEntry.getKey());
-            productList.add(product);
-            ProductDto productDto = productServices.addDescriptionInCheck(integerEntry, product);
-            productDtoList.add(productDto);
-        }
+    ) throws Exception {
+            for (Map.Entry<Long, Integer> integerEntry : map.entrySet()) {
+                Product product = productServices.findById(integerEntry.getKey());
+                productList.add(product);
+                ProductDto productDto = productServices.addDescriptionInCheck(integerEntry, product);
+                productDtoList.add(productDto);
+            }
     }
 
     public void exportFile(Check check) throws Exception {
@@ -95,8 +94,10 @@ public class CheckRunnerServicesImpl implements CheckRunnerServices {
         return productList.stream().map(ProductDto::getTotalPrice).mapToDouble(Double::doubleValue).sum();
     }
 
-    public CheckDto mapToCheckDto(Check check) {
-        return modelMapper.map(check, CheckDto.class);
+    public CheckDto mapToCheckDto(Check check, List<ProductDto> productDtoList) {
+        CheckDto checkDto = modelMapper.map(check, CheckDto.class);
+        checkDto.setProductList(productDtoList);
+        return checkDto;
     }
 
     private Map<Long, Integer> splitItemIdQuantity(List<String> itemIdQuantity) {
@@ -109,10 +110,10 @@ public class CheckRunnerServicesImpl implements CheckRunnerServices {
     }
 
     public Check add(Check check) throws Exception {
-        List<ProductDto> list = check.getProductList();
-        list.stream()
-                .peek(productInformation -> productInformation.setCheckId(check.getId()))
-                .collect(Collectors.toList());
+//        List<ProductDto> list = check.getProductList();
+//        list.stream()
+//                .peek(productInformation -> productInformation.setCheckId(check.getId()))
+//                .collect(Collectors.toList());
         return checkRepository.add(check);
     }
 }

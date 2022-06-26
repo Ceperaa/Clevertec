@@ -9,6 +9,7 @@ import org.modelmapper.ModelMapper;
 import ru.clevertec.check.runner.dto.CheckDto;
 import ru.clevertec.check.runner.dto.ProductDto;
 import ru.clevertec.check.runner.model.Check;
+import ru.clevertec.check.runner.model.Product;
 import ru.clevertec.check.runner.repository.impl.CheckRepositoryImpl;
 import ru.clevertec.check.runner.streamIO.impl.CheckIO;
 
@@ -44,7 +45,7 @@ class CheckRunnerServicesImplTest {
     void setUp() {
         check = new Check();
         check.setId(1);
-        check.setProductList(List.of(new ProductDto()));
+        check.setProductList(List.of(new Product()));
     }
 
     @Test
@@ -55,7 +56,7 @@ class CheckRunnerServicesImplTest {
     void mapToCheckDto() {
         CheckDto checkDto = new CheckDto();
         given(modelMapper.map(check, CheckDto.class)).willReturn(checkDto);
-        Assertions.assertEquals(checkRunnerServices.mapToCheckDto(check), checkDto);
+        Assertions.assertEquals(checkRunnerServices.mapToCheckDto(check,List.of(new ProductDto())), checkDto);
     }
 
     @Test

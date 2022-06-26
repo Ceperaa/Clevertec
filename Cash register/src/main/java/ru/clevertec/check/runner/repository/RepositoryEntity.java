@@ -11,4 +11,6 @@ public interface RepositoryEntity<E> {
    void delete(long id) throws Exception;
 
    E findById(Long id);
+
+   E update(E o) throws Exception;
 }

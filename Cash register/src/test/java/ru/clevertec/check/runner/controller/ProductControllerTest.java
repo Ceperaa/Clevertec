@@ -8,8 +8,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import ru.clevertec.check.runner.model.Product;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 class ProductControllerTest implements ControllerTest {
@@ -25,7 +24,7 @@ class ProductControllerTest implements ControllerTest {
 
     @Test
     void add() throws Exception {
-        mvc.perform(post("/product/add")
+        mvc.perform(put("/product/add")
                 .content(objectMapper.writeValueAsString(Product
                         .builder()
                         .id(1L)

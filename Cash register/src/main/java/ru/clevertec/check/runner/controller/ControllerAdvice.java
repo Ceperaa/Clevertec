@@ -30,10 +30,11 @@ public class ControllerAdvice {
     }
 
     private ExceptionObject aggregate(String message) {
-        ExceptionObject exceptionObject = new ExceptionObject();
-        exceptionObject.setCode(HttpStatus.BAD_REQUEST.value());
-        exceptionObject.setStatus(String.valueOf(HttpStatus.BAD_REQUEST));
-        exceptionObject.setMessage(message);
-        return exceptionObject;
+        return ExceptionObject
+                .builder()
+                .code(HttpStatus.BAD_REQUEST.value())
+                .status(String.valueOf(HttpStatus.BAD_REQUEST))
+                .message(message)
+                .build();
     }
 }

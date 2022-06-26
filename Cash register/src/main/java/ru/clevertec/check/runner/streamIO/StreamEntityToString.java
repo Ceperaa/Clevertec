@@ -7,8 +7,6 @@ import java.util.List;
 
 public class StreamEntityToString {
 
-    //private final List<String> stringList = new ArrayList<>();
-
     public <T> void fileOutputStream(List<T> stringList, String linkAddress, boolean isOverwrite) throws Exception {
         if (isOverwrite) {
             isClose(linkAddress);

@@ -12,9 +12,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import ru.clevertec.check.runner.model.Check;
 import ru.clevertec.check.runner.model.DiscountCard;
 import ru.clevertec.check.runner.model.Product;
-import ru.clevertec.check.runner.dto.ProductDto;
+import ru.clevertec.check.runner.model.ProductInformation;
 import ru.clevertec.check.runner.streamIO.impl.DiscountCardIO;
 import ru.clevertec.check.runner.streamIO.impl.ProductIO;
+import ru.clevertec.check.runner.streamIO.impl.ProductInformationIO;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -32,6 +33,7 @@ import java.util.stream.Collectors;
  *
  * @author Sergey Degtyarev
  */
+@SuppressWarnings("ALL")
 @Configuration
 @EnableWebMvc
 @EnableSwagger2
@@ -55,8 +57,13 @@ public class AppConfig implements WebMvcConfigurer {
     }
 
     @Bean
-    public Map<Long, ProductDto> productInformationMap() {
-        return new HashMap<>();
+    public Map<Long, ProductInformation> productInformationMap(ProductInformationIO productInformationIO) throws Exception {
+        Map<Long, ProductInformation> productMap = new HashMap<>();
+        productInformationIO.importServiceFile()
+                .stream()
+                .map(p -> (ProductInformation)p)
+                .map(productInformation -> productMap.put(productInformation.getId(),productInformation)).collect(Collectors.toList());
+        return productMap;
     }
 
     @Bean

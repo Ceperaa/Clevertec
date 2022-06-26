@@ -1,12 +1,16 @@
 package ru.clevertec.check.runner.services.impl;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import ru.clevertec.check.runner.dto.ProductDto;
 import ru.clevertec.check.runner.model.Product;
-import ru.clevertec.check.runner.repository.impl.ProductRepositoryImpl;
+import ru.clevertec.check.runner.model.ProductInformation;
+import ru.clevertec.check.runner.repository.RepositoryEntity;
+import ru.clevertec.check.runner.services.DiscountCardServices;
 import ru.clevertec.check.runner.services.ProductServices;
 import ru.clevertec.check.runner.streamIO.impl.ProductIO;
 import ru.clevertec.check.runner.util.exception.ObjectNotFoundException;
+import ru.clevertec.check.runner.util.validation.DoubleFormatting;
 
 import java.util.List;
 import java.util.Map;
@@ -14,26 +18,30 @@ import java.util.Map;
 @Service
 public class ProductServicesImpl implements ProductServices {
 
-    private final ProductRepositoryImpl productRepo;
+    private final RepositoryEntity<Product> productRepo;
     private final ProductIO productIO;
-    private final DiscountCardServicesImpl cardServices;
+    private final DiscountCardServices cardServices;
+    private final ModelMapper modelMapper;
+    private final RepositoryEntity<ProductInformation> informationRepositoryEntity;
 
     public ProductServicesImpl(
-            ProductRepositoryImpl productRepo
+            RepositoryEntity<Product> productRepo
             , ProductIO productIO
-            , DiscountCardServicesImpl cardServices
-    ) {
+            , DiscountCardServices cardServices
+            , ModelMapper modelMapper, RepositoryEntity<ProductInformation> informationRepositoryEntity) {
         this.productRepo = productRepo;
         this.productIO = productIO;
         this.cardServices = cardServices;
+        this.modelMapper = modelMapper;
+        this.informationRepositoryEntity = informationRepositoryEntity;
     }
 
     public Product findById(long id) throws ObjectNotFoundException {
         Product product = productRepo.findById(id);
-        if (product == null){
-            throw new ObjectNotFoundException("Product id:"+id+" not found");
+        if (product == null) {
+            throw new ObjectNotFoundException("Product id:" + id + " not found");
         }
-       return product;
+        return product;
     }
 
     public List<Product> allListProduct() throws Exception {
@@ -44,7 +52,7 @@ public class ProductServicesImpl implements ProductServices {
         return productRepo.add(product);
     }
 
-    public Product update(Product product)  {
+    public Product update(Product product) {
 
         try {
             return productRepo.update(product);
@@ -62,36 +70,39 @@ public class ProductServicesImpl implements ProductServices {
         productRepo.delete(id);
     }
 
-    public ProductDto addDescriptionInCheck(Map.Entry<Long, Integer> integerMap, Product product) {
-        ProductDto productInformation =
-                new ProductDto(
-                        product.getName()
-                        , product.getPrice()
-                        , subtractPercentage(product.getDiscountPercent()
-                        , Double.parseDouble(product.getPrice())));
+    public ProductDto addDescriptionInCheck(Map.Entry<Long, Integer> integerMap, Product product) throws Exception {
+        ProductInformation productInformation =
+                new ProductInformation(
+                        subtractPercentage(product.getDiscountPercent()
+                                , Double.parseDouble(product.getPrice())), product.getDiscountPercent()
+                );
 
         if (Integer.parseInt(product.getAmount()) >= integerMap.getValue()) {
             mapDescription(productInformation, product, integerMap.getValue());
-           int result = Integer.parseInt(product.getAmount()) - integerMap.getValue();
+            int result = Integer.parseInt(product.getAmount()) - integerMap.getValue();
             product.setAmount(String.valueOf(result));
         } else {
             mapDescription(productInformation, product, Integer.parseInt(product.getAmount()));
             product.setAmount("0");
         }
         update(product);
-        return productInformation;
+        informationRepositoryEntity.add(productInformation);
+        ProductDto productDto = modelMapper.map(productInformation, ProductDto.class);
+        productDto.setPrice(product.getPrice());
+        productDto.setName(product.getName());
+        return productDto;
     }
 
-    private void mapDescription(ProductDto productInformation, Product product, int amount) {
-        productInformation.setQty(amount);
-        productInformation.setTotalPriceWithDiscount(productInformation.getPriceWithDiscount() * amount);
+    private void mapDescription(ProductInformation productInformation, Product product, int amount) {
+        productInformation.setTotalPriceWithDiscount(DoubleFormatting.formatting(productInformation.getPriceWithDiscount() * amount));
         productInformation.setTotalPrice(Double.parseDouble(product.getPrice()) * amount);
     }
 
     public double totalPriceWithDiscount(List<ProductDto> productList) {
-        return productList.stream().map(ProductDto::getTotalPriceWithDiscount).mapToDouble(Double::doubleValue).sum();
+        return DoubleFormatting.formatting(productList.stream().map(ProductDto::getTotalPriceWithDiscount).mapToDouble(Double::doubleValue).sum());
     }
 
+    @Override
     public double discountСalculation(List<Product> productList, double total, Long idCard) {
         if (cardServices.findById(idCard) != null) {
             total = subtractPercentage(cardServices.findById(idCard).getDiscount(), total);
@@ -103,11 +114,10 @@ public class ProductServicesImpl implements ProductServices {
         ) {
             total = subtractPercentage(10, total);
         }
-        return total;
+        return DoubleFormatting.formatting(total);
     }
 
     private double subtractPercentage(int percent, double price) {
-        return price - (price * percent) / 100;
+        return DoubleFormatting.formatting(price - (price * percent) / 100.00);
     }
-
 }
