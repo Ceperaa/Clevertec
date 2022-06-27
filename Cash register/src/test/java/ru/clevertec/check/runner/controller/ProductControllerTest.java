@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import ru.clevertec.check.runner.model.Product;
+import ru.clevertec.check.runner.dto.ProductCreatDto;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 class ProductControllerTest implements ControllerTest {
@@ -24,8 +24,8 @@ class ProductControllerTest implements ControllerTest {
 
     @Test
     void add() throws Exception {
-        mvc.perform(put("/product/add")
-                .content(objectMapper.writeValueAsString(Product
+        mvc.perform(MockMvcRequestBuilders.put("/product/add")
+                .content(objectMapper.writeValueAsString(ProductCreatDto
                         .builder()
                         .id(1L)
                         .amount("1")
@@ -33,7 +33,7 @@ class ProductControllerTest implements ControllerTest {
                         .discountPercent(1)
                         .price("10.00")
                         .build()))
-                .contentType(MediaType.APPLICATION_JSON))
+                .contentType(MediaType.ALL))
                 .andExpect(status().isOk());
     }
 

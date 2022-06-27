@@ -1,5 +1,6 @@
 package ru.clevertec.check.runner.services;
 
+import ru.clevertec.check.runner.dto.ProductCreatDto;
 import ru.clevertec.check.runner.dto.ProductDto;
 import ru.clevertec.check.runner.model.Product;
 import ru.clevertec.check.runner.util.exception.ObjectNotFoundException;
@@ -11,9 +12,11 @@ public interface ProductServices {
 
     Product findById(long id) throws ObjectNotFoundException;
 
-    List<Product> allListProduct() throws Exception;
+    List<ProductCreatDto> allListProductDto() throws Exception;
 
-    Product saveProduct(Product product) throws Exception;
+    public List<Product> allListProduct() throws Exception;
+
+    ProductCreatDto saveProduct(ProductCreatDto product) throws Exception;
 
     Product update(Product product);
 

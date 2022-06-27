@@ -2,6 +2,7 @@ package ru.clevertec.check.runner.services.impl;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import ru.clevertec.check.runner.dto.ProductCreatDto;
 import ru.clevertec.check.runner.dto.ProductDto;
 import ru.clevertec.check.runner.model.Product;
 import ru.clevertec.check.runner.model.ProductInformation;
@@ -14,6 +15,7 @@ import ru.clevertec.check.runner.util.validation.DoubleFormatting;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductServicesImpl implements ProductServices {
@@ -48,8 +50,19 @@ public class ProductServicesImpl implements ProductServices {
         return productRepo.findAll();
     }
 
-    public Product saveProduct(Product product) throws Exception {
-        return productRepo.add(product);
+    public List<ProductCreatDto> allListProductDto() throws Exception {
+        return productRepo.findAll()
+                .stream()
+                .map(product -> modelMapper.map(product, ProductCreatDto.class))
+                .collect(Collectors.toList());
+    }
+
+    public ProductCreatDto saveProduct(ProductCreatDto product) throws Exception {
+        return modelMapper
+                .map(productRepo.add(
+                        modelMapper
+                                .map(product, Product.class))
+                        , ProductCreatDto.class);
     }
 
     public Product update(Product product) {

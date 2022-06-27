@@ -44,3 +44,8 @@ Fri Jun 24 21:47:17 MSK 2022 | Product id=null, name=null, amount=null, price=nu
 Fri Jun 24 21:49:02 MSK 2022 | Product id=null, name=null, amount=null, price=null, discountPercent=null
 Fri Jun 24 21:53:54 MSK 2022 | Product id=null, name=null, amount=null, price=null, discountPercent=null
 Fri Jun 24 21:55:10 MSK 2022 | Product id=null, name=null, amount=null, price=null, discountPercent=null
+Sun Jun 26 20:18:20 MSK 2022 | Product id=null, name=null, amount=null, price=null, discountPercent=null
+Sun Jun 26 20:19:15 MSK 2022 | Product id=null, name=null, amount=null, price=null, discountPercent=null
+Sun Jun 26 20:19:59 MSK 2022 | Product id=null, name=null, amount=null, price=null, discountPercent=null
+Sun Jun 26 20:23:56 MSK 2022 | Product id=null, name=null, amount=null, price=null, discountPercent=null
+Sun Jun 26 20:27:21 MSK 2022 | Product id=null, name=null, amount=null, price=null, discountPercent=null

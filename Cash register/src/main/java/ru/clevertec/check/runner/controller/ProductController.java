@@ -1,6 +1,7 @@
 package ru.clevertec.check.runner.controller;
 
 import org.springframework.web.bind.annotation.*;
+import ru.clevertec.check.runner.dto.ProductCreatDto;
 import ru.clevertec.check.runner.model.Product;
 import ru.clevertec.check.runner.services.ProductServices;
 import ru.clevertec.check.runner.util.validation.DataValidation;
@@ -23,7 +24,7 @@ public class ProductController {
     }
 
     @PutMapping("/add")
-    public Product add(Product product) throws Exception {
+    public ProductCreatDto add(ProductCreatDto product) throws Exception {
             return productServices.saveProduct(DataValidation.validator(product));
     }
 
@@ -38,7 +39,7 @@ public class ProductController {
     }
 
     @GetMapping("/all")
-    public List<Product> all() throws Exception {
-        return productServices.allListProduct();
+    public List<ProductCreatDto> all() throws Exception {
+        return productServices.allListProductDto();
     }
 }

@@ -1,6 +1,6 @@
 package ru.clevertec.check.runner.util.validation;
 
-import ru.clevertec.check.runner.model.Product;
+import ru.clevertec.check.runner.dto.ProductCreatDto;
 import ru.clevertec.check.runner.streamIO.StreamEntityToString;
 import ru.clevertec.check.runner.util.exception.ValidationException;
 
@@ -26,7 +26,7 @@ public class DataValidation {
         return list;
     }
 
-    public static Product validator(Product product) throws Exception {
+    public static ProductCreatDto validator(ProductCreatDto product) throws Exception {
         String str = product.toString();
         Pattern pattern = Pattern.compile(
                 "^Product\\sid=([1-9]|[1-9]\\d|100)," +

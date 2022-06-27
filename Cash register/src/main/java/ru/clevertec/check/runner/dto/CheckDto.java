@@ -13,5 +13,4 @@ public class CheckDto {
     private double totalPrice;
     private double discountAmount;
     private int totalPercent;
-
 }

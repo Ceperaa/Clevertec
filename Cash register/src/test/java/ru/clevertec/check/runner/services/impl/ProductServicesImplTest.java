@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.modelmapper.ModelMapper;
+import ru.clevertec.check.runner.dto.ProductCreatDto;
 import ru.clevertec.check.runner.dto.ProductDto;
 import ru.clevertec.check.runner.model.Product;
 import ru.clevertec.check.runner.model.ProductInformation;
@@ -28,7 +29,7 @@ class ProductServicesImplTest {
     private ProductIO productIO;
     @Mock
     private DiscountCardServicesImpl discountCardServices;
-    @Mock
+
     private ModelMapper modelMapper;
     @Mock
     private RepositoryEntity<ProductInformation> informationRepositoryEntity;
@@ -37,6 +38,7 @@ class ProductServicesImplTest {
 
     ProductServicesImplTest() {
         MockitoAnnotations.initMocks(this);
+        this.modelMapper = new ModelMapper();
         this.productServices = new ProductServicesImpl(repository, productIO, discountCardServices, modelMapper, informationRepositoryEntity);
     }
 
@@ -72,8 +74,9 @@ class ProductServicesImplTest {
     @Test
     void saveProduct() throws Exception {
         given(repository.add(product)).willReturn(product);
-        Product product1 = productServices.saveProduct(product);
-        Assertions.assertEquals(product, product1);
+        ProductCreatDto.builder().name("Apple").build();
+        ProductCreatDto product1 = productServices.saveProduct(ProductCreatDto.builder().name("Apple").build());
+        Assertions.assertEquals(product.getName(), product1.getName());
     }
 
     @Test
