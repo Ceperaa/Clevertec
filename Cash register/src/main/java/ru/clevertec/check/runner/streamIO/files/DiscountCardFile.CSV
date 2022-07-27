@@ -11,3 +11,5 @@ DiscountCard id=10, discount=5
 DiscountCard id=11, discount=109
 DiscountCard id=12, discount=109
 DiscountCard id=15, discount=45
+DiscountCard id=16, discount=99
+DiscountCard id=17, discount=99

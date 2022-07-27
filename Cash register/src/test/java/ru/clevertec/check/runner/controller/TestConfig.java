@@ -8,9 +8,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import ru.clevertec.check.runner.services.CheckRunnerServices;
-import ru.clevertec.check.runner.services.DiscountCardServices;
-import ru.clevertec.check.runner.services.impl.ProductServicesImpl;
+import ru.clevertec.check.runner.services.CheckRunnerService;
+import ru.clevertec.check.runner.services.DiscountCardService;
+import ru.clevertec.check.runner.services.impl.ProductServiceImpl;
 
 import static org.mockito.Mockito.mock;
 
@@ -32,15 +32,15 @@ public class TestConfig {
 
     @Bean
     public ProductController productController() {
-        return new ProductController(mock(ProductServicesImpl.class));
+        return new ProductController(mock(ProductServiceImpl.class));
     }
 
     @Bean
     public DiscountCardController discountCardController(){
-        return new DiscountCardController(mock(DiscountCardServices.class));
+        return new DiscountCardController(mock(DiscountCardService.class));
     }
 
     @Bean CheckRunnerController checkRunnerController(){
-        return new CheckRunnerController(mock(CheckRunnerServices.class));
+        return new CheckRunnerController(mock(CheckRunnerService.class));
     }
 }

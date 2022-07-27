@@ -3,6 +3,7 @@ package ru.clevertec.check.runner.streamIO.impl;
 import ru.clevertec.check.runner.streamIO.IStreamIO;
 import ru.clevertec.check.runner.streamIO.StreamEntityToString;
 
+import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,7 +18,7 @@ public abstract class StreamIO implements IStreamIO {
         this.LINK_ADDRESS = LINK_ADDRESS;
     }
 
-    public List<?> importServiceFile() throws Exception {
+    public List<?> importServiceFile() throws IOException {
         List<String> list = streamIO.fileInputStream(LINK_ADDRESS);
         return list
                 .stream()
@@ -25,7 +26,7 @@ public abstract class StreamIO implements IStreamIO {
                 .collect(Collectors.toList());
     }
 
-    public void exportFile(List<?> orderList, boolean isOverwrite) throws Exception {
+    public void exportFile(List<?> orderList, boolean isOverwrite) throws IOException {
         streamIO.fileOutputStream(orderList, LINK_ADDRESS, isOverwrite);
     }
 

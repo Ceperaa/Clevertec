@@ -7,7 +7,7 @@ import java.util.List;
 
 public class StreamEntityToString {
 
-    public <T> void fileOutputStream(List<T> stringList, String linkAddress, boolean isOverwrite) throws Exception {
+    public <T> void fileOutputStream(List<T> stringList, String linkAddress, boolean isOverwrite) throws IOException {
         if (isOverwrite) {
             isClose(linkAddress);
         }
@@ -16,7 +16,7 @@ public class StreamEntityToString {
         }
     }
 
-    public List<String> fileInputStream(String linkAddress) throws Exception {
+    public List<String> fileInputStream(String linkAddress) throws IOException {
         List<String> stringList = new ArrayList<>();
         createFile(linkAddress);
         BufferedReader bufferedReader = null;
@@ -42,16 +42,12 @@ public class StreamEntityToString {
         return stringList;
     }
 
-    private void createFile(String linkAddress) throws Exception {
+    private void createFile(String linkAddress) throws IOException {
         File file = new File(linkAddress);
-        try {
             file.createNewFile();
-        } catch (IOException e) {
-            throw new Exception(e.getMessage());
-        }
     }
 
-    private void outputStream(String line, String linkAddress) throws Exception {
+    private void outputStream(String line, String linkAddress) throws IOException {
 
         createFile(linkAddress);
         FileOutputStream outputStream = null;

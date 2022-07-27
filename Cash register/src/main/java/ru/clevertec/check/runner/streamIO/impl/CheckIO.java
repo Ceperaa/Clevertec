@@ -23,10 +23,10 @@ public class CheckIO extends StreamIO {
                     check.setId(Integer.parseInt(value));
                     break;
                 case ("totalPriceWithDiscount"):
-                    check.setTotalPriceWithDiscount(Integer.parseInt(value));
+                    check.setTotalPriceWithDiscount(Double.parseDouble(value));
                     break;
                 case ("totalPrice"):
-                    check.setTotalPrice(Integer.parseInt(value));
+                    check.setTotalPrice(Double.parseDouble(value));
                     break;
                 case ("discountAmount"):
                     if (value.compareTo("null") != 0) {

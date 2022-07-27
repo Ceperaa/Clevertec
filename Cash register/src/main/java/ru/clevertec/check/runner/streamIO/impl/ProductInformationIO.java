@@ -25,9 +25,6 @@ public class ProductInformationIO extends StreamIO {
                 case ("ProductInformation id"):
                     productInformation.setId(Long.parseLong(value));
                     break;
-               // case ("checkId"):
-//                    productInformation.setCheckId(Integer.parseInt(value));
-//                    break;
                 case ("discountPercent"):
                     productInformation.setDiscountPercent(Integer.parseInt(value));
                     break;

@@ -8,7 +8,7 @@ import java.util.List;
 public class CheckDto {
 
     private long id;
-    private List<ProductDto> productList;
+    private List<ProductInformationDto> productList;
     private double totalPriceWithDiscount;
     private double totalPrice;
     private double discountAmount;

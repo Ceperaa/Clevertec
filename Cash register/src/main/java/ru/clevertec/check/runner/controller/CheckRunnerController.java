@@ -1,11 +1,11 @@
 package ru.clevertec.check.runner.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.clevertec.check.runner.dto.CheckDto;
-import ru.clevertec.check.runner.services.CheckRunnerServices;
+import ru.clevertec.check.runner.services.CheckRunnerService;
 import ru.clevertec.check.runner.util.validation.DataValidation;
 
 /**
@@ -17,15 +17,16 @@ import ru.clevertec.check.runner.util.validation.DataValidation;
 @RequestMapping("/check")
 public class CheckRunnerController {
 
-    private final CheckRunnerServices checkRunner;
+    private final CheckRunnerService checkRunnerService;
+
 
     @Autowired
-    public CheckRunnerController(CheckRunnerServices checkRunner) {
-        this.checkRunner = checkRunner;
+    public CheckRunnerController(CheckRunnerService checkRunnerService) {
+        this.checkRunnerService = checkRunnerService;
     }
 
-    @GetMapping("/runner")
+    @PostMapping("/runner")
     public CheckDto runner(String[] itemIdQuantity , Long idCard) throws Exception {
-        return checkRunner.creatCheck(DataValidation.validator(itemIdQuantity), idCard);
+        return checkRunnerService.createCheck(DataValidation.validator(itemIdQuantity), idCard);
     }
 }

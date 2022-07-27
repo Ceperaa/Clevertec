@@ -9,6 +9,9 @@ import ru.clevertec.check.runner.model.ExceptionObject;
 import ru.clevertec.check.runner.util.exception.ObjectNotFoundException;
 import ru.clevertec.check.runner.util.exception.ValidationException;
 
+import java.sql.SQLException;
+import java.util.Arrays;
+
 /**
  * Exceptions Handler
  *
@@ -19,21 +22,43 @@ import ru.clevertec.check.runner.util.exception.ValidationException;
 public class ControllerAdvice {
 
     @ExceptionHandler(value = {
-            ValidationException.class
-            , Exception.class
-            , ObjectNotFoundException.class
-            , ValidationException.class
+            Exception.class
+            , SQLException.class
     })
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ExceptionObject response400(@RequestBody Exception e) {
-        return aggregate(e.getMessage());
+        return aggregate(e.getMessage(), HttpStatus.BAD_REQUEST, Arrays.toString(e.getStackTrace()));
     }
 
-    private ExceptionObject aggregate(String message) {
+    @ExceptionHandler(value = {ValidationException.class})
+    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+    public ExceptionObject response422(@RequestBody Exception e) {
+        return aggregate(e.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY,Arrays.toString(e.getStackTrace()));
+    }
+
+    @ExceptionHandler(value = {
+            ObjectNotFoundException.class
+    })
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ExceptionObject response404(@RequestBody Exception e) {
+        return aggregate(e.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
+    private ExceptionObject aggregate(String message, HttpStatus status, String stackTrace) {
         return ExceptionObject
                 .builder()
-                .code(HttpStatus.BAD_REQUEST.value())
-                .status(String.valueOf(HttpStatus.BAD_REQUEST))
+                .code(status.value())
+                .exceptionClassName(stackTrace)
+                .status(String.valueOf(status))
+                .message(message)
+                .build();
+    }
+
+    private ExceptionObject aggregate(String message, HttpStatus status) {
+        return ExceptionObject
+                .builder()
+                .code(status.value())
+                .status(String.valueOf(status))
                 .message(message)
                 .build();
     }

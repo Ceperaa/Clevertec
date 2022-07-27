@@ -1,23 +1,24 @@
 package ru.clevertec.check.runner.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 
 @Data
-@RequiredArgsConstructor
+@AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class ProductInformation {
 
     private long id;
-    @NonNull
-    private Double priceWithDiscount;
+    private double priceWithDiscount;
     private double totalPrice;
     private double totalPriceWithDiscount;
-    @NonNull
     private Integer discountPercent;
-    private Product product;
+    private int amount;
+    private transient Product product;
+    private transient Check check;
 
     @Override
     public String toString() {
@@ -27,7 +28,7 @@ public class ProductInformation {
                 + ", totalPriceWithDiscount=" + totalPriceWithDiscount
                 + ", discountPercent=" + discountPercent
                 + ", product=" + product
-               // + ", checkId=" + checkId
+                // + ", checkId=" + checkId
                 + "";
     }
 }

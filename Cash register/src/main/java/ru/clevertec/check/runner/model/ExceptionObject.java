@@ -13,6 +13,7 @@ public class ExceptionObject {
 
     private int code;
     private String status;
+    private String exceptionClassName;
     private String message;
 
 }

@@ -70,3 +70,4 @@ Check id=1, totalPriceWithDiscount=36, totalPrice='40, discountAmount=4, totalPe
 Check id=2, totalPriceWithDiscount=36, totalPrice='40, discountAmount=4, totalPercent=10
 Check id=3, totalPriceWithDiscount=36, totalPrice='40, discountAmount=4, totalPercent=10
 Check id=4, totalPriceWithDiscount=36, totalPrice='40, discountAmount=4, totalPercent=10
+Check id=107, totalPriceWithDiscount=4.5, totalPrice='18.0, discountAmount=13.5, totalPercent=75

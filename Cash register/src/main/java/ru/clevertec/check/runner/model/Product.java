@@ -15,8 +15,8 @@ public class Product {
     private String name;
     private String amount;
     private Integer discountPercent;
-    private String price;
-    private ProductInformation productInformation;
+    private double price;
+    private transient ProductInformation productInformation;
 
     @Override
     public String toString() {

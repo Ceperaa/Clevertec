@@ -49,3 +49,30 @@ Sun Jun 26 20:19:15 MSK 2022 | Product id=null, name=null, amount=null, price=nu
 Sun Jun 26 20:19:59 MSK 2022 | Product id=null, name=null, amount=null, price=null, discountPercent=null
 Sun Jun 26 20:23:56 MSK 2022 | Product id=null, name=null, amount=null, price=null, discountPercent=null
 Sun Jun 26 20:27:21 MSK 2022 | Product id=null, name=null, amount=null, price=null, discountPercent=null
+Thu Jul 21 14:34:21 MSK 2022 | Product id=null, name=Apple, amount=2, price=10.00, discountPercent=2
+Sat Jul 23 13:47:28 MSK 2022 | 3-4 4-5
+Sun Jul 24 13:53:36 MSK 2022 | 101-1
+Sun Jul 24 13:53:42 MSK 2022 | 101-1
+Sun Jul 24 13:54:11 MSK 2022 | 101-1
+Sun Jul 24 14:06:26 MSK 2022 | 101-1
+Sun Jul 24 14:09:17 MSK 2022 | 101-1
+Sun Jul 24 14:09:22 MSK 2022 | 101-1
+Sun Jul 24 14:09:36 MSK 2022 | 101-1
+Sun Jul 24 14:09:47 MSK 2022 | 101-1
+Sun Jul 24 14:11:03 MSK 2022 | 101-1
+Sun Jul 24 14:13:00 MSK 2022 | 101-1
+Sun Jul 24 14:22:55 MSK 2022 | 101-1
+Sun Jul 24 14:24:21 MSK 2022 | 100-100
+Sun Jul 24 16:17:14 MSK 2022 | DiscountCard , discount=101
+Sun Jul 24 16:17:27 MSK 2022 | DiscountCard , discount=100
+Sun Jul 24 16:17:35 MSK 2022 | DiscountCard , discount=99
+Sun Jul 24 16:19:03 MSK 2022 | DiscountCard , discount=99
+Sun Jul 24 16:21:51 MSK 2022 | DiscountCard discount=101
+Sun Jul 24 17:15:40 MSK 2022 | DiscountCard discount=101
+Sun Jul 24 23:52:44 MSK 2022 | DiscountCard discount=0
+Mon Jul 25 23:50:13 MSK 2022 | 6-1 7-2
+Tue Jul 26 15:52:31 MSK 2022 | Product name=Asd, amount=2, price=19.00, discountPercent=2
+Tue Jul 26 15:58:01 MSK 2022 | Product name=Asd, amount=2, price=19.00, discountPercent=2
+Tue Jul 26 15:59:13 MSK 2022 | Product name=Asd, amount=2, price=19.00, discountPercent=2
+Tue Jul 26 16:10:55 MSK 2022 | Product name=Asdd, amount=2, price=19.00, discountPercent=2
+Tue Jul 26 16:17:18 MSK 2022 | Product name=Asdd, amount=2, price=19.00, discountPercent=2

@@ -1,11 +1,15 @@
 package ru.clevertec.check.runner.controller;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import ru.clevertec.check.runner.dto.ProductCreatDto;
-import ru.clevertec.check.runner.model.Product;
-import ru.clevertec.check.runner.services.ProductServices;
+import ru.clevertec.check.runner.dto.ProductDto;
+import ru.clevertec.check.runner.dto.ProductDtoForCreate;
+import ru.clevertec.check.runner.services.ProductServiceForUI;
+import ru.clevertec.check.runner.util.exception.ObjectNotFoundException;
 import ru.clevertec.check.runner.util.validation.DataValidation;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -17,29 +21,39 @@ import java.util.List;
 @RequestMapping("/product")
 public class ProductController {
 
-    private final ProductServices productServices;
+    private final ProductServiceForUI productServiceForUI;
 
-    public ProductController(ProductServices productServices) {
-        this.productServices = productServices;
+    public ProductController(
+             ProductServiceForUI productServiceForUI) {
+        this.productServiceForUI = productServiceForUI;
     }
 
-    @PutMapping("/add")
-    public ProductCreatDto add(ProductCreatDto product) throws Exception {
-            return productServices.saveProduct(DataValidation.validator(product));
+    @PostMapping("/add")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ProductDto add(ProductDtoForCreate product) throws Exception {
+            return productServiceForUI.saveProduct(DataValidation.validator(product));
+    }
+
+    @PutMapping("/update")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ProductDto update(ProductDto product) throws Exception {
+        // FIXME: 25.07.2022 добавить валидацию или удалить метод
+        return productServiceForUI.updateDto(product);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable long id) throws Exception {
-        productServices.deleteProduct(id);
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable long id) throws IOException, SQLException, ObjectNotFoundException {
+        productServiceForUI.deleteProduct(id);
     }
 
     @GetMapping("/{id}")
-    public Product findById(@PathVariable long id) throws Exception {
-        return productServices.findById(id);
+    public ProductDto findById(@PathVariable long id) throws SQLException, ObjectNotFoundException {
+        return productServiceForUI.findByProductDtoId(id);
     }
 
     @GetMapping("/all")
-    public List<ProductCreatDto> all() throws Exception {
-        return productServices.allListProductDto();
+    public List<ProductDto> all() throws IOException, SQLException {
+        return productServiceForUI.allListProductDto();
     }
 }
