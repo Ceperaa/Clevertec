@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 public class PdfMapper {
 
     private static final String PDF_FILE_PATH =
-            "E:\\Clevertec\\Cash register\\src\\main\\java\\ru\\clevertec\\check\\runner\\streamIO\\files\\check.pdf";
+            "E:\\Clevertec\\Cash register\\src\\main\\resources\\files\\check.pdf";
 
     private static final String REGULAR =
             "E:\\work\\Multithreding\\src\\main\\resources\\Anonymous.ttf";

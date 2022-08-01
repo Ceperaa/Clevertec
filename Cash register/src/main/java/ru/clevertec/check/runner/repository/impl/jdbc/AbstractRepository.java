@@ -38,12 +38,11 @@ public abstract class AbstractRepository<T> implements RepositoryEntity<T> {
                 Statement.RETURN_GENERATED_KEYS)) {
             statementOrder(statement, model);
             statement.execute();
-            try (ResultSet resultSet = statement.getGeneratedKeys()) {
-                if (resultSet.next()) {
-                    return setId(resultOrder(resultSet), resultSet.getLong(1));
-                } else {
-                    throw new SQLException("Creating user failed, no ID obtained.");
-                }
+            ResultSet resultSet = statement.getGeneratedKeys();
+            if (resultSet.next()) {
+                return setId(resultOrder(resultSet), resultSet.getLong(1));
+            } else {
+                throw new SQLException("Creating user failed, no ID obtained.");
             }
         }
     }

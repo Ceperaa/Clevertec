@@ -7,7 +7,7 @@ import ru.clevertec.check.runner.model.DiscountCard;
 public class DiscountCardIO extends StreamIO{
 
     private final static String LINK_ADDRESS =
-            "E:\\Clevertec\\Cash register\\src\\main\\java\\ru\\clevertec\\check\\runner\\streamIO\\files\\DiscountCardFile.CSV";
+            "E:\\Clevertec\\Cash register\\src\\main\\resources\\files\\DiscountCardFile.CSV";
 
     public DiscountCardIO() {
         super(LINK_ADDRESS);
