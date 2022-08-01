@@ -17,7 +17,7 @@ public interface DiscountCardService {
 
     DiscountCard saveCard(DiscountCardDtoForSave card) throws IOException, SQLException;
 
-    void deleteCard(long id) throws SQLException, ObjectNotFoundException, IOException;
+    void deleteCard(long id) throws  ObjectNotFoundException;
 
     DiscountCard updateDiscountCard(DiscountCardDtoForSave card) throws IOException, SQLException;
 

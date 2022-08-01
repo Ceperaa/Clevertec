@@ -43,7 +43,7 @@ public class ProductController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable long id) throws IOException, SQLException, ObjectNotFoundException {
+    public void delete(@PathVariable long id) throws IOException, ObjectNotFoundException, SQLException {
         productServiceForUI.deleteProduct(id);
     }
 

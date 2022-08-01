@@ -17,7 +17,7 @@ public interface ProductService {
 
     ProductDto saveProduct(ProductDtoForSave product) throws Exception;
 
-    Product update(Product product);
+    Product update(Product product) throws ObjectNotFoundException;
 
     double totalPriceWithDiscount(List<ProductInformationDto> productList);
 

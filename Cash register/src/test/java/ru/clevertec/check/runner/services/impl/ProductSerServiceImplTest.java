@@ -63,7 +63,7 @@ class ProductSerServiceImplTest {
         Product product1 = new Product();
         product1.setId(1L);
         List<Product> list = List.of(product1);
-        given(repository.findAll()).willReturn(list);
+        given(repository.findAll(1,1)).willReturn(list);
         List<Product> list1 = productService.allListProduct();
         assertEquals(list, list1);
     }

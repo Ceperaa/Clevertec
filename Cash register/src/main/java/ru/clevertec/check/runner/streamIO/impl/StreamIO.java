@@ -1,5 +1,6 @@
 package ru.clevertec.check.runner.streamIO.impl;
 
+import lombok.SneakyThrows;
 import ru.clevertec.check.runner.streamIO.IStreamIO;
 import ru.clevertec.check.runner.streamIO.StreamEntityToString;
 
@@ -18,7 +19,8 @@ public abstract class StreamIO implements IStreamIO {
         this.LINK_ADDRESS = LINK_ADDRESS;
     }
 
-    public List<?> importServiceFile() throws IOException {
+    @SneakyThrows(IOException.class)
+    public List<?> importServiceFile() {
         List<String> list = streamIO.fileInputStream(LINK_ADDRESS);
         return list
                 .stream()
@@ -26,7 +28,8 @@ public abstract class StreamIO implements IStreamIO {
                 .collect(Collectors.toList());
     }
 
-    public void exportFile(List<?> orderList, boolean isOverwrite) throws IOException {
+    @SneakyThrows(IOException.class)
+    public void exportFile(List<?> orderList, boolean isOverwrite) {
         streamIO.fileOutputStream(orderList, LINK_ADDRESS, isOverwrite);
     }
 

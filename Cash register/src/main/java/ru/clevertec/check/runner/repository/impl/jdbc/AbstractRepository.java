@@ -1,8 +1,10 @@
 package ru.clevertec.check.runner.repository.impl.jdbc;
 
 
+import lombok.SneakyThrows;
 import ru.clevertec.check.runner.repository.RepositoryEntity;
 import ru.clevertec.check.runner.repository.impl.jdbc.transactional.Transactional;
+import ru.clevertec.check.runner.util.exception.ObjectNotFoundException;
 
 import java.sql.*;
 import java.util.LinkedList;
@@ -32,29 +34,33 @@ public abstract class AbstractRepository<T> implements RepositoryEntity<T> {
     }
 
     @Transactional
-    public T add(T model) throws SQLException {
+    @SneakyThrows(SQLException.class)
+    public T add(T model) {
         Connection connection = getConnects();
         try (PreparedStatement statement = connection.prepareStatement(insert,
                 Statement.RETURN_GENERATED_KEYS)) {
             statementOrder(statement, model);
             statement.execute();
-            try (ResultSet resultSet = statement.getGeneratedKeys()) {
-                if (resultSet.next()) {
-                    return setId(resultOrder(resultSet), resultSet.getLong(1));
-                } else {
-                    throw new SQLException("Creating user failed, no ID obtained.");
-                }
+            ResultSet resultSet = statement.getGeneratedKeys();
+            if (resultSet.next()) {
+                return setId(resultOrder(resultSet), resultSet.getLong(1));
+            } else {
+                throw new SQLException("Creating user failed, no ID obtained.");
             }
         }
     }
 
     @Override
     @Transactional
-    public List<T> findAll() throws SQLException {
+    @SneakyThrows(SQLException.class)
+    public List<T> findAll(int limit, int offset) {
         List<T> list = new LinkedList<>();
 
         try (PreparedStatement statement = getConnects()
                 .prepareStatement(selectAll)) {
+            statement.setInt(1,limit);
+            statement.setInt(2,offset);
+            statement.execute();
             final ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 list.add(resultOrder(resultSet));
@@ -65,7 +71,8 @@ public abstract class AbstractRepository<T> implements RepositoryEntity<T> {
 
     @Override
     @Transactional
-    public Optional findById(Long key) throws SQLException {
+    @SneakyThrows(SQLException.class)
+    public Optional findById(Long key) {
         try (PreparedStatement statement = getConnects().prepareStatement(select)) {
             statement.setInt(1, Math.toIntExact(key));
             final ResultSet resultSet = statement.executeQuery();
@@ -78,7 +85,8 @@ public abstract class AbstractRepository<T> implements RepositoryEntity<T> {
     }
 
     @Transactional
-    public T update(T model) throws SQLException {
+    @SneakyThrows(SQLException.class)
+    public T update(T model) {
         try (PreparedStatement statement = getConnects().prepareStatement(update)) {
             int countFields = statementOrder(statement, model);
             statement.setInt(countFields + 1, Math.toIntExact(getId(model)));
@@ -89,22 +97,24 @@ public abstract class AbstractRepository<T> implements RepositoryEntity<T> {
 
     @Override
     @Transactional
-    public void delete(long id) throws SQLException {
+    @SneakyThrows(SQLException.class)
+    public void delete(long id) throws ObjectNotFoundException {
         try (PreparedStatement statement = getConnects()
                 .prepareStatement(delete)) {
             statement.setInt(1, Math.toIntExact(id));
-            statement.executeUpdate();
+            if (statement.executeUpdate() == 0) {
+                throw new ObjectNotFoundException("object with id " + id + " not found", id);
+            }
         }
     }
 
-    abstract protected Long getId(T model) throws SQLException;
+    abstract protected Long getId(T model);
 
-    abstract protected T setId(T model, long id) throws SQLException;
+    abstract protected T setId(T model, long id);
 
-    abstract protected T resultOrder(ResultSet resultSet) throws SQLException;
+    abstract protected T resultOrder(ResultSet resultSet);
 
-    abstract protected int statementOrder(PreparedStatement statement, T model)
-            throws SQLException;
+    abstract protected int statementOrder(PreparedStatement statement, T model);
 
-    abstract protected Connection getConnects() throws SQLException;
+    abstract protected Connection getConnects();
 }

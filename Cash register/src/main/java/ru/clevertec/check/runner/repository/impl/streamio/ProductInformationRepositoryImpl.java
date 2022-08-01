@@ -1,5 +1,6 @@
 package ru.clevertec.check.runner.repository.impl.streamio;
 
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
@@ -32,25 +33,25 @@ public class ProductInformationRepositoryImpl extends RepositoryEntityImpl<Produ
     }
 
     @Override
-    public List<ProductInformation> findAll() throws IOException {
+    public List<ProductInformation> findAll(int limit, int offset) {
         return (List) productInformationIo.importServiceFile();
     }
 
     @Override
-    public ProductInformation add(ProductInformation o) throws IOException {
+    public ProductInformation add(ProductInformation o) {
         increment++;
         o.setId(increment);
         map.put(o.getId(), o);
         productInformationIo.exportFile(List.of(o), false);
-        setFieldProperty();
+        super.setFieldProperty();
         return null;
     }
 
     @Override
-    public ProductInformation update(ProductInformation productInformation) throws IOException {
+    public ProductInformation update(ProductInformation productInformation) {
         long id = productInformation.getId();
-        if (findById(id) != null) {
-            delete(id);
+        if (super.findById(id).isPresent()) {
+            super.delete(id);
         }
         map.put(id, productInformation);
         productInformationIo.exportFile(List.of(productInformation), false);

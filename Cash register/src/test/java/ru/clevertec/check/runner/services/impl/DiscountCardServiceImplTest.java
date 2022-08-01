@@ -51,7 +51,7 @@ class DiscountCardServiceImplTest {
     @Test
     void allListDiscountCard() throws Exception {
         List<DiscountCard> list = List.of(discountCard);
-        given(repository.findAll()).willReturn(list);
+        given(repository.findAll(1,1)).willReturn(list);
         Assertions.assertEquals(cardServices.allListDiscountCard(10,10), list);
     }
 

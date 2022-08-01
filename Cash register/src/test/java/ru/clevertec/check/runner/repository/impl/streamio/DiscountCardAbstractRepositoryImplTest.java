@@ -39,7 +39,7 @@ class DiscountCardAbstractRepositoryImplTest {
     void findAll() throws Exception {
         List<DiscountCard> list = List.of(discountCard);
         given(cardIO.importServiceFile()).willReturn((List)list);
-        Assertions.assertEquals(discountCardRepository.findAll(), list);
+        Assertions.assertEquals(discountCardRepository.findAll(1,1), list);
     }
 
     @Test

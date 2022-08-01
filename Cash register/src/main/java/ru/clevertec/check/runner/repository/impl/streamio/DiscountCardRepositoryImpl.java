@@ -25,26 +25,26 @@ public class DiscountCardRepositoryImpl extends RepositoryEntityImpl<DiscountCar
     }
 
     @Override
-    public List<DiscountCard> findAll() throws IOException {
+    public List<DiscountCard> findAll(int limit, int offset) {
         return (List) discountCardIO.importServiceFile();
     }
 
     @Override
-    public DiscountCard add(DiscountCard o) throws IOException {
+    public DiscountCard add(DiscountCard o) {
         increment++;
         o.setId(increment);
         map.put(o.getId(), o);
         discountCardIO.exportFile(List.of(o), false);
-        setFieldProperty();
+        super.setFieldProperty();
         return o;
     }
 
     @Override
-    public DiscountCard update(DiscountCard discountCard) throws IOException {
+    public DiscountCard update(DiscountCard discountCard) {
 
         long id = discountCard.getId();
-        if (findById(id).isPresent()) {
-            delete(id);
+        if (super.findById(id).isPresent()) {
+            super.delete(id);
         }
         map.put(id, discountCard);
         discountCardIO.exportFile(List.of(discountCard), false);

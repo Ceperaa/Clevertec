@@ -1,5 +1,6 @@
 package ru.clevertec.check.runner.repository.impl.jdbc;
 
+import lombok.SneakyThrows;
 import org.springframework.stereotype.Repository;
 import ru.clevertec.check.runner.model.Product;
 import ru.clevertec.check.runner.repository.RepositoryEntity;
@@ -15,11 +16,25 @@ import java.sql.SQLException;
 public class ProductRepository extends AbstractRepository<Product> implements RepositoryEntity<Product> {
 
     private final EntityManager getConnection;
-    private static final String SELECT = "SELECT * FROM product WHERE id = ?";
-    private static final String INSERT = "INSERT INTO product (name, amount, price,discount_percent) VALUES (?,?,?,?)";
-    private static final String UPDATE = "UPDATE product SET name =?,amount =?,price =?,discount_percent =? WHERE (id = ?)";
-    private static final String DELETE = "DELETE FROM product WHERE id = ?";
-    private static final String SELECT_ALL = "SELECT * FROM product";
+    private static final String SELECT =
+            "SELECT id,name, amount, price,discount_percent" +
+                    " FROM product" +
+                    " WHERE id = ?";
+    private static final String INSERT =
+            "INSERT INTO product (name, amount, price,discount_percent)" +
+                    " VALUES (?,?,?,?)";
+    private static final String UPDATE =
+            "UPDATE product " +
+                    "SET name =?,amount =?,price =?,discount_percent =? " +
+                    "WHERE (id = ?)";
+    private static final String DELETE =
+            "DELETE FROM product" +
+                    " WHERE id = ?";
+    private static final String SELECT_ALL =
+            "SELECT id,name, amount, price,discount_percent" +
+                    " FROM product ORDER BY id ASC LIMIT ? OFFSET ?";
+
+    //SELECT * FROM product ORDER BY id ASC LIMIT 10 OFFSET 2
 
     public ProductRepository(EntityManager getConnection) {
         super(SELECT, INSERT, UPDATE, DELETE, SELECT_ALL);
@@ -36,7 +51,8 @@ public class ProductRepository extends AbstractRepository<Product> implements Re
     }
 
     @Override
-    protected Product resultOrder(ResultSet resultSet) throws SQLException {
+    @SneakyThrows(SQLException.class)
+    protected Product resultOrder(ResultSet resultSet) {
         return Product
                 .builder()
                 .id(resultSet.getLong("id"))
@@ -48,7 +64,8 @@ public class ProductRepository extends AbstractRepository<Product> implements Re
     }
 
     @Override
-    protected int statementOrder(PreparedStatement statement, Product model) throws SQLException {
+    @SneakyThrows(SQLException.class)
+    protected int statementOrder(PreparedStatement statement, Product model) {
         final int COUNT_FIELD = 4;
         statement.setString(1, model.getName());
         statement.setInt(2, Integer.parseInt(model.getAmount()));
@@ -58,7 +75,7 @@ public class ProductRepository extends AbstractRepository<Product> implements Re
     }
 
     @Override
-    protected Connection getConnects() throws SQLException {
+    protected Connection getConnects() {
         try {
             return getConnection.getConnect();
         } catch (InterruptedException e) {

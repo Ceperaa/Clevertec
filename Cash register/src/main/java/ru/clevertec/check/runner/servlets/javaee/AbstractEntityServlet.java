@@ -28,7 +28,7 @@ public abstract class AbstractEntityServlet extends AbstractHttpServlet{
             response.setStatus(201);
             printWriter.write(new Gson().toJson(discountCard));
         }
-        logger.debug("add");
+        logger.debug("add completed");
     }
 
     @SneakyThrows
@@ -50,7 +50,7 @@ public abstract class AbstractEntityServlet extends AbstractHttpServlet{
             resp.setStatus(201);
             printWriter.write(new Gson().toJson(discountCard));
         }
-        logger.debug("update");
+        logger.debug("update completed");
     }
 
     @SneakyThrows
@@ -59,7 +59,7 @@ public abstract class AbstractEntityServlet extends AbstractHttpServlet{
         String requestURI = req.getRequestURI();
         deleteObject(DataValidation.validatorHttpUrlSearchId(requestURI));
         resp.setStatus(204);
-        logger.debug("delete");
+        logger.debug("delete completed");
     }
 
     private void findById(long id, HttpServletResponse resp) throws SQLException, ObjectNotFoundException, IOException {
@@ -67,7 +67,7 @@ public abstract class AbstractEntityServlet extends AbstractHttpServlet{
         try (PrintWriter printWriter = resp.getWriter()) {
             resp.setStatus(200);
             printWriter.write(new Gson().toJson(byId));
-            logger.debug("findById");
+            logger.debug("findById completed");
         }
     }
 
@@ -79,7 +79,7 @@ public abstract class AbstractEntityServlet extends AbstractHttpServlet{
         try (PrintWriter printWriter = resp.getWriter()) {
             resp.setStatus(200);
             printWriter.write(new Gson().toJson(list));
-            logger.debug("findAll");
+            logger.debug("findAll completed");
         }
     }
 
@@ -87,7 +87,7 @@ public abstract class AbstractEntityServlet extends AbstractHttpServlet{
 
     abstract protected Object createObject(Object o) throws Exception;
 
-    abstract protected Object updateObject(Object o) throws IOException, SQLException;
+    abstract protected Object updateObject(Object o) throws IOException, SQLException, ObjectNotFoundException;
 
     abstract protected void deleteObject(long id) throws IOException, SQLException, ObjectNotFoundException;
 

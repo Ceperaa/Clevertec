@@ -7,7 +7,6 @@ import ru.clevertec.check.runner.model.DiscountCard;
 import ru.clevertec.check.runner.repository.RepositoryEntity;
 import ru.clevertec.check.runner.services.DiscountCardService;
 import ru.clevertec.check.runner.util.exception.ObjectNotFoundException;
-import ru.clevertec.check.runner.util.exception.Pagination;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -25,12 +24,12 @@ public class DiscountCardServiceImpl implements DiscountCardService {
         this.modelMapper = modelMapper;
     }
 
-    public Optional<DiscountCard> findById(long id) throws SQLException {
+    public Optional<DiscountCard> findById(long id) {
         return discountCardRepository.findById(id);
     }
 
     public List<DiscountCard> allListDiscountCard(int offset, int limit) throws IOException, SQLException {
-        return Pagination.getPage(discountCardRepository.findAll(), offset, limit);
+        return discountCardRepository.findAll(limit, offset);
     }
 
     public DiscountCard updateDiscountCard(DiscountCardDtoForSave card) throws IOException, SQLException {
@@ -41,8 +40,8 @@ public class DiscountCardServiceImpl implements DiscountCardService {
         return discountCardRepository.add(modelMapper.map(card, DiscountCard.class));
     }
 
-    public void deleteCard(long id) throws SQLException, ObjectNotFoundException, IOException {
-        DiscountCard discountCard = findById(id).orElseThrow(() -> new ObjectNotFoundException("DiscountCard id: " + id + "not found"));
+    public void deleteCard(long id) throws ObjectNotFoundException {
+        DiscountCard discountCard = findById(id).orElseThrow(() -> new ObjectNotFoundException(DiscountCard.class, id));
         discountCardRepository.delete(discountCard.getId());
     }
 }

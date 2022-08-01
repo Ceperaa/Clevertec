@@ -1,5 +1,6 @@
 package ru.clevertec.check.runner.repository.impl.streamio;
 
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 import ru.clevertec.check.runner.model.Product;
@@ -31,24 +32,24 @@ public class ProductRepositoryImpl extends RepositoryEntityImpl<Product> {
     }
 
     @Override
-    public List<Product> findAll() throws IOException {
+    public List<Product> findAll(int limit, int offset) {
         return (List) productIO.importServiceFile();
     }
 
     @Override
-    public Product add(Product o) throws IOException {
+    public Product add(Product o) {
         increment++;
         o.setId(increment);
         map.put(o.getId(), o);
         productIO.exportFile(List.of(o), false);
-        setFieldProperty();
+        super.setFieldProperty();
         return o;
     }
 
-    public Product update(Product product) throws IOException {
+    public Product update(Product product) {
         long id = product.getId();
-        if (findById(id).isPresent()) {
-            delete(id);
+        if (super.findById(id).isPresent()) {
+            super.delete(id);
         }
         map.put(id, product);
         productIO.exportFile(List.of(product), false);

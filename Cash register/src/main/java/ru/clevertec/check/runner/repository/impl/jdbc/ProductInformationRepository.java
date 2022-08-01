@@ -1,5 +1,6 @@
 package ru.clevertec.check.runner.repository.impl.jdbc;
 
+import lombok.SneakyThrows;
 import org.springframework.stereotype.Repository;
 import ru.clevertec.check.runner.model.ProductInformation;
 import ru.clevertec.check.runner.repository.impl.jdbc.transactional.EntityManager;
@@ -14,11 +15,20 @@ import java.sql.SQLException;
 public class ProductInformationRepository extends AbstractRepository<ProductInformation> {
 
     private final EntityManager getConnection;
-    private static final String SELECT = "SELECT * FROM product_information WHERE id = ?";
-    private static final String INSERT = "INSERT INTO public.product_information (price_with_discount,check_id, product_id, total_price, total_price_with_discount,discount_percent) VALUES (?,?, ?,?, ?, ?)";
-    private static final String UPDATE = "UPDATE product_information SET price_with_discount =?,check_id =?,total_price =?,total_price_with_discount =?,discount_percent =? WHERE (id = ?)";
+    private static final String SELECT =
+            "SELECT id, price_with_discount,check_id, product_id, total_price, total_price_with_discount,discount_percent" +
+                    " FROM product_information WHERE id = ?";
+    private static final String INSERT =
+            "INSERT INTO public.product_information (price_with_discount,check_id, product_id, total_price, total_price_with_discount,discount_percent)" +
+                    " VALUES (?,?, ?,?, ?, ?)";
+    private static final String UPDATE =
+            "UPDATE product_information " +
+                    "SET price_with_discount =?,check_id =?,total_price =?,total_price_with_discount =?,discount_percent =? " +
+                    "WHERE (id = ?)";
     private static final String DELETE = "DELETE FROM product_information WHERE id = ?";
-    private static final String SELECT_ALL = "SELECT * FROM product_information";
+    private static final String SELECT_ALL =
+            "SELECT id, price_with_discount,check_id, product_id, total_price, total_price_with_discount,discount_percent " +
+                    "FROM product_information ORDER BY id ASC LIMIT ? OFFSET ?";
 
     public ProductInformationRepository(EntityManager getConnection) {
         super(SELECT, INSERT, UPDATE, DELETE, SELECT_ALL);
@@ -35,7 +45,8 @@ public class ProductInformationRepository extends AbstractRepository<ProductInfo
     }
 
     @Override
-    protected ProductInformation resultOrder(ResultSet resultSet) throws SQLException {
+    @SneakyThrows(SQLException.class)
+    protected ProductInformation resultOrder(ResultSet resultSet) {
         return ProductInformation
                 .builder()
                 .id(resultSet.getLong("id"))
@@ -47,7 +58,8 @@ public class ProductInformationRepository extends AbstractRepository<ProductInfo
     }
 
     @Override
-    protected int statementOrder(PreparedStatement statement, ProductInformation model) throws SQLException {
+    @SneakyThrows(SQLException.class)
+    protected int statementOrder(PreparedStatement statement, ProductInformation model) {
         final int COUNT_FIELD = 6;
         statement.setBigDecimal(1, BigDecimal.valueOf(model.getPriceWithDiscount()));
         statement.setLong(2, model.getCheck().getId());
@@ -59,7 +71,7 @@ public class ProductInformationRepository extends AbstractRepository<ProductInfo
     }
 
     @Override
-    protected Connection getConnects() throws SQLException {
+    protected Connection getConnects() {
         try {
             return getConnection.getConnect();
         } catch (InterruptedException e) {

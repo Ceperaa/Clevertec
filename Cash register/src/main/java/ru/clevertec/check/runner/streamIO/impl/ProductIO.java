@@ -10,7 +10,7 @@ import java.util.Map;
 public class ProductIO extends StreamIO {
 
     private final static String LINK_ADDRESS =
-            "E:\\Clevertec\\Cash register\\src\\main\\java\\ru\\clevertec\\check\\runner\\streamIO\\files\\ProductFile.CSV";
+            "E:\\Clevertec\\Cash register\\src\\main\\resources\\files\\ProductFile.CSV";
 
     @Autowired
     public ProductIO() {

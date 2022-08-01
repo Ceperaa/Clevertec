@@ -24,6 +24,8 @@ public class ProductInformationServiceImpl implements ProductInformationService 
     private final ModelMapper modelMapper;
     private final DiscountCardService discountCardService;
     private final ProductService productService;
+    private static final int NUMBER_PRODUCT_ON_SALE = 5;
+    private static final int PROMOTIONAL_DISCOUNT = 10;
 
     public ProductInformationServiceImpl(
             RepositoryEntity<ProductInformation> productInformationRepository
@@ -37,7 +39,6 @@ public class ProductInformationServiceImpl implements ProductInformationService 
     }
 
     @Override
-    //@Transactional
     public double discountСalculation(
             List<ProductInformation> productList, double total, Long idCard)
             throws SQLException, ObjectNotFoundException {
@@ -47,9 +48,9 @@ public class ProductInformationServiceImpl implements ProductInformationService 
         if (productList
                 .stream()
                 .filter(product -> product.getDiscountPercent() != 0)
-                .count() >= 5
+                .count() >= NUMBER_PRODUCT_ON_SALE
         ) {
-            total = subtractPercentage(10, total);
+            total = subtractPercentage(PROMOTIONAL_DISCOUNT, total);
         }
         return DoubleFormatting.formatting(total);
     }
@@ -58,7 +59,7 @@ public class ProductInformationServiceImpl implements ProductInformationService 
             Map.Entry<Long, Integer> integerMap
             , ProductInformation productInformation
             , List<ProductInformationDto> productInformationDtoList
-    ) {
+    ) throws ObjectNotFoundException {
         int amountProduct = integerMap.getValue();
         Product product = productInformation.getProduct();
         productInformation.setPriceWithDiscount(subtractPercentage(product.getDiscountPercent()
@@ -94,20 +95,24 @@ public class ProductInformationServiceImpl implements ProductInformationService 
     }
 
     private double subtractPercentage(int percent, double price) {
-        return DoubleFormatting.formatting(price - (price * percent) / 100.00);
+       final int TOTAL_PERCENT = 100;
+        return DoubleFormatting.formatting(price - (price * percent) / TOTAL_PERCENT);
     }
 
-    public ProductInformation findById(Long id) throws SQLException, ObjectNotFoundException {
-        return productInformationRepository
-                .findById(id)
-                .orElseThrow(() -> new ObjectNotFoundException("ProductInformation id:" + id + " not found"));
-    }
+//    public ProductInformation findById(Long id) throws SQLException, ObjectNotFoundException {
+//        return productInformationRepository
+//                .findById(id)
+//                .orElseThrow(() -> new ObjectNotFoundException(ProductInformation.class,id));
+//    }
 
     public ProductInformation saveProductInformation(ProductInformation productInformation) throws IOException, SQLException {
         return productInformationRepository.add(productInformation);
     }
 
-    public void deleteProductInformation(long id) throws IOException, SQLException {
-        productInformationRepository.delete(id);
-    }
+//    public void deleteProductInformation(long id) throws IOException, SQLException {
+//        try {
+//
+//        }
+//        productInformationRepository.delete(id);
+//    }
 }

@@ -42,7 +42,7 @@ public class DiscountCardController {
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable long id)
-            throws IOException, SQLException, ObjectNotFoundException {
+            throws ObjectNotFoundException {
         cardServices.deleteCard(id);
     }
 }

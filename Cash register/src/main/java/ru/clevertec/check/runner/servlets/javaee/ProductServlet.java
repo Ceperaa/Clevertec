@@ -10,8 +10,6 @@ import ru.clevertec.check.runner.util.exception.ObjectNotFoundException;
 
 import javax.servlet.annotation.WebServlet;
 import java.io.BufferedReader;
-import java.io.IOException;
-import java.sql.SQLException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -35,27 +33,27 @@ public class ProductServlet extends AbstractEntityServlet {
     }
 
     @Override
-    protected Object createObject(Object o) throws Exception {
+    protected Object createObject(Object o) {
         return productService.saveProduct((ProductDtoForSave) o);
     }
 
     @Override
-    protected Object updateObject(Object o) throws IOException, SQLException {
+    protected Object updateObject(Object o) throws ObjectNotFoundException {
         return productService.updateDto((ProductDto) o);
     }
 
     @Override
-    protected void deleteObject(long id) throws IOException, SQLException, ObjectNotFoundException {
+    protected void deleteObject(long id) throws ObjectNotFoundException {
         productService.deleteProduct(id);
     }
 
     @Override
-    protected Optional findByObjectId(long id) throws SQLException, ObjectNotFoundException, IOException {
+    protected Optional findByObjectId(long id) throws ObjectNotFoundException {
         return Optional.ofNullable(productService.findByProductDtoId(id));
     }
 
     @Override
-    protected List<Object> findAllObject(int offset, int limit) throws IOException, SQLException {
+    protected List<Object> findAllObject(int offset, int limit) {
         return Collections.singletonList(productService.allListProductDto(offset,limit));
     }
 }

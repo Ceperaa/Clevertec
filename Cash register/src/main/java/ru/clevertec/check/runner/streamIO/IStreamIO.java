@@ -1,11 +1,10 @@
 package ru.clevertec.check.runner.streamIO;
 
-import java.io.IOException;
 import java.util.List;
 
 public interface IStreamIO {
 
-    List<?> importServiceFile() throws IOException;
+    List<?> importServiceFile();
 
-    void exportFile(List<?> orderList, boolean isOverwrite) throws IOException;
+    void exportFile(List<?> orderList, boolean isOverwrite);
 }

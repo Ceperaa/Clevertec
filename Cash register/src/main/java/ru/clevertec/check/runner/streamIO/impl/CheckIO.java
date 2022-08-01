@@ -7,7 +7,7 @@ import ru.clevertec.check.runner.model.Check;
 public class CheckIO extends StreamIO {
 
     private final static String LINK_ADDRESS =
-            "E:\\Clevertec\\Cash register\\src\\main\\java\\ru\\clevertec\\check\\runner\\streamIO\\files\\CheckFile.CSV";
+            "E:\\Clevertec\\Cash register\\src\\main\\resources\\files\\CheckFile.CSV";
 
 
     public CheckIO() {

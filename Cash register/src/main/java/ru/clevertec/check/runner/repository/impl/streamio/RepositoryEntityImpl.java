@@ -1,5 +1,6 @@
 package ru.clevertec.check.runner.repository.impl.streamio;
 
+import lombok.SneakyThrows;
 import ru.clevertec.check.runner.repository.RepositoryEntity;
 import ru.clevertec.check.runner.streamIO.IStreamIO;
 
@@ -26,14 +27,12 @@ public abstract class RepositoryEntityImpl<E> implements RepositoryEntity<E> {
 
     protected abstract void setProperty(Properties property);
 
+    @SneakyThrows(IOException.class)
     protected void setFieldProperty() {
-        try {
+
             properties.load(new FileInputStream("E:\\Clevertec\\Cash register\\src\\main\\resources\\increment.properties"));
             setProperty(properties);
             properties.store(new FileOutputStream("E:\\Clevertec\\Cash register\\src\\main\\resources\\increment.properties"), null);
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
     }
 
     public Optional findById(Long id){
@@ -41,14 +40,15 @@ public abstract class RepositoryEntityImpl<E> implements RepositoryEntity<E> {
     }
 
 
-    public void delete(long id) throws IOException {
+
+    public void delete(long id) {
         map.remove(id);
         streamIO.exportFile(List.copyOf(map.values()),true);
     }
 
-   public abstract List<E> findAll() throws IOException;
+   public abstract List<E> findAll(int limit,int offset);
 
-    public abstract E add(E e) throws IOException;
+    public abstract E add(E e);
 
-    public abstract E update(E e) throws IOException;
+    public abstract E update(E e);
 }

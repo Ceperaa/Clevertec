@@ -5,7 +5,6 @@ import org.springframework.stereotype.Repository;
 import ru.clevertec.check.runner.model.Check;
 import ru.clevertec.check.runner.streamIO.IStreamIO;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -13,7 +12,7 @@ import java.util.Properties;
 @Repository
 public class CheckRepositoryImpl extends RepositoryEntityImpl<Check> {
 
-    private final Map<Long,Check> map;
+    private final Map<Long, Check> map;
     private final IStreamIO checkIO;
     @Value("${checkId}")
     private long increment;
@@ -30,25 +29,26 @@ public class CheckRepositoryImpl extends RepositoryEntityImpl<Check> {
     }
 
     @Override
-    public List<Check> findAll() throws IOException {
-        return (List) checkIO.importServiceFile();    }
+    public List<Check> findAll(int offset, int limit) {
+        return (List) checkIO.importServiceFile();
+    }
 
     @Override
-    public Check add(Check o) throws IOException {
+    public Check add(Check o) {
         increment++;
         o.setId(increment);
-        map.put(o.getId(),o);
-        setFieldProperty();
+        map.put(o.getId(), o);
+        super.setFieldProperty();
         checkIO.exportFile(List.of(o), false);
         return o;
     }
 
     @Override
-    public Check update(Check check) throws IOException {
+    public Check update(Check check) {
 
         long id = check.getId();
-        if (findById(id).isPresent()) {
-            delete(id);
+        if (super.findById(id).isPresent()) {
+            super.delete(id);
         }
         map.put(id, check);
         checkIO.exportFile(List.of(check), false);

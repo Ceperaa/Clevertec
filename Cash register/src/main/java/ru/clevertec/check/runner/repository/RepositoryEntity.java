@@ -1,19 +1,19 @@
 package ru.clevertec.check.runner.repository;
 
-import java.io.IOException;
-import java.sql.SQLException;
+import ru.clevertec.check.runner.util.exception.ObjectNotFoundException;
+
 import java.util.List;
 import java.util.Optional;
 
 public interface RepositoryEntity<E> {
 
-   List<E> findAll() throws SQLException, IOException;
+    List<E> findAll(int limit, int offset);
 
-   E add(E o) throws IOException, SQLException;
+    E add(E o);
 
-   void delete(long id) throws SQLException, IOException;
+    void delete(long id) throws ObjectNotFoundException;
 
-   Optional<E> findById(Long id) throws SQLException;
+    Optional<E> findById(Long id);
 
-   E update(E o) throws SQLException, IOException;
+    E update(E o);
 }

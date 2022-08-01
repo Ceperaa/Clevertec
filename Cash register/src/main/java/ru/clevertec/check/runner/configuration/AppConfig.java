@@ -1,7 +1,9 @@
 package ru.clevertec.check.runner.configuration;
 
+import liquibase.integration.spring.SpringLiquibase;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.*;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -27,6 +29,24 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @PropertySource("classpath:application.properties")
 @Import(value = {RepositoryFactory.class})
 public class AppConfig implements WebMvcConfigurer {
+
+    @Bean
+    public SpringLiquibase liquibase() {
+        SpringLiquibase liquibase = new SpringLiquibase();
+        liquibase.setChangeLog("classpath:db-changelog-1.xml");
+        liquibase.setDataSource(dataSource());
+        return liquibase;
+    }
+
+    @Bean
+    public DriverManagerDataSource dataSource() {
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setDriverClassName("org.postgresql.Driver");
+        dataSource.setUrl("jdbc:postgresql://localhost:5432/cash_register");
+        dataSource.setUsername("postgres");
+        dataSource.setPassword("root");
+        return dataSource;
+    }
 
     @Bean
     public ModelMapper getMapper() {

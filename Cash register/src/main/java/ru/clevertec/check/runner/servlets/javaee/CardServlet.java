@@ -41,7 +41,7 @@ public class CardServlet extends AbstractEntityServlet {
     }
 
     @Override
-    protected void deleteObject(long id) throws IOException, SQLException, ObjectNotFoundException {
+    protected void deleteObject(long id) throws ObjectNotFoundException {
         cardService.deleteCard(id);
     }
 

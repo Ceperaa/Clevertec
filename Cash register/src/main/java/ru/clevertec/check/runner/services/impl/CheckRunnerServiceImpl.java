@@ -36,7 +36,8 @@ public class CheckRunnerServiceImpl implements CheckRunnerService {
     public CheckRunnerServiceImpl(
             ProductService productService
             , RepositoryEntity<Check> checkRepository
-            , ProductInformationService productInformationService, ModelMapper modelMapper) {
+            , ProductInformationService productInformationService, ModelMapper modelMapper
+    ) {
         this.productService = productService;
         this.checkRepository = checkRepository;
         this.productInformationService = productInformationService;
@@ -62,9 +63,9 @@ public class CheckRunnerServiceImpl implements CheckRunnerService {
         check.setTotalPrice(totalPrice);
         check.setTotalPriceWithDiscount(totalPriceWithDiscount);
         check.setDiscountAmount(DoubleFormatting.formatting(discountAmount));
-
+        final int TOTAL_PERCENT = 100;
         if (check.getTotalPrice() != 0) {
-            check.setTotalPercent((int) ((discountAmount * 100) / check.getTotalPrice()));
+            check.setTotalPercent((int) ((discountAmount * TOTAL_PERCENT) / check.getTotalPrice()));
         } else {
             check.setDiscountAmount(0);
         }

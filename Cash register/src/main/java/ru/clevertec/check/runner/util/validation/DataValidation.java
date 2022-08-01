@@ -17,7 +17,7 @@ public class DataValidation {
     public static int validatorHttpUrlSearchId(String url) throws IOException, ValidationException {
         int i = url.lastIndexOf("/") + 1;
         String st = url.substring(i);
-        st = validatorString(st,"^[1-9]|[1][\\d]|20$");
+        st = validatorString(st,"^([1-9]|[1-9]\\d|100)$");
         if (st.isEmpty()) {
             return 0;
         } else {
