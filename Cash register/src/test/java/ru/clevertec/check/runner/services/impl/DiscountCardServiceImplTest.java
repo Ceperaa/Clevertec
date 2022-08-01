@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.modelmapper.ModelMapper;
-import ru.clevertec.check.runner.dto.DiscountCardDtoForCreate;
+import ru.clevertec.check.runner.dto.DiscountCardDtoForSave;
 import ru.clevertec.check.runner.model.DiscountCard;
 import ru.clevertec.check.runner.repository.impl.streamio.DiscountCardRepositoryImpl;
 import ru.clevertec.check.runner.services.DiscountCardService;
@@ -52,15 +52,15 @@ class DiscountCardServiceImplTest {
     void allListDiscountCard() throws Exception {
         List<DiscountCard> list = List.of(discountCard);
         given(repository.findAll()).willReturn(list);
-        Assertions.assertEquals(cardServices.allListDiscountCard(), list);
+        Assertions.assertEquals(cardServices.allListDiscountCard(10,10), list);
     }
 
     @Test
     void saveCard() throws Exception {
-        DiscountCardDtoForCreate discountCardDtoForCreate = new DiscountCardDtoForCreate(10);
+        DiscountCardDtoForSave discountCardDtoForSave = new DiscountCardDtoForSave(10);
         given(repository.add(discountCard)).willReturn(discountCard);
-        cardServices.saveCard(discountCardDtoForCreate);
-        Assertions.assertEquals(cardServices.saveCard(discountCardDtoForCreate), discountCard);
+        cardServices.saveCard(discountCardDtoForSave);
+        Assertions.assertEquals(cardServices.saveCard(discountCardDtoForSave), discountCard);
     }
 
 }

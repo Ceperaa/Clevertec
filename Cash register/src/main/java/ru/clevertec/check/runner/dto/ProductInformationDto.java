@@ -31,7 +31,6 @@ public class ProductInformationDto {
 //                ", priceWithDiscount=" + priceWithDiscount +
 //                ", totalPrice=" + totalPrice +
 //                ", totalPriceWithDiscount=" + totalPriceWithDiscount +
-//               // ", checkId=" + checkId +
 //                "";
 //    }
 

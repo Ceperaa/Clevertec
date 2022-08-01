@@ -1,7 +1,7 @@
 package ru.clevertec.check.runner.util.validation;
 
-import ru.clevertec.check.runner.dto.DiscountCardDtoForCreate;
-import ru.clevertec.check.runner.dto.ProductDtoForCreate;
+import ru.clevertec.check.runner.dto.DiscountCardDtoForSave;
+import ru.clevertec.check.runner.dto.ProductDtoForSave;
 import ru.clevertec.check.runner.streamIO.StreamEntityToString;
 import ru.clevertec.check.runner.util.exception.ValidationException;
 
@@ -13,6 +13,27 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class DataValidation {
+
+    public static int validatorHttpUrlSearchId(String url) throws IOException, ValidationException {
+        int i = url.lastIndexOf("/") + 1;
+        String st = url.substring(i);
+        st = validatorString(st,"^[1-9]|[1][\\d]|20$");
+        if (st.isEmpty()) {
+            return 0;
+        } else {
+            return Integer.parseInt(st);
+        }
+    }
+
+    private static String validatorString(String str, String patternString) throws ValidationException, IOException {
+        Pattern pattern = Pattern.compile(
+                patternString);
+        Matcher matcher = pattern.matcher(str);
+        if (matcher.find()) {
+            return matcher.group();
+        }
+        return "";
+    }
 
     public static List<String> validator(String[] s) throws Exception {
         List<String> list = new ArrayList<>();
@@ -29,8 +50,8 @@ public class DataValidation {
         return list;
     }
 
-    public static ProductDtoForCreate validator(ProductDtoForCreate product) throws Exception {
-        validatorHandler(product,"^Product" +
+    public static ProductDtoForSave validator(ProductDtoForSave product) throws Exception {
+        validatorHandler(product.toString(), "^Product" +
                 "\\sname=[A-ZА-Я][a-zа-я]\\D{1,30}," +
                 "\\samount=([1-9]|[1][\\d]|20)," +
                 "\\sprice=([1-9]|[1-9]\\d|100).\\d{2}," +
@@ -38,13 +59,13 @@ public class DataValidation {
         return product;
     }
 
-    public static DiscountCardDtoForCreate validator(DiscountCardDtoForCreate cardDtoForCreate) throws IOException, ValidationException {
-        validatorHandler(cardDtoForCreate,"^DiscountCard\\sdiscount=([1-9]|[1-9]\\d|100)$");
+    public static DiscountCardDtoForSave validator(DiscountCardDtoForSave cardDtoForCreate) throws IOException, ValidationException {
+        validatorHandler(cardDtoForCreate.toString(), "^DiscountCard\\sdiscount=([1-9]|[1-9]\\d|100)$");
         return cardDtoForCreate;
     }
 
-    private static void validatorHandler(Object o,String patternString) throws ValidationException, IOException {
-        String str = o.toString();
+    private static void validatorHandler(String str, String patternString) throws ValidationException, IOException {
+        //String str = o.toString();
         Pattern pattern = Pattern.compile(
                 patternString);
         Matcher matcher = pattern.matcher(str);

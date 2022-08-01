@@ -3,13 +3,14 @@ package ru.clevertec.check.runner.services.impl;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import ru.clevertec.check.runner.dto.ProductDto;
-import ru.clevertec.check.runner.dto.ProductDtoForCreate;
+import ru.clevertec.check.runner.dto.ProductDtoForSave;
 import ru.clevertec.check.runner.dto.ProductInformationDto;
 import ru.clevertec.check.runner.model.Product;
 import ru.clevertec.check.runner.repository.RepositoryEntity;
 import ru.clevertec.check.runner.services.ProductService;
 import ru.clevertec.check.runner.services.ProductServiceForUI;
 import ru.clevertec.check.runner.util.exception.ObjectNotFoundException;
+import ru.clevertec.check.runner.util.exception.Pagination;
 import ru.clevertec.check.runner.util.validation.DoubleFormatting;
 
 import java.io.IOException;
@@ -45,14 +46,17 @@ public class ProductServiceImpl implements ProductService, ProductServiceForUI {
         return productRepository.findAll();
     }
 
-    public List<ProductDto> allListProductDto() throws IOException, SQLException {
-        return productRepository.findAll()
+    public List<ProductDto> allListProductDto(int offset, int limit) throws IOException, SQLException {
+        return Pagination.getPage(productRepository.findAll()
                 .stream()
                 .map(product -> modelMapper.map(product, ProductDto.class))
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()), offset, limit);
+//        return productRepository.findAll()
+//                .stream()
+//                .map(product -> modelMapper.map(product, ProductDto.class))
+//                .collect(Collectors.toList());
     }
-
-    public ProductDto saveProduct(ProductDtoForCreate product) throws IOException, SQLException {
+    public ProductDto saveProduct(ProductDtoForSave product) throws IOException, SQLException {
         return modelMapper
                 .map(productRepository.add(
                         modelMapper.map(product, Product.class)), ProductDto.class);
@@ -67,9 +71,8 @@ public class ProductServiceImpl implements ProductService, ProductServiceForUI {
         return null;
     }
 
-    //@Transactional
-    public ProductDto updateDto(ProductDto product) throws IOException, SQLException {
-            return modelMapper.map(productRepository.update(modelMapper.map(product,Product.class)),ProductDto.class);
+    public ProductDtoForSave updateDto(ProductDto product) throws IOException, SQLException {
+        return modelMapper.map(productRepository.update(modelMapper.map(product, Product.class)), ProductDtoForSave.class);
     }
 
     public void deleteProduct(long id) throws SQLException, ObjectNotFoundException, IOException {

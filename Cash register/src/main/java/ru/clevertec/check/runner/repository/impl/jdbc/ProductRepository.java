@@ -26,19 +26,18 @@ public class ProductRepository extends AbstractRepository<Product> implements Re
         this.getConnection = getConnection;
     }
 
-    protected Long getId(Product product){
+    protected Long getId(Product product) {
         return product.getId();
     }
 
-    protected Product setId(Product product,long id){
+    protected Product setId(Product product, long id) {
         product.setId(id);
         return product;
     }
 
-
-        @Override
+    @Override
     protected Product resultOrder(ResultSet resultSet) throws SQLException {
-       return Product
+        return Product
                 .builder()
                 .id(resultSet.getLong("id"))
                 .name(resultSet.getString("name"))

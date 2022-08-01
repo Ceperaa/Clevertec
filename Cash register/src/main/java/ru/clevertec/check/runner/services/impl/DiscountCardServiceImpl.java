@@ -2,11 +2,12 @@ package ru.clevertec.check.runner.services.impl;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-import ru.clevertec.check.runner.dto.DiscountCardDtoForCreate;
+import ru.clevertec.check.runner.dto.DiscountCardDtoForSave;
 import ru.clevertec.check.runner.model.DiscountCard;
 import ru.clevertec.check.runner.repository.RepositoryEntity;
 import ru.clevertec.check.runner.services.DiscountCardService;
 import ru.clevertec.check.runner.util.exception.ObjectNotFoundException;
+import ru.clevertec.check.runner.util.exception.Pagination;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -28,12 +29,16 @@ public class DiscountCardServiceImpl implements DiscountCardService {
         return discountCardRepository.findById(id);
     }
 
-    public List<DiscountCard> allListDiscountCard() throws IOException, SQLException {
-        return discountCardRepository.findAll();
+    public List<DiscountCard> allListDiscountCard(int offset, int limit) throws IOException, SQLException {
+        return Pagination.getPage(discountCardRepository.findAll(), offset, limit);
     }
 
-    public DiscountCard saveCard(DiscountCardDtoForCreate card) throws IOException, SQLException {
-        return discountCardRepository.add(modelMapper.map(card,DiscountCard.class));
+    public DiscountCard updateDiscountCard(DiscountCardDtoForSave card) throws IOException, SQLException {
+        return discountCardRepository.update(modelMapper.map(card, DiscountCard.class));
+    }
+
+    public DiscountCard saveCard(DiscountCardDtoForSave card) throws IOException, SQLException {
+        return discountCardRepository.add(modelMapper.map(card, DiscountCard.class));
     }
 
     public void deleteCard(long id) throws SQLException, ObjectNotFoundException, IOException {

@@ -33,8 +33,6 @@ public class AppConfig implements WebMvcConfigurer {
         return new ModelMapper();
     }
 
-
-
     @Bean
     public Docket productApi() {
         return new Docket(DocumentationType.SWAGGER_2)

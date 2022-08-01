@@ -2,7 +2,7 @@ package ru.clevertec.check.runner.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import ru.clevertec.check.runner.dto.DiscountCardDtoForCreate;
+import ru.clevertec.check.runner.dto.DiscountCardDtoForSave;
 import ru.clevertec.check.runner.model.DiscountCard;
 import ru.clevertec.check.runner.services.DiscountCardService;
 import ru.clevertec.check.runner.util.exception.ObjectNotFoundException;
@@ -28,15 +28,15 @@ public class DiscountCardController {
         this.cardServices = cardServices;
     }
 
-    @PutMapping("/add")
+    @PutMapping("/")
     @ResponseStatus(HttpStatus.CREATED)
-    public DiscountCard add(DiscountCardDtoForCreate discountCard) throws IOException, ValidationException, SQLException {
+    public DiscountCard add(DiscountCardDtoForSave discountCard) throws IOException, ValidationException, SQLException {
            return cardServices.saveCard(DataValidation.validator(discountCard));
     }
 
     @GetMapping("/all")
     public List<DiscountCard> all() throws IOException, SQLException {
-        return cardServices.allListDiscountCard();
+        return cardServices.allListDiscountCard(10,10);
     }
 
     @DeleteMapping("/{id}")

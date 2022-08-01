@@ -76,3 +76,16 @@ Tue Jul 26 15:58:01 MSK 2022 | Product name=Asd, amount=2, price=19.00, discount
 Tue Jul 26 15:59:13 MSK 2022 | Product name=Asd, amount=2, price=19.00, discountPercent=2
 Tue Jul 26 16:10:55 MSK 2022 | Product name=Asdd, amount=2, price=19.00, discountPercent=2
 Tue Jul 26 16:17:18 MSK 2022 | Product name=Asdd, amount=2, price=19.00, discountPercent=2
+Sat Jul 30 15:54:38 MSK 2022 | DiscountCard discount=0
+Sat Jul 30 15:55:12 MSK 2022 | DiscountCard discount=0
+Sat Jul 30 15:55:25 MSK 2022 | DiscountCard discount=0
+Sat Jul 30 15:56:07 MSK 2022 | DiscountCard discount=0
+Sat Jul 30 15:56:21 MSK 2022 | DiscountCard discount=0
+Sat Jul 30 15:57:53 MSK 2022 | DiscountCard discount=0
+Sat Jul 30 16:04:45 MSK 2022 | DiscountCard discount=0
+Sat Jul 30 16:06:08 MSK 2022 | DiscountCard discount=0
+Sun Jul 31 17:06:54 MSK 2022 | product
+Sun Jul 31 19:54:24 MSK 2022 | 3
+Sun Jul 31 19:55:09 MSK 2022 | 3
+Sun Jul 31 19:55:38 MSK 2022 | 3
+Sun Jul 31 19:56:28 MSK 2022 | 3

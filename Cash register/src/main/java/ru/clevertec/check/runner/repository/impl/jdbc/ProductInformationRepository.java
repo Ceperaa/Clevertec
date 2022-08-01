@@ -20,7 +20,6 @@ public class ProductInformationRepository extends AbstractRepository<ProductInfo
     private static final String DELETE = "DELETE FROM product_information WHERE id = ?";
     private static final String SELECT_ALL = "SELECT * FROM product_information";
 
-
     public ProductInformationRepository(EntityManager getConnection) {
         super(SELECT, INSERT, UPDATE, DELETE, SELECT_ALL);
         this.getConnection = getConnection;
@@ -37,7 +36,7 @@ public class ProductInformationRepository extends AbstractRepository<ProductInfo
 
     @Override
     protected ProductInformation resultOrder(ResultSet resultSet) throws SQLException {
-       return ProductInformation
+        return ProductInformation
                 .builder()
                 .id(resultSet.getLong("id"))
                 .priceWithDiscount(Double.parseDouble(resultSet.getString("price_with_discount")))

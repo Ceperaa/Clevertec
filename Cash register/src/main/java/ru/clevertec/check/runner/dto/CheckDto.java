@@ -13,4 +13,16 @@ public class CheckDto {
     private double totalPrice;
     private double discountAmount;
     private int totalPercent;
+
+    @Override
+    public String toString() {
+        return "Check " +
+                "id=" + id +
+                "productList=" + productList +
+                ", totalPriceWithDiscount=" + totalPriceWithDiscount +
+                ", totalPrice='" + totalPrice +
+                ", discountAmount=" + discountAmount +
+                ", totalPercent=" + totalPercent +
+                "";
+    }
 }

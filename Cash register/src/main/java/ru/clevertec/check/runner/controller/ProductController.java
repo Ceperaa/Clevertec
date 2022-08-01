@@ -3,7 +3,7 @@ package ru.clevertec.check.runner.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ru.clevertec.check.runner.dto.ProductDto;
-import ru.clevertec.check.runner.dto.ProductDtoForCreate;
+import ru.clevertec.check.runner.dto.ProductDtoForSave;
 import ru.clevertec.check.runner.services.ProductServiceForUI;
 import ru.clevertec.check.runner.util.exception.ObjectNotFoundException;
 import ru.clevertec.check.runner.util.validation.DataValidation;
@@ -30,13 +30,13 @@ public class ProductController {
 
     @PostMapping("/add")
     @ResponseStatus(HttpStatus.CREATED)
-    public ProductDto add(ProductDtoForCreate product) throws Exception {
+    public ProductDto add(ProductDtoForSave product) throws Exception {
             return productServiceForUI.saveProduct(DataValidation.validator(product));
     }
 
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
-    public ProductDto update(ProductDto product) throws Exception {
+    public ProductDtoForSave update(ProductDto product) throws Exception {
         // FIXME: 25.07.2022 добавить валидацию или удалить метод
         return productServiceForUI.updateDto(product);
     }
@@ -53,7 +53,7 @@ public class ProductController {
     }
 
     @GetMapping("/all")
-    public List<ProductDto> all() throws IOException, SQLException {
-        return productServiceForUI.allListProductDto();
+    public List<ProductDto> all(@RequestParam int offset,@RequestParam int limit) throws IOException, SQLException {
+        return productServiceForUI.allListProductDto(offset,limit);
     }
 }

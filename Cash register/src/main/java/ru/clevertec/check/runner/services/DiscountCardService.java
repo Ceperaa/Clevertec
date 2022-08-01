@@ -1,6 +1,6 @@
 package ru.clevertec.check.runner.services;
 
-import ru.clevertec.check.runner.dto.DiscountCardDtoForCreate;
+import ru.clevertec.check.runner.dto.DiscountCardDtoForSave;
 import ru.clevertec.check.runner.model.DiscountCard;
 import ru.clevertec.check.runner.util.exception.ObjectNotFoundException;
 
@@ -13,10 +13,12 @@ public interface DiscountCardService {
 
     Optional<DiscountCard> findById(long id) throws SQLException, ObjectNotFoundException;
 
-    List<DiscountCard> allListDiscountCard() throws IOException, SQLException;
+    List<DiscountCard> allListDiscountCard(int offset,int limit) throws IOException, SQLException;
 
-    DiscountCard saveCard(DiscountCardDtoForCreate card) throws IOException, SQLException;
+    DiscountCard saveCard(DiscountCardDtoForSave card) throws IOException, SQLException;
 
     void deleteCard(long id) throws SQLException, ObjectNotFoundException, IOException;
+
+    DiscountCard updateDiscountCard(DiscountCardDtoForSave card) throws IOException, SQLException;
 
 }
