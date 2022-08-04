@@ -46,30 +46,29 @@ public class PdfMapper {
                                         , productInformationDto.getName()
                                         , productInformationDto.getPrice()
                                         , productInformationDto.getTotalPrice()))
-                        .collect(Collectors.joining()))
-                .append("-----------------------------------------------------------------\n")
-                .append(String.format("TOTAL                                                 $ %5s\n"
-                        , checkDto.getTotalPrice()))
-                .append(String.format("DISCOUNT %3s%s                                         $%5s\n"
-                        , checkDto.getTotalPercent(), "%", checkDto.getDiscountAmount()))
-                .append(String.format("TOTAL WITH DISCOUNT.                                  $ %5s\n"
-                        , checkDto.getTotalPriceWithDiscount()));
+                        .collect(Collectors.joining()) +
+                "-----------------------------------------------------------------\n" +
+                String.format("TOTAL                                                 $%5s\n"
+                        , checkDto.getTotalPrice()) +
+                String.format("DISCOUNT %3s%s                                         $%5s\n"
+                        , checkDto.getTotalPercent(), "%", checkDto.getDiscountAmount()) +
+                String.format("TOTAL WITH DISCOUNT.                                  $ %5s\n"
+                        , checkDto.getTotalPriceWithDiscount());
+        System.out.println(checkToString);
 
-        System.out.println(builder.toString());
-
-        savePdf(builder);
+        savePdf(checkToString);
     }
 
-    private static void savePdf(StringBuilder checkToString) throws IOException {
+    private static void savePdf(String checkToString) throws IOException {
         FontProgram fontProgram =
-                FontProgramFactory.createFont(PATH_ANONYMOUS);
+                FontProgramFactory.createFont(REGULAR);
         PdfFont font = PdfFontFactory.createFont(
                 fontProgram, PdfEncodings.WINANSI);
 
         PdfDocument pdf = new PdfDocument(new PdfWriter(PDF_FILE_PATH));
         Document document = new Document(pdf);
 
-        Paragraph paragraph = new Paragraph(checkToString.toString());
+        Paragraph paragraph = new Paragraph(checkToString);
         paragraph.setFont(font);
 
         document.add(paragraph);
