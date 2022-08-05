@@ -14,3 +14,6 @@
 - POST,PUT,DELETE,GET -
   - /product/{id} - работа с продуктами
   -  /card/{id} - работа с дисконтными картами
+     Возможные параметры:
+      - limit={pageSize}
+      - offset={page}
