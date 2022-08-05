@@ -1,13 +1,11 @@
 package ru.clevertec.check.runner.repository.impl.streamio;
 
-import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 import ru.clevertec.check.runner.model.ProductInformation;
 import ru.clevertec.check.runner.streamIO.IStreamIO;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -33,7 +31,7 @@ public class ProductInformationRepositoryImpl extends RepositoryEntityImpl<Produ
     }
 
     @Override
-    public List<ProductInformation> findAll(int limit, int offset) {
+    public List<ProductInformation> findAll(Integer limit, int offset) {
         return (List) productInformationIo.importServiceFile();
     }
 

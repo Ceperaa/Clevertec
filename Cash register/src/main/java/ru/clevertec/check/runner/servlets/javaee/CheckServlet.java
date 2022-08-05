@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.OutputStream;
+import java.util.Optional;
 
 @WebServlet(urlPatterns = {"/check/*"})
 public class CheckServlet extends AbstractHttpServlet {
@@ -25,11 +26,13 @@ public class CheckServlet extends AbstractHttpServlet {
 
     @SneakyThrows
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
+
+        String idCard = Optional.ofNullable(req.getParameter("idCard")).orElseGet(()->"0") ;
 
         CheckDto checkDto = runnerService.createCheck(
-                DataValidation.validator(req.getParameterValues("id"))
-                , Long.valueOf(req.getParameter("icCard"))
+                DataValidation.validator(req.getParameterValues("productId-quantity"))
+                , Long.valueOf(idCard)
         );
         PdfMapper.checkPdf(checkDto);
         File pdfFile = new File(PdfMapper.PDF_FILE_PATH);

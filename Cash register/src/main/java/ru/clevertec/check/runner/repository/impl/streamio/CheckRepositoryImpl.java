@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 import ru.clevertec.check.runner.model.Check;
 import ru.clevertec.check.runner.streamIO.IStreamIO;
+import ru.clevertec.check.runner.util.Pagination;
 
 import java.util.List;
 import java.util.Map;
@@ -29,8 +30,8 @@ public class CheckRepositoryImpl extends RepositoryEntityImpl<Check> {
     }
 
     @Override
-    public List<Check> findAll(int offset, int limit) {
-        return (List) checkIO.importServiceFile();
+    public List<Check> findAll(Integer limit, int offset) {
+        return Pagination.getPage((List) checkIO.importServiceFile(), offset, limit);
     }
 
     @Override

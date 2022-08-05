@@ -46,22 +46,22 @@ public class PdfMapper {
                                         , productInformationDto.getName()
                                         , productInformationDto.getPrice()
                                         , productInformationDto.getTotalPrice()))
-                        .collect(Collectors.joining()) +
-                "-----------------------------------------------------------------\n" +
-                String.format("TOTAL                                                 $%5s\n"
-                        , checkDto.getTotalPrice()) +
-                String.format("DISCOUNT %3s%s                                         $%5s\n"
-                        , checkDto.getTotalPercent(), "%", checkDto.getDiscountAmount()) +
-                String.format("TOTAL WITH DISCOUNT.                                  $ %5s\n"
-                        , checkDto.getTotalPriceWithDiscount());
-        System.out.println(checkToString);
+                        .collect(Collectors.joining()))
+                .append("-----------------------------------------------------------------\n")
+                .append(String.format("TOTAL                                                 $%5s\n"
+                        , checkDto.getTotalPrice()))
+                .append(String.format("DISCOUNT %3s%s                                         $%5s\n"
+                        , checkDto.getTotalPercent(), "%", checkDto.getDiscountAmount()))
+                .append(String.format("TOTAL WITH DISCOUNT.                                  $ %5s\n"
+                        , checkDto.getTotalPriceWithDiscount()));
+        System.out.println(builder.toString());
 
-        savePdf(checkToString);
+        savePdf(builder.toString());
     }
 
     private static void savePdf(String checkToString) throws IOException {
         FontProgram fontProgram =
-                FontProgramFactory.createFont(REGULAR);
+                FontProgramFactory.createFont(PATH_ANONYMOUS);
         PdfFont font = PdfFontFactory.createFont(
                 fontProgram, PdfEncodings.WINANSI);
 

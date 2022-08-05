@@ -2,6 +2,7 @@ package ru.clevertec.check.runner.repository.impl.jdbc.connector;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import ru.clevertec.check.runner.util.ApplicationProperties;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,10 +10,10 @@ import java.sql.SQLException;
 
 public class SQLConnector {
 
-    private final static String url = "jdbc:postgresql://localhost:5432/cash_register";
-    private final static String driverClassName = "org.postgresql.Driver";
-    private final static String user = "postgres";
-    private final static String password = "root";
+    private final String url = ApplicationProperties.getByKey("datasource.url");
+    private final String driverClassName = ApplicationProperties.getByKey("datasource.driver-class-name");
+    private final String user= ApplicationProperties.getByKey("datasource.username");
+    private final String password = ApplicationProperties.getByKey("datasource.password");
     private Connection connection;
     private final Logger logger = LogManager.getLogger(SQLException.class);
 
@@ -26,7 +27,7 @@ public class SQLConnector {
     private Connection createConnection() {
         Connection connection;
         try {
-            Class.forName("org.postgresql.Driver");
+            Class.forName(driverClassName);
             try {
                 connection = DriverManager.getConnection(url,
                         user,

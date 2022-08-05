@@ -5,10 +5,12 @@ import ru.clevertec.check.runner.dto.ProductDtoForSave;
 import ru.clevertec.check.runner.streamIO.StreamEntityToString;
 import ru.clevertec.check.runner.util.exception.ValidationException;
 
+import javax.servlet.ServletException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -36,6 +38,7 @@ public class DataValidation {
     }
 
     public static List<String> validator(String[] s) throws Exception {
+        Optional.ofNullable(s).orElseThrow(()-> new ServletException("no params"));
         List<String> list = new ArrayList<>();
         for (String value : s) {
             Pattern pattern = Pattern.compile("^([1-9]|[1-9]\\d|100)-([1-9]|[1][\\d]|20)$");

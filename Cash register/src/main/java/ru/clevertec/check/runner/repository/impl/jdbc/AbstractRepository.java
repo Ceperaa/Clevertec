@@ -18,6 +18,7 @@ public abstract class AbstractRepository<T> implements RepositoryEntity<T> {
     private final String update;
     private final String delete;
     private final String selectAll;
+    private static final int DEFAULT_PAGE_SIZE = 20;
 
     public AbstractRepository(
             String select
@@ -53,9 +54,11 @@ public abstract class AbstractRepository<T> implements RepositoryEntity<T> {
     @Override
     @Transactional
     @SneakyThrows(SQLException.class)
-    public List<T> findAll(int limit, int offset) {
+    public List<T> findAll(Integer limit, int offset) {
+        if (limit == 0) {
+            limit = DEFAULT_PAGE_SIZE;
+        }
         List<T> list = new LinkedList<>();
-
         try (PreparedStatement statement = getConnects()
                 .prepareStatement(selectAll)) {
             statement.setInt(1,limit);

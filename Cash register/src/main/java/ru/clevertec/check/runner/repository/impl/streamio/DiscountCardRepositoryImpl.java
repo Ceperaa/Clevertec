@@ -5,7 +5,6 @@ import org.springframework.stereotype.Repository;
 import ru.clevertec.check.runner.model.DiscountCard;
 import ru.clevertec.check.runner.streamIO.IStreamIO;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -25,7 +24,7 @@ public class DiscountCardRepositoryImpl extends RepositoryEntityImpl<DiscountCar
     }
 
     @Override
-    public List<DiscountCard> findAll(int limit, int offset) {
+    public List<DiscountCard> findAll(Integer limit, int offset) {
         return (List) discountCardIO.importServiceFile();
     }
 

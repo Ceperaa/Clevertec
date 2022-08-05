@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface RepositoryEntity<E> {
 
-    List<E> findAll(int limit, int offset);
+    List<E> findAll(Integer limit, int offset);
 
     E add(E o);
 

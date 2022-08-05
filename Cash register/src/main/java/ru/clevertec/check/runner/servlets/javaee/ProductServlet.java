@@ -53,7 +53,7 @@ public class ProductServlet extends AbstractEntityServlet {
     }
 
     @Override
-    protected List<Object> findAllObject(int offset, int limit) {
+    protected List<Object> findAllObject(int offset, Integer limit) {
         return Collections.singletonList(productService.allListProductDto(offset,limit));
     }
 }

@@ -28,7 +28,8 @@ public class ProductInformationRepository extends AbstractRepository<ProductInfo
     private static final String DELETE = "DELETE FROM product_information WHERE id = ?";
     private static final String SELECT_ALL =
             "SELECT id, price_with_discount,check_id, product_id, total_price, total_price_with_discount,discount_percent " +
-                    "FROM product_information ORDER BY id ASC LIMIT ? OFFSET ?";
+                    "FROM product_information " +
+                    "ORDER BY id ASC LIMIT ? OFFSET ?";
 
     public ProductInformationRepository(EntityManager getConnection) {
         super(SELECT, INSERT, UPDATE, DELETE, SELECT_ALL);

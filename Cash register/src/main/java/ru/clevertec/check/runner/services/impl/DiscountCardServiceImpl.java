@@ -28,7 +28,7 @@ public class DiscountCardServiceImpl implements DiscountCardService {
         return discountCardRepository.findById(id);
     }
 
-    public List<DiscountCard> allListDiscountCard(int offset, int limit) throws IOException, SQLException {
+    public List<DiscountCard> allListDiscountCard(int offset, Integer limit) throws IOException, SQLException {
         return discountCardRepository.findAll(limit, offset);
     }
 

@@ -32,9 +32,8 @@ public class ProductRepository extends AbstractRepository<Product> implements Re
                     " WHERE id = ?";
     private static final String SELECT_ALL =
             "SELECT id,name, amount, price,discount_percent" +
-                    " FROM product ORDER BY id ASC LIMIT ? OFFSET ?";
-
-    //SELECT * FROM product ORDER BY id ASC LIMIT 10 OFFSET 2
+                    " FROM product " +
+                    "ORDER BY id ASC LIMIT ? OFFSET ?";
 
     public ProductRepository(EntityManager getConnection) {
         super(SELECT, INSERT, UPDATE, DELETE, SELECT_ALL);

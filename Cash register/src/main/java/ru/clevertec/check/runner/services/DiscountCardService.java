@@ -13,7 +13,7 @@ public interface DiscountCardService {
 
     Optional<DiscountCard> findById(long id) throws SQLException, ObjectNotFoundException;
 
-    List<DiscountCard> allListDiscountCard(int offset,int limit) throws IOException, SQLException;
+    List<DiscountCard> allListDiscountCard(int offset,Integer limit) throws IOException, SQLException;
 
     DiscountCard saveCard(DiscountCardDtoForSave card) throws IOException, SQLException;
 

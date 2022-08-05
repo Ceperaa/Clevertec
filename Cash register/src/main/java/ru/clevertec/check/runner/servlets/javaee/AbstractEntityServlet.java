@@ -7,7 +7,6 @@ import org.apache.logging.log4j.Logger;
 import ru.clevertec.check.runner.util.exception.ObjectNotFoundException;
 import ru.clevertec.check.runner.util.validation.DataValidation;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
@@ -33,7 +32,7 @@ public abstract class AbstractEntityServlet extends AbstractHttpServlet{
 
     @SneakyThrows
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
         long id = DataValidation.validatorHttpUrlSearchId(req.getRequestURI());
         if (id == 0) {
             findAll(req, resp);
@@ -44,7 +43,7 @@ public abstract class AbstractEntityServlet extends AbstractHttpServlet{
 
     @SneakyThrows
     @Override
-    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) {
         Object discountCard = updateObject(req.getReader());
         try (PrintWriter printWriter = resp.getWriter()) {
             resp.setStatus(201);
@@ -55,7 +54,7 @@ public abstract class AbstractEntityServlet extends AbstractHttpServlet{
 
     @SneakyThrows
     @Override
-    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) {
         String requestURI = req.getRequestURI();
         deleteObject(DataValidation.validatorHttpUrlSearchId(requestURI));
         resp.setStatus(204);
@@ -72,9 +71,12 @@ public abstract class AbstractEntityServlet extends AbstractHttpServlet{
     }
 
     private void findAll(HttpServletRequest req, HttpServletResponse resp) throws SQLException, IOException {
+
+
         List<Object> list = findAllObject(Integer.parseInt(
-                req.getParameter("offset"))
-                , Integer.parseInt(req.getParameter("limit"))
+                Optional.ofNullable(req.getParameter("offset")).orElseGet(()-> "0"))
+                , Integer.parseInt(
+                        Optional.ofNullable(req.getParameter("limit")).orElseGet(()->"0"))
         );
         try (PrintWriter printWriter = resp.getWriter()) {
             resp.setStatus(200);
@@ -93,5 +95,5 @@ public abstract class AbstractEntityServlet extends AbstractHttpServlet{
 
     abstract protected Optional findByObjectId(long id) throws SQLException, ObjectNotFoundException, IOException;
 
-    abstract protected List<Object> findAllObject(int offset, int limit) throws IOException, SQLException;
+    abstract protected List<Object> findAllObject(int offset, Integer limit) throws IOException, SQLException;
 }

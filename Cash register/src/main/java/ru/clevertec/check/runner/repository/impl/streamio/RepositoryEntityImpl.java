@@ -46,7 +46,7 @@ public abstract class RepositoryEntityImpl<E> implements RepositoryEntity<E> {
         streamIO.exportFile(List.copyOf(map.values()),true);
     }
 
-   public abstract List<E> findAll(int limit,int offset);
+   public abstract List<E> findAll(Integer limit,int offset);
 
     public abstract E add(E e);
 

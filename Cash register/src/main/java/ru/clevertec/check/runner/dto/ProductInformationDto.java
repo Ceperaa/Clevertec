@@ -7,8 +7,6 @@ import lombok.*;
 @RequiredArgsConstructor
 public class ProductInformationDto {
 
-    //private long id;
-    //private int qty;
     @NonNull
     private String name;
     private String amount;

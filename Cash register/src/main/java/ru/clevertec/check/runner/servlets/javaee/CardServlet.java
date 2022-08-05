@@ -51,7 +51,7 @@ public class CardServlet extends AbstractEntityServlet {
     }
 
     @Override
-    protected List<Object> findAllObject(int offset, int limit) throws IOException, SQLException {
+    protected List<Object> findAllObject(int offset, Integer limit) throws IOException, SQLException {
         return Collections.singletonList(cardService.allListDiscountCard(offset, limit));
     }
 }

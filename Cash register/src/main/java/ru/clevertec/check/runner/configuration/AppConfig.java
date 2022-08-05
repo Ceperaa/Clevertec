@@ -8,6 +8,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import ru.clevertec.check.runner.util.ApplicationProperties;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -30,10 +31,16 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Import(value = {RepositoryFactory.class})
 public class AppConfig implements WebMvcConfigurer {
 
+    private final String URL = ApplicationProperties.getByKey("datasource.url");
+    private final String DRIVER_CLASS_NAME = ApplicationProperties.getByKey("datasource.driver-class-name");
+    private final String USER = ApplicationProperties.getByKey("datasource.username");
+    private final String PASSWORD = ApplicationProperties.getByKey("datasource.password");
+    private final String CHENGLOG = "classpath:db-changelog-1.xml";
+
     @Bean
     public SpringLiquibase liquibase() {
         SpringLiquibase liquibase = new SpringLiquibase();
-        liquibase.setChangeLog("classpath:db-changelog-1.xml");
+        liquibase.setChangeLog(CHENGLOG);
         liquibase.setDataSource(dataSource());
         return liquibase;
     }
@@ -41,10 +48,10 @@ public class AppConfig implements WebMvcConfigurer {
     @Bean
     public DriverManagerDataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUrl("jdbc:postgresql://localhost:5432/cash_register");
-        dataSource.setUsername("postgres");
-        dataSource.setPassword("root");
+        dataSource.setDriverClassName(DRIVER_CLASS_NAME);
+        dataSource.setUrl(URL);
+        dataSource.setUsername(USER);
+        dataSource.setPassword(PASSWORD);
         return dataSource;
     }
 

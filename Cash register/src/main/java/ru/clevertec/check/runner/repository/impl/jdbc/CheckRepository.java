@@ -29,7 +29,8 @@ public class CheckRepository extends AbstractRepository<Check> {
     private static final String DELETE = "DELETE FROM check WHERE id = ?";
     private static final String SELECT_ALL =
             "SELECT id, total_price_with_discount, total_price, discount_amount, total_percent" +
-                    " FROM check ORDER BY id ASC LIMIT ? OFFSET ?";
+                    " FROM check " +
+                    "ORDER BY id ASC LIMIT ? OFFSET ?";
     private final EntityManager getConnection;
 
     public CheckRepository(EntityManager getConnection) {
