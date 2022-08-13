@@ -3,6 +3,7 @@ package ru.clevertec.check.runner.repository.impl.jdbc;
 
 import lombok.SneakyThrows;
 import ru.clevertec.check.runner.repository.RepositoryEntity;
+import ru.clevertec.check.runner.repository.impl.jdbc.transactional.EntityManager;
 import ru.clevertec.check.runner.repository.impl.jdbc.transactional.Transactional;
 import ru.clevertec.check.runner.util.exception.ObjectNotFoundException;
 
@@ -19,25 +20,27 @@ public abstract class AbstractRepository<T> implements RepositoryEntity<T> {
     private final String delete;
     private final String selectAll;
     private static final int DEFAULT_PAGE_SIZE = 20;
+    private final EntityManager entityManager;
 
     public AbstractRepository(
             String select
             , String insert
             , String update
             , String delete
-            , String selectAll
-    ) {
+            , String selectAll,
+            EntityManager entityManager) {
         this.select = select;
         this.insert = insert;
         this.update = update;
         this.delete = delete;
         this.selectAll = selectAll;
+        this.entityManager = entityManager;
     }
 
     @Transactional
     @SneakyThrows(SQLException.class)
     public T add(T model) {
-        Connection connection = getConnects();
+        Connection connection = entityManager.getConnect();
         try (PreparedStatement statement = connection.prepareStatement(insert,
                 Statement.RETURN_GENERATED_KEYS)) {
             statementOrder(statement, model);
@@ -59,7 +62,7 @@ public abstract class AbstractRepository<T> implements RepositoryEntity<T> {
             limit = DEFAULT_PAGE_SIZE;
         }
         List<T> list = new LinkedList<>();
-        try (PreparedStatement statement = getConnects()
+        try (PreparedStatement statement = entityManager.getConnect()
                 .prepareStatement(selectAll)) {
             statement.setInt(1,limit);
             statement.setInt(2,offset);
@@ -76,7 +79,7 @@ public abstract class AbstractRepository<T> implements RepositoryEntity<T> {
     @Transactional
     @SneakyThrows(SQLException.class)
     public Optional findById(Long key) {
-        try (PreparedStatement statement = getConnects().prepareStatement(select)) {
+        try (PreparedStatement statement = entityManager.getConnect().prepareStatement(select)) {
             statement.setInt(1, Math.toIntExact(key));
             final ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
@@ -90,7 +93,7 @@ public abstract class AbstractRepository<T> implements RepositoryEntity<T> {
     @Transactional
     @SneakyThrows(SQLException.class)
     public T update(T model) {
-        try (PreparedStatement statement = getConnects().prepareStatement(update)) {
+        try (PreparedStatement statement = entityManager.getConnect().prepareStatement(update)) {
             int countFields = statementOrder(statement, model);
             statement.setInt(countFields + 1, Math.toIntExact(getId(model)));
             statement.executeUpdate();
@@ -102,7 +105,7 @@ public abstract class AbstractRepository<T> implements RepositoryEntity<T> {
     @Transactional
     @SneakyThrows(SQLException.class)
     public void delete(long id) throws ObjectNotFoundException {
-        try (PreparedStatement statement = getConnects()
+        try (PreparedStatement statement = entityManager.getConnect()
                 .prepareStatement(delete)) {
             statement.setInt(1, Math.toIntExact(id));
             if (statement.executeUpdate() == 0) {
@@ -118,6 +121,4 @@ public abstract class AbstractRepository<T> implements RepositoryEntity<T> {
     abstract protected T resultOrder(ResultSet resultSet);
 
     abstract protected int statementOrder(PreparedStatement statement, T model);
-
-    abstract protected Connection getConnects();
 }

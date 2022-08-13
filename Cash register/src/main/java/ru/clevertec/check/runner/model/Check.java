@@ -19,15 +19,4 @@ public class Check {
     private double totalPrice;
     private double discountAmount;
     private int totalPercent;
-
-    @Override
-    public String toString() {
-        return "Check " +
-                "id=" + id +
-                ", totalPriceWithDiscount=" + totalPriceWithDiscount +
-                ", totalPrice='" + totalPrice +
-                ", discountAmount=" + discountAmount +
-                ", totalPercent=" + totalPercent +
-                "";
-    }
 }

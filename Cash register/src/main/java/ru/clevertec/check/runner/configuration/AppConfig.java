@@ -28,7 +28,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 @ComponentScan({"ru.clevertec.check.runner"})
 @PropertySource("classpath:application.properties")
-@Import(value = {RepositoryFactory.class})
 public class AppConfig implements WebMvcConfigurer {
 
     private final String URL = ApplicationProperties.getByKey("datasource.url");

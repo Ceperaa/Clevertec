@@ -19,11 +19,7 @@ import java.util.stream.Collectors;
 
 public class PdfMapper {
 
-    public static final String PDF_FILE_PATH =
-            "classpath:files.check.pdf";
-
-    private static final String PATH_ANONYMOUS =
-            "E:\\Clevertec\\Cash register\\src\\main\\resources\\Anonymous.ttf";
+    public static final String PDF_FILE_PATH = "classpath:check.pdf";
 
     private static final LocalDate DATE = LocalDateTime.now().toLocalDate();
     private static final LocalTime TIME = LocalDateTime.now().toLocalTime().withNano(0);
@@ -41,7 +37,7 @@ public class PdfMapper {
                 .append(checkDto.getProductList()
                         .stream()
                         .map(productInformationDto ->
-                                String.format(" %-4s  %-35s $ %-10s$ %-5s \n"
+                                String.format("%-4s  %-35s $ %-10s$ %-5s \n"
                                         , productInformationDto.getAmount()
                                         , productInformationDto.getName()
                                         , productInformationDto.getPrice()
@@ -52,7 +48,7 @@ public class PdfMapper {
                         , checkDto.getTotalPrice()))
                 .append(String.format("DISCOUNT %3s%s                                         $%5s\n"
                         , checkDto.getTotalPercent(), "%", checkDto.getDiscountAmount()))
-                .append(String.format("TOTAL WITH DISCOUNT.                                  $ %5s\n"
+                .append(String.format("TOTAL WITH DISCOUNT.                                  $%5s\n"
                         , checkDto.getTotalPriceWithDiscount()));
         System.out.println(builder.toString());
 
@@ -61,16 +57,15 @@ public class PdfMapper {
 
     private static void savePdf(String checkToString) throws IOException {
         FontProgram fontProgram =
-                FontProgramFactory.createFont(PATH_ANONYMOUS);
-        PdfFont font = PdfFontFactory.createFont(
-                fontProgram, PdfEncodings.WINANSI);
+                FontProgramFactory.createFont(PdfMapper.class
+                        .getClassLoader().getResourceAsStream("Anonymous.ttf").readAllBytes());
 
+        PdfFont font = PdfFontFactory.createFont(
+                fontProgram, PdfEncodings.UTF8);
         PdfDocument pdf = new PdfDocument(new PdfWriter(PDF_FILE_PATH));
         Document document = new Document(pdf);
-
         Paragraph paragraph = new Paragraph(checkToString);
         paragraph.setFont(font);
-
         document.add(paragraph);
         document.close();
     }

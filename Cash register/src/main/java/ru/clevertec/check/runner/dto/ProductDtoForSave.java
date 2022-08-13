@@ -15,14 +15,4 @@ public class ProductDtoForSave {
     private String amount;
     private Integer discountPercent;
     private String price;
-
-    @Override
-    public String toString() {
-        return "Product "
-                + "name=" + name
-                + ", amount=" + amount
-                + ", price=" + price
-                + ", discountPercent=" + discountPercent
-                + "";
-    }
 }

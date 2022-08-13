@@ -12,11 +12,4 @@ import lombok.NoArgsConstructor;
 public class DiscountCardDtoForSave {
 
     private int discount;
-
-    @Override
-    public String toString() {
-        return "DiscountCard " +
-                "discount=" + discount +
-                "";
-    }
 }

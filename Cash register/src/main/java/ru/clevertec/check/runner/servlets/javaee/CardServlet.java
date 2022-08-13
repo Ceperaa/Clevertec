@@ -22,7 +22,7 @@ public class CardServlet extends AbstractEntityServlet {
     private DiscountCardService cardService;
 
     @Override
-    protected DiscountCardDtoForSave readerDiscountCard(BufferedReader reader) {
+    protected DiscountCardDtoForSave readObject(BufferedReader reader) {
         JsonObject jsonObject = new Gson().fromJson(reader, JsonObject.class);
         return DiscountCardDtoForSave
                 .builder()

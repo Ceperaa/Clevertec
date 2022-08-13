@@ -17,19 +17,4 @@ public class ProductInformationDto {
     private double totalPrice;
     private double totalPriceWithDiscount;
     private int discountPercent;
-   // private long checkId;
-
-//    @Override
-//    public String toString() {
-//        return "ProductInformation " +
-//                //"id=" + id +
-//                //", qty=" + qty +
-//                ", name='" + name +
-//                ", price=" + price +
-//                ", priceWithDiscount=" + priceWithDiscount +
-//                ", totalPrice=" + totalPrice +
-//                ", totalPriceWithDiscount=" + totalPriceWithDiscount +
-//                "";
-//    }
-
 }

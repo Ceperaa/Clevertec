@@ -8,8 +8,6 @@ import ru.clevertec.check.runner.repository.RepositoryEntity;
 import ru.clevertec.check.runner.services.DiscountCardService;
 import ru.clevertec.check.runner.util.exception.ObjectNotFoundException;
 
-import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,15 +26,15 @@ public class DiscountCardServiceImpl implements DiscountCardService {
         return discountCardRepository.findById(id);
     }
 
-    public List<DiscountCard> allListDiscountCard(int offset, Integer limit) throws IOException, SQLException {
+    public List<DiscountCard> allListDiscountCard(int offset, Integer limit) {
         return discountCardRepository.findAll(limit, offset);
     }
 
-    public DiscountCard updateDiscountCard(DiscountCardDtoForSave card) throws IOException, SQLException {
+    public DiscountCard updateDiscountCard(DiscountCardDtoForSave card) {
         return discountCardRepository.update(modelMapper.map(card, DiscountCard.class));
     }
 
-    public DiscountCard saveCard(DiscountCardDtoForSave card) throws IOException, SQLException {
+    public DiscountCard saveCard(DiscountCardDtoForSave card) {
         return discountCardRepository.add(modelMapper.map(card, DiscountCard.class));
     }
 

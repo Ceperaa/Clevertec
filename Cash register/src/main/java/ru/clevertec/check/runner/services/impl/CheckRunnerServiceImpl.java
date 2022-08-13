@@ -1,5 +1,6 @@
 package ru.clevertec.check.runner.services.impl;
 
+import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import ru.clevertec.check.runner.dto.CheckDto;
@@ -13,9 +14,13 @@ import ru.clevertec.check.runner.services.CheckRunnerService;
 import ru.clevertec.check.runner.services.ProductInformationService;
 import ru.clevertec.check.runner.services.ProductService;
 import ru.clevertec.check.runner.util.exception.ObjectNotFoundException;
+import ru.clevertec.check.runner.util.mapper.PdfMapper;
 import ru.clevertec.check.runner.util.validation.DoubleFormatting;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,6 +31,7 @@ import java.util.Map;
  * @author Sergey Degtyarev
  */
 @Service
+@Log4j2
 public class CheckRunnerServiceImpl implements CheckRunnerService {
 
     private final ProductService productService;
@@ -45,7 +51,7 @@ public class CheckRunnerServiceImpl implements CheckRunnerService {
     }
 
     @Transactional
-    public CheckDto createCheck(List<String> itemIdQuantity, Long idCard)
+    public CheckDto createCheck(List<String> itemIdQuantity, Long idCard,OutputStream stream)
             throws SQLException, ObjectNotFoundException, IOException {
 
         List<ProductInformationDto> productInformationList = new ArrayList<>();
@@ -72,7 +78,26 @@ public class CheckRunnerServiceImpl implements CheckRunnerService {
 
         check = saveCheck(check);
         saveProductInformationList(productList, check);
-        return mapToCheckDto(check, productInformationList);
+        CheckDto checkDto = mapToCheckDto(check, productInformationList);
+        checkMapToPdf(checkDto,stream);
+        return checkDto;
+    }
+
+    private void checkMapToPdf(CheckDto checkDto, OutputStream responseOutputStream) throws IOException {
+        PdfMapper.checkPdf(checkDto);
+        File pdfFile = new File(PdfMapper.PDF_FILE_PATH);
+        FileInputStream fileInputStream = new FileInputStream(pdfFile);
+        log.debug("fileInputstream length : " + fileInputStream.available());
+        int length;
+        byte[] buffer = new byte[4096];
+        while ((length = fileInputStream.read(buffer)) > 0) {
+            responseOutputStream.write(buffer, 0, length);
+        }
+        log.debug(" outputstream length : " + responseOutputStream.toString());
+        fileInputStream.close();
+        responseOutputStream.flush();
+        responseOutputStream.close();
+        log.debug("addCheck completed");
     }
 
     private void saveProductInformationList(List<ProductInformation> productList, Check check) throws IOException, SQLException {
@@ -93,7 +118,7 @@ public class CheckRunnerServiceImpl implements CheckRunnerService {
                     integerEntry
                     , ProductInformation
                             .builder()
-                            .totalPrice(product.getPrice())
+                            .totalPrice(Double.parseDouble(product.getPrice()))
                             .discountPercent(product.getDiscountPercent())
                             .product(product)
                             .build()
@@ -121,7 +146,7 @@ public class CheckRunnerServiceImpl implements CheckRunnerService {
         return integerMap;
     }
 
-    public Check saveCheck(Check check) throws IOException, SQLException {
+    public Check saveCheck(Check check) {
         return checkRepository.add(check);
     }
 }

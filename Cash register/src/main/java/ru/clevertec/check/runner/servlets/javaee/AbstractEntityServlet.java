@@ -2,8 +2,10 @@ package ru.clevertec.check.runner.servlets.javaee;
 
 import com.google.gson.Gson;
 import lombok.SneakyThrows;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.log4j.Log4j2;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import ru.clevertec.check.runner.dto.ProductDtoForSave;
 import ru.clevertec.check.runner.util.exception.ObjectNotFoundException;
 import ru.clevertec.check.runner.util.validation.DataValidation;
 
@@ -16,18 +18,18 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
+@Log4j2
 public abstract class AbstractEntityServlet extends AbstractHttpServlet{
-
-    private static final Logger logger = LogManager.getLogger(AbstractHttpServlet.class);
 
     @SneakyThrows
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {
-        Object discountCard = createObject(readerDiscountCard(request.getReader()));
+        Object object = createObject(DataValidation.validator((ProductDtoForSave) readObject(request.getReader())));
         try (PrintWriter printWriter = response.getWriter()) {
-            response.setStatus(201);
-            printWriter.write(new Gson().toJson(discountCard));
+            response.setStatus(HttpStatus.CREATED.value());
+            response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+            printWriter.write(new Gson().toJson(object));
         }
-        logger.debug("add completed");
+        log.debug("add completed");
     }
 
     @SneakyThrows
@@ -46,10 +48,11 @@ public abstract class AbstractEntityServlet extends AbstractHttpServlet{
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) {
         Object discountCard = updateObject(req.getReader());
         try (PrintWriter printWriter = resp.getWriter()) {
-            resp.setStatus(201);
+            resp.setStatus(HttpStatus.CREATED.value());
+            resp.setContentType(MediaType.APPLICATION_JSON_VALUE);
             printWriter.write(new Gson().toJson(discountCard));
         }
-        logger.debug("update completed");
+        log.debug("update completed");
     }
 
     @SneakyThrows
@@ -57,16 +60,18 @@ public abstract class AbstractEntityServlet extends AbstractHttpServlet{
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) {
         String requestURI = req.getRequestURI();
         deleteObject(DataValidation.validatorHttpUrlSearchId(requestURI));
-        resp.setStatus(204);
-        logger.debug("delete completed");
+        resp.setStatus(HttpStatus.NO_CONTENT.value());
+        resp.setContentType(MediaType.APPLICATION_JSON_VALUE);
+        log.debug("delete completed");
     }
 
     private void findById(long id, HttpServletResponse resp) throws SQLException, ObjectNotFoundException, IOException {
         Optional<Object> byId = findByObjectId(id);
         try (PrintWriter printWriter = resp.getWriter()) {
-            resp.setStatus(200);
+            resp.setStatus(HttpStatus.OK.value());
+            resp.setContentType(MediaType.APPLICATION_JSON_VALUE);
             printWriter.write(new Gson().toJson(byId));
-            logger.debug("findById completed");
+            log.debug("findById completed");
         }
     }
 
@@ -74,18 +79,18 @@ public abstract class AbstractEntityServlet extends AbstractHttpServlet{
 
 
         List<Object> list = findAllObject(Integer.parseInt(
-                Optional.ofNullable(req.getParameter("offset")).orElseGet(()-> "0"))
+                Optional.ofNullable(req.getParameter("offset")).orElse("0"))
                 , Integer.parseInt(
-                        Optional.ofNullable(req.getParameter("limit")).orElseGet(()->"0"))
+                        Optional.ofNullable(req.getParameter("limit")).orElse("0"))
         );
         try (PrintWriter printWriter = resp.getWriter()) {
-            resp.setStatus(200);
+            resp.setStatus(HttpStatus.OK.value());
             printWriter.write(new Gson().toJson(list));
-            logger.debug("findAll completed");
+            log.debug("findAll completed");
         }
     }
 
-    abstract protected Object readerDiscountCard(BufferedReader reader);
+    abstract protected Object readObject(BufferedReader reader);
 
     abstract protected Object createObject(Object o) throws Exception;
 

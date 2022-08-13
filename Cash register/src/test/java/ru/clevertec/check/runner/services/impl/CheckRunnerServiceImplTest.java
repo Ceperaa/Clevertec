@@ -10,7 +10,7 @@ import ru.clevertec.check.runner.dto.CheckDto;
 import ru.clevertec.check.runner.dto.ProductInformationDto;
 import ru.clevertec.check.runner.model.Check;
 import ru.clevertec.check.runner.model.ProductInformation;
-import ru.clevertec.check.runner.repository.impl.streamio.CheckRepositoryImpl;
+import ru.clevertec.check.runner.repository.impl.jdbc.CheckRepository;
 
 import java.util.List;
 
@@ -22,7 +22,7 @@ class CheckRunnerServiceImplTest {
     @Mock
     private ProductServiceImpl productServices;
     @Mock
-    private CheckRepositoryImpl checkRepository;
+    private CheckRepository checkRepository;
     @Mock
     private ProductInformationServiceImpl productInformationService;
     @Mock

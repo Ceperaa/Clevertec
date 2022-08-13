@@ -11,7 +11,7 @@ import ru.clevertec.check.runner.dto.ProductDto;
 import ru.clevertec.check.runner.dto.ProductDtoForSave;
 import ru.clevertec.check.runner.dto.ProductInformationDto;
 import ru.clevertec.check.runner.model.Product;
-import ru.clevertec.check.runner.repository.impl.streamio.ProductRepositoryImpl;
+import ru.clevertec.check.runner.repository.impl.jdbc.ProductRepository;
 import ru.clevertec.check.runner.services.ProductService;
 
 import java.util.List;
@@ -24,7 +24,7 @@ class ProductSerServiceImplTest {
 
     private final ProductService productService;
     @Mock
-    private ProductRepositoryImpl repository;
+    private ProductRepository repository;
 
     @Mock
     private DiscountCardServiceImpl discountCardServices;
@@ -46,7 +46,7 @@ class ProductSerServiceImplTest {
         product.setDiscountPercent(1);
         product.setName("Apple");
         product.setAmount("20");
-        product.setPrice(Double.parseDouble("10.00"));
+        product.setPrice("10.00");
     }
 
     @Test

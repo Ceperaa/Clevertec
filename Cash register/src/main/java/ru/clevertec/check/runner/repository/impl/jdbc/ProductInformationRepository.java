@@ -6,7 +6,6 @@ import ru.clevertec.check.runner.model.ProductInformation;
 import ru.clevertec.check.runner.repository.impl.jdbc.transactional.EntityManager;
 
 import java.math.BigDecimal;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,7 +13,6 @@ import java.sql.SQLException;
 @Repository
 public class ProductInformationRepository extends AbstractRepository<ProductInformation> {
 
-    private final EntityManager getConnection;
     private static final String SELECT =
             "SELECT id, price_with_discount,check_id, product_id, total_price, total_price_with_discount,discount_percent" +
                     " FROM product_information WHERE id = ?";
@@ -32,8 +30,7 @@ public class ProductInformationRepository extends AbstractRepository<ProductInfo
                     "ORDER BY id ASC LIMIT ? OFFSET ?";
 
     public ProductInformationRepository(EntityManager getConnection) {
-        super(SELECT, INSERT, UPDATE, DELETE, SELECT_ALL);
-        this.getConnection = getConnection;
+        super(SELECT, INSERT, UPDATE, DELETE, SELECT_ALL, getConnection);
     }
 
     protected Long getId(ProductInformation productInformation) {
@@ -69,15 +66,5 @@ public class ProductInformationRepository extends AbstractRepository<ProductInfo
         statement.setBigDecimal(5, BigDecimal.valueOf(model.getTotalPriceWithDiscount()));
         statement.setInt(6, model.getDiscountPercent());
         return COUNT_FIELD;
-    }
-
-    @Override
-    protected Connection getConnects() {
-        try {
-            return getConnection.getConnect();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        return null;
     }
 }

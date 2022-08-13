@@ -15,5 +15,4 @@ public class ExceptionObject {
     private String status;
     private String exceptionClassName;
     private String message;
-
 }

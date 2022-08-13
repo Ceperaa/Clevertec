@@ -19,16 +19,4 @@ public class ProductInformation {
     private int amount;
     private transient Product product;
     private transient Check check;
-
-    @Override
-    public String toString() {
-        return "ProductInformation "
-                + "id=" + id
-                + ", totalPrice=" + totalPrice
-                + ", totalPriceWithDiscount=" + totalPriceWithDiscount
-                + ", discountPercent=" + discountPercent
-                + ", product=" + product
-                // + ", checkId=" + checkId
-                + "";
-    }
 }

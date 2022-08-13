@@ -15,17 +15,6 @@ public class Product {
     private String name;
     private String amount;
     private Integer discountPercent;
-    private double price;
+    private String price;
     private transient ProductInformation productInformation;
-
-    @Override
-    public String toString() {
-        return "Product "
-                + "id=" + id
-                + ", name=" + name
-                + ", amount=" + amount
-                + ", price=" + price
-                + ", discountPercent=" + discountPercent
-                + "";
-    }
 }

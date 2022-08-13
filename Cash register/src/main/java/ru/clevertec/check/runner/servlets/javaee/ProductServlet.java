@@ -1,7 +1,6 @@
 package ru.clevertec.check.runner.servlets.javaee;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.clevertec.check.runner.dto.ProductDto;
 import ru.clevertec.check.runner.dto.ProductDtoForSave;
@@ -21,15 +20,9 @@ public class ProductServlet extends AbstractEntityServlet {
     private ProductServiceForUI productService;
 
     @Override
-    protected Object readerDiscountCard(BufferedReader reader) {
-        JsonObject jsonObject = new Gson().fromJson(reader, JsonObject.class);
-        return ProductDto
-                .builder()
-                .name(jsonObject.get("name").toString())
-                .amount(jsonObject.get("amount").toString())
-                .discountPercent(jsonObject.get("discountPercent").getAsInt())
-                .price(jsonObject.get("price").toString())
-                .build();
+    protected Object readObject(BufferedReader reader) {
+        ProductDtoForSave  productDtoForSave = new Gson().fromJson(reader, ProductDtoForSave.class);
+        return productDtoForSave;
     }
 
     @Override

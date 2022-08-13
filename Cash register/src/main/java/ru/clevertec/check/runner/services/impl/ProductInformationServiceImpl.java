@@ -12,7 +12,6 @@ import ru.clevertec.check.runner.services.ProductService;
 import ru.clevertec.check.runner.util.exception.ObjectNotFoundException;
 import ru.clevertec.check.runner.util.validation.DoubleFormatting;
 
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
@@ -29,7 +28,8 @@ public class ProductInformationServiceImpl implements ProductInformationService 
 
     public ProductInformationServiceImpl(
             RepositoryEntity<ProductInformation> productInformationRepository
-            , ModelMapper modelMapper, DiscountCardService discountCardService
+            , ModelMapper modelMapper
+            , DiscountCardService discountCardService
             , ProductService productService
     ) {
         this.productInformationRepository = productInformationRepository;
@@ -63,7 +63,7 @@ public class ProductInformationServiceImpl implements ProductInformationService 
         int amountProduct = integerMap.getValue();
         Product product = productInformation.getProduct();
         productInformation.setPriceWithDiscount(subtractPercentage(product.getDiscountPercent()
-                , product.getPrice()));
+                , Double.parseDouble(product.getPrice())));
         if (Integer.parseInt(product.getAmount()) >= amountProduct) {
             mapDescription(productInformation, product, amountProduct);
             int result = Integer.parseInt(product.getAmount()) - amountProduct;
@@ -81,7 +81,6 @@ public class ProductInformationServiceImpl implements ProductInformationService 
     private ProductInformationDto mapProductDto(Product product, ProductInformation productInformation) {
         ProductInformationDto productInformationDto = modelMapper.map(productInformation, ProductInformationDto.class);
         productInformationDto.setPrice(String.valueOf(product.getPrice()));
-        //productInformationDto.setAmount(product.getAmount());
         productInformationDto.setName(product.getName());
         return productInformationDto;
     }
@@ -91,28 +90,15 @@ public class ProductInformationServiceImpl implements ProductInformationService 
                 DoubleFormatting.formatting(
                         productInformation.getPriceWithDiscount() * amount)
         );
-        productInformation.setTotalPrice(product.getPrice() * amount);
+        productInformation.setTotalPrice(Double.parseDouble(product.getPrice()) * amount);
     }
 
     private double subtractPercentage(int percent, double price) {
-       final int TOTAL_PERCENT = 100;
+        final int TOTAL_PERCENT = 100;
         return DoubleFormatting.formatting(price - (price * percent) / TOTAL_PERCENT);
     }
 
-//    public ProductInformation findById(Long id) throws SQLException, ObjectNotFoundException {
-//        return productInformationRepository
-//                .findById(id)
-//                .orElseThrow(() -> new ObjectNotFoundException(ProductInformation.class,id));
-//    }
-
-    public ProductInformation saveProductInformation(ProductInformation productInformation) throws IOException, SQLException {
+    public ProductInformation saveProductInformation(ProductInformation productInformation) {
         return productInformationRepository.add(productInformation);
     }
-
-//    public void deleteProductInformation(long id) throws IOException, SQLException {
-//        try {
-//
-//        }
-//        productInformationRepository.delete(id);
-//    }
 }

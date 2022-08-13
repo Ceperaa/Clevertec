@@ -13,12 +13,4 @@ public class DiscountCard {
 
     private long id;
     private int discount;
-
-    @Override
-    public String toString() {
-        return "DiscountCard " +
-                "id=" + id +
-                ", discount=" + discount +
-                "";
-    }
 }

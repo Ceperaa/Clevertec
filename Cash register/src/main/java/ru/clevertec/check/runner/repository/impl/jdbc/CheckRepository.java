@@ -6,7 +6,6 @@ import ru.clevertec.check.runner.model.Check;
 import ru.clevertec.check.runner.repository.impl.jdbc.transactional.EntityManager;
 
 import java.math.BigDecimal;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -31,11 +30,9 @@ public class CheckRepository extends AbstractRepository<Check> {
             "SELECT id, total_price_with_discount, total_price, discount_amount, total_percent" +
                     " FROM check " +
                     "ORDER BY id ASC LIMIT ? OFFSET ?";
-    private final EntityManager getConnection;
 
     public CheckRepository(EntityManager getConnection) {
-        super(SELECT, INSERT, UPDATE, DELETE, SELECT_ALL);
-        this.getConnection = getConnection;
+        super(SELECT, INSERT, UPDATE, DELETE, SELECT_ALL, getConnection);
     }
 
 
@@ -70,15 +67,4 @@ public class CheckRepository extends AbstractRepository<Check> {
         statement.setInt(4, model.getTotalPercent());
         return COUNT_FIELD;
     }
-
-    @Override
-    protected Connection getConnects() {
-        try {
-            return getConnection.getConnect();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
 }
