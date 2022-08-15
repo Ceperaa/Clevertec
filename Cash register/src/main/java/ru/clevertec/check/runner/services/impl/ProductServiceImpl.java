@@ -1,5 +1,6 @@
 package ru.clevertec.check.runner.services.impl;
 
+import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import ru.clevertec.check.runner.dto.ProductDto;
@@ -16,18 +17,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor
 public class ProductServiceImpl implements ProductService, ProductServiceForUI {
 
     private final RepositoryEntity<Product> productRepository;
     private final ModelMapper modelMapper;
-
-    public ProductServiceImpl(
-            RepositoryEntity<Product> productRepository
-            , ModelMapper modelMapper
-    ) {
-        this.productRepository = productRepository;
-        this.modelMapper = modelMapper;
-    }
 
     public Product findById(Long id) throws ObjectNotFoundException {
         return productRepository

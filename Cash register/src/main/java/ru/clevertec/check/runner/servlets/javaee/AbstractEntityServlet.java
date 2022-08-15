@@ -29,7 +29,7 @@ public abstract class AbstractEntityServlet extends AbstractHttpServlet{
             response.setContentType(MediaType.APPLICATION_JSON_VALUE);
             printWriter.write(new Gson().toJson(object));
         }
-        log.debug("add completed");
+        log .debug("add completed");
     }
 
     @SneakyThrows

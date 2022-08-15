@@ -1,6 +1,7 @@
 package ru.clevertec.check.runner.repository.impl.jdbc;
 
 
+import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import ru.clevertec.check.runner.repository.RepositoryEntity;
 import ru.clevertec.check.runner.repository.impl.jdbc.transactional.EntityManager;
@@ -12,6 +13,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
+@AllArgsConstructor
 public abstract class AbstractRepository<T> implements RepositoryEntity<T> {
 
     private final String select;
@@ -21,21 +23,6 @@ public abstract class AbstractRepository<T> implements RepositoryEntity<T> {
     private final String selectAll;
     private static final int DEFAULT_PAGE_SIZE = 20;
     private final EntityManager entityManager;
-
-    public AbstractRepository(
-            String select
-            , String insert
-            , String update
-            , String delete
-            , String selectAll,
-            EntityManager entityManager) {
-        this.select = select;
-        this.insert = insert;
-        this.update = update;
-        this.delete = delete;
-        this.selectAll = selectAll;
-        this.entityManager = entityManager;
-    }
 
     @Transactional
     @SneakyThrows(SQLException.class)

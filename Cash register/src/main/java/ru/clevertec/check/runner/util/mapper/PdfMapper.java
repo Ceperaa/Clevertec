@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class PdfMapper {
@@ -57,8 +58,8 @@ public class PdfMapper {
 
     private static void savePdf(String checkToString) throws IOException {
         FontProgram fontProgram =
-                FontProgramFactory.createFont(PdfMapper.class
-                        .getClassLoader().getResourceAsStream("Anonymous.ttf").readAllBytes());
+                FontProgramFactory.createFont(Objects.requireNonNull(PdfMapper.class
+                        .getClassLoader().getResourceAsStream("Anonymous.ttf")).readAllBytes());
 
         PdfFont font = PdfFontFactory.createFont(
                 fontProgram, PdfEncodings.UTF8);

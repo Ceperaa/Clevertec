@@ -1,5 +1,6 @@
 package ru.clevertec.check.runner.services.impl;
 
+import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import ru.clevertec.check.runner.dto.DiscountCardDtoForSave;
@@ -12,15 +13,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class DiscountCardServiceImpl implements DiscountCardService {
 
     private final RepositoryEntity<DiscountCard> discountCardRepository;
     private final ModelMapper modelMapper;
-
-    public DiscountCardServiceImpl(RepositoryEntity<DiscountCard> discountCardRepository, ModelMapper modelMapper) {
-        this.discountCardRepository = discountCardRepository;
-        this.modelMapper = modelMapper;
-    }
 
     public Optional<DiscountCard> findById(long id) {
         return discountCardRepository.findById(id);

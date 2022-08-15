@@ -1,5 +1,6 @@
 package ru.clevertec.check.runner.services.impl;
 
+import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import ru.clevertec.check.runner.dto.ProductInformationDto;
@@ -17,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
+@AllArgsConstructor
 public class ProductInformationServiceImpl implements ProductInformationService {
 
     private final RepositoryEntity<ProductInformation> productInformationRepository;
@@ -25,18 +27,6 @@ public class ProductInformationServiceImpl implements ProductInformationService 
     private final ProductService productService;
     private static final int NUMBER_PRODUCT_ON_SALE = 5;
     private static final int PROMOTIONAL_DISCOUNT = 10;
-
-    public ProductInformationServiceImpl(
-            RepositoryEntity<ProductInformation> productInformationRepository
-            , ModelMapper modelMapper
-            , DiscountCardService discountCardService
-            , ProductService productService
-    ) {
-        this.productInformationRepository = productInformationRepository;
-        this.modelMapper = modelMapper;
-        this.discountCardService = discountCardService;
-        this.productService = productService;
-    }
 
     @Override
     public double discountСalculation(

@@ -1,5 +1,6 @@
 package ru.clevertec.check.runner.repository.impl.jdbc.transactional;
 
+import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
@@ -11,15 +12,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
+@AllArgsConstructor
 public class TransactionPostProcessor implements BeanPostProcessor {
 
     private static final Map<String, Class<?>> map = new HashMap<>();
     private final EntityManager entityManager;
-
-
-    public TransactionPostProcessor(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
 
     @SneakyThrows
     @Override

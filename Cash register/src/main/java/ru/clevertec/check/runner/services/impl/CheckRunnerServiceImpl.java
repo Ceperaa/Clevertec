@@ -1,5 +1,6 @@
 package ru.clevertec.check.runner.services.impl;
 
+import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -32,6 +33,7 @@ import java.util.Map;
  */
 @Service
 @Log4j2
+@AllArgsConstructor
 public class CheckRunnerServiceImpl implements CheckRunnerService {
 
     private final ProductService productService;
@@ -39,19 +41,8 @@ public class CheckRunnerServiceImpl implements CheckRunnerService {
     private final ProductInformationService productInformationService;
     private final ModelMapper modelMapper;
 
-    public CheckRunnerServiceImpl(
-            ProductService productService
-            , RepositoryEntity<Check> checkRepository
-            , ProductInformationService productInformationService, ModelMapper modelMapper
-    ) {
-        this.productService = productService;
-        this.checkRepository = checkRepository;
-        this.productInformationService = productInformationService;
-        this.modelMapper = modelMapper;
-    }
-
     @Transactional
-    public CheckDto createCheck(List<String> itemIdQuantity, Long idCard,OutputStream stream)
+    public CheckDto createCheck(List<String> itemIdQuantity, Long idCard, OutputStream stream)
             throws SQLException, ObjectNotFoundException, IOException {
 
         List<ProductInformationDto> productInformationList = new ArrayList<>();
@@ -79,7 +70,7 @@ public class CheckRunnerServiceImpl implements CheckRunnerService {
         check = saveCheck(check);
         saveProductInformationList(productList, check);
         CheckDto checkDto = mapToCheckDto(check, productInformationList);
-        checkMapToPdf(checkDto,stream);
+        checkMapToPdf(checkDto, stream);
         return checkDto;
     }
 

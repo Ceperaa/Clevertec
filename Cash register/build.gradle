@@ -77,10 +77,6 @@ test {
     }
 }
 
-//tasks.named('check') {
-//    dependsOn testing.suites.integrationTest
-//}
-
 class DownLoader extends DefaultTask {
     @Input
     String sourceUrl
@@ -95,7 +91,6 @@ class DownLoader extends DefaultTask {
             print e
         }
     }
-
 }
 
 task download(type: DownLoader) {
