@@ -3,8 +3,6 @@ package ru.clevertec.check.runner.servlets.javaee;
 import com.google.gson.Gson;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import ru.clevertec.check.runner.services.EntityServiceCrud;
 import ru.clevertec.check.runner.util.exception.ObjectNotFoundException;
 import ru.clevertec.check.runner.util.validation.DataValidation;
@@ -12,6 +10,7 @@ import ru.clevertec.check.runner.util.validation.DataValidation;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.core.MediaType;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -35,8 +34,8 @@ public  abstract class AbstractEntityServlet<T> extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {
         T object = (T) getEntityServiceCrud().create(readObject(request.getReader()));
         try (PrintWriter printWriter = response.getWriter()) {
-            response.setStatus(HttpStatus.CREATED.value());
-            response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+            response.setStatus(HttpServletResponse.SC_CREATED);
+            response.setContentType(MediaType.APPLICATION_JSON);
             printWriter.write(new Gson().toJson(object));
         }
         log.debug("add completed");
@@ -58,8 +57,8 @@ public  abstract class AbstractEntityServlet<T> extends HttpServlet {
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) {
         T discountCard = (T) getEntityServiceCrud().update(req.getReader());
         try (PrintWriter printWriter = resp.getWriter()) {
-            resp.setStatus(HttpStatus.CREATED.value());
-            resp.setContentType(MediaType.APPLICATION_JSON_VALUE);
+            resp.setStatus(HttpServletResponse.SC_CREATED);
+            resp.setContentType(MediaType.APPLICATION_JSON);
             printWriter.write(new Gson().toJson(discountCard));
         }
         log.debug("update completed");
@@ -70,15 +69,15 @@ public  abstract class AbstractEntityServlet<T> extends HttpServlet {
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) {
         String requestURI = req.getRequestURI();
         getEntityServiceCrud().delete(DataValidation.validatorHttpUrlSearchId(requestURI));
-        resp.setStatus(HttpStatus.NO_CONTENT.value());
-        resp.setContentType(MediaType.APPLICATION_JSON_VALUE);
+        resp.setStatus(HttpServletResponse.SC_NO_CONTENT);
+        resp.setContentType(MediaType.APPLICATION_JSON);
         log.debug("delete completed");
     }
 
     private void findById(long id, HttpServletResponse resp) throws ObjectNotFoundException, IOException {
         try (PrintWriter printWriter = resp.getWriter()) {
-            resp.setStatus(HttpStatus.OK.value());
-            resp.setContentType(MediaType.APPLICATION_JSON_VALUE);
+            resp.setStatus(HttpServletResponse.SC_OK);
+            resp.setContentType(MediaType.APPLICATION_JSON);
             printWriter.write(new Gson().toJson(getEntityServiceCrud().findById(id)));
             log.debug("findById completed");
         }
@@ -91,8 +90,8 @@ public  abstract class AbstractEntityServlet<T> extends HttpServlet {
                         Optional.ofNullable(req.getParameter("limit")).orElse("0"))
         );
         try (PrintWriter printWriter = resp.getWriter()) {
-            resp.setStatus(HttpStatus.OK.value());
-            resp.setContentType(MediaType.APPLICATION_JSON_VALUE);
+            resp.setStatus(HttpServletResponse.SC_OK);
+            resp.setContentType(MediaType.APPLICATION_JSON);
             printWriter.write(new Gson().toJson(list));
             log.debug("findAll completed");
         }

@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.modelmapper.ModelMapper;
-import ru.clevertec.check.runner.dto.DiscountCardDtoForSave;
-import ru.clevertec.check.runner.model.DiscountCard;
+import ru.clevertec.check.runner.model.dto.DiscountCardDtoForSave;
+import ru.clevertec.check.runner.model.entity.DiscountCard;
 import ru.clevertec.check.runner.repository.impl.jdbc.DiscountCardRepository;
 import ru.clevertec.check.runner.util.exception.ObjectNotFoundException;
 

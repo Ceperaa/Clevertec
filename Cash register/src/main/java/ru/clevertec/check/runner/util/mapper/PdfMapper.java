@@ -9,7 +9,7 @@ import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Paragraph;
-import ru.clevertec.check.runner.dto.CheckDto;
+import ru.clevertec.check.runner.model.dto.CheckDto;
 
 import java.io.IOException;
 import java.time.LocalDate;

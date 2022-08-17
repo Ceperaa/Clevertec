@@ -5,10 +5,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import ru.clevertec.check.runner.model.DataSourceYaml;
 import ru.clevertec.check.runner.util.ApplicationProperties;
+import ru.clevertec.check.runner.util.entity.ApplicationYaml;
 
 /**
  * Main config class for Cash register app
@@ -18,15 +17,14 @@ import ru.clevertec.check.runner.util.ApplicationProperties;
 @SuppressWarnings("ALL")
 @Configuration
 @ComponentScan({"ru.clevertec.check.runner"})
-@PropertySource("classpath:application.properties")
 public class AppConfig {
 
-    private final String CHENGLOG = "classpath:db-changelog-1.xml";
+    private final ApplicationYaml property = ApplicationProperties.getProperty();
 
     @Bean
     public SpringLiquibase liquibase() {
         SpringLiquibase liquibase = new SpringLiquibase();
-        liquibase.setChangeLog(CHENGLOG);
+        liquibase.setChangeLog(property.getLiquibase().getChangelog());
         liquibase.setDataSource(dataSource());
         return liquibase;
     }
@@ -34,11 +32,10 @@ public class AppConfig {
     @Bean
     public DriverManagerDataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        DataSourceYaml dataSource1 = ApplicationProperties.getDataSource();
-        dataSource.setDriverClassName(dataSource1.getDriver());
-        dataSource.setUrl(dataSource1.getUrl());
-        dataSource.setUsername(dataSource1.getUsername());
-        dataSource.setPassword(dataSource1.getPassword());
+        dataSource.setDriverClassName(property.getDatasource().getDriver());
+        dataSource.setUrl(property.getDatasource().getUrl());
+        dataSource.setUsername(property.getDatasource().getUsername());
+        dataSource.setPassword(property.getDatasource().getPassword());
         return dataSource;
     }
 

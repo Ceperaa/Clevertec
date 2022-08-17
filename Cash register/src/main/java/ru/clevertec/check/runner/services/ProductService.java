@@ -1,8 +1,8 @@
 package ru.clevertec.check.runner.services;
 
-import ru.clevertec.check.runner.dto.ProductDto;
-import ru.clevertec.check.runner.dto.ProductInformationDto;
-import ru.clevertec.check.runner.model.Product;
+import ru.clevertec.check.runner.model.dto.ProductDto;
+import ru.clevertec.check.runner.model.dto.ProductInformationDto;
+import ru.clevertec.check.runner.model.entity.Product;
 import ru.clevertec.check.runner.util.exception.ObjectNotFoundException;
 
 import java.sql.SQLException;

@@ -2,8 +2,8 @@ package ru.clevertec.check.runner.repository.impl.jdbc;
 
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Repository;
-import ru.clevertec.check.runner.model.DiscountCard;
-import ru.clevertec.check.runner.repository.impl.jdbc.transactional.EntityManager;
+import ru.clevertec.check.runner.model.entity.DiscountCard;
+import ru.clevertec.check.runner.repository.impl.jdbc.connector.EntityManager;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

@@ -5,14 +5,16 @@ import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
-import ru.clevertec.check.runner.dto.DiscountCardDtoForSave;
-import ru.clevertec.check.runner.model.DiscountCard;
+import ru.clevertec.check.runner.model.dto.DiscountCardDtoForSave;
+import ru.clevertec.check.runner.model.entity.DiscountCard;
+import ru.clevertec.check.runner.util.beanPostProcessors.annotations.Servlet;
 import ru.clevertec.check.runner.services.EntityServiceCrud;
 
 import javax.annotation.PostConstruct;
 import java.io.BufferedReader;
 
 @Component
+@Servlet(url = "/card/*")
 public class CardServlet extends AbstractEntityServlet<DiscountCard> {
 
     @Autowired

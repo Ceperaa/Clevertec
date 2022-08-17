@@ -3,7 +3,7 @@ package ru.clevertec.check.runner.services.impl;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-import ru.clevertec.check.runner.model.DiscountCard;
+import ru.clevertec.check.runner.model.entity.DiscountCard;
 import ru.clevertec.check.runner.repository.RepositoryEntity;
 import ru.clevertec.check.runner.services.EntityServiceCrud;
 import ru.clevertec.check.runner.services.DiscountCardService;

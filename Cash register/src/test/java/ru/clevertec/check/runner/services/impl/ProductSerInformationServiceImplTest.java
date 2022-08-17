@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.modelmapper.ModelMapper;
-import ru.clevertec.check.runner.model.ProductInformation;
+import ru.clevertec.check.runner.model.entity.ProductInformation;
 import ru.clevertec.check.runner.repository.RepositoryEntity;
 import ru.clevertec.check.runner.util.exception.ObjectNotFoundException;
 

@@ -4,14 +4,16 @@ import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
-import ru.clevertec.check.runner.dto.ProductDto;
-import ru.clevertec.check.runner.dto.ProductDtoForSave;
+import ru.clevertec.check.runner.model.dto.ProductDto;
+import ru.clevertec.check.runner.model.dto.ProductDtoForSave;
+import ru.clevertec.check.runner.util.beanPostProcessors.annotations.Servlet;
 import ru.clevertec.check.runner.services.EntityServiceCrud;
 
 import javax.annotation.PostConstruct;
 import java.io.BufferedReader;
 
 @Component
+@Servlet(url = "/product/*")
 public class ProductServlet extends AbstractEntityServlet<ProductDto> {
 
     @Autowired

@@ -1,6 +1,6 @@
 package ru.clevertec.check.runner.services;
 
-import ru.clevertec.check.runner.dto.CheckDto;
+import ru.clevertec.check.runner.model.dto.CheckDto;
 
 import java.io.OutputStream;
 import java.util.List;

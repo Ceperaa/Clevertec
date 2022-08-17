@@ -7,10 +7,10 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.modelmapper.ModelMapper;
-import ru.clevertec.check.runner.dto.ProductDto;
-import ru.clevertec.check.runner.dto.ProductDtoForSave;
-import ru.clevertec.check.runner.dto.ProductInformationDto;
-import ru.clevertec.check.runner.model.Product;
+import ru.clevertec.check.runner.model.dto.ProductDto;
+import ru.clevertec.check.runner.model.dto.ProductDtoForSave;
+import ru.clevertec.check.runner.model.dto.ProductInformationDto;
+import ru.clevertec.check.runner.model.entity.Product;
 import ru.clevertec.check.runner.repository.impl.jdbc.ProductRepository;
 
 import java.util.Collections;

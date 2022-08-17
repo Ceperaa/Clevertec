@@ -1,7 +1,7 @@
 package ru.clevertec.check.runner.util.validation;
 
-import ru.clevertec.check.runner.dto.DiscountCardDtoForSave;
-import ru.clevertec.check.runner.dto.ProductDtoForSave;
+import ru.clevertec.check.runner.model.dto.DiscountCardDtoForSave;
+import ru.clevertec.check.runner.model.dto.ProductDtoForSave;
 import ru.clevertec.check.runner.util.exception.ValidationException;
 import ru.clevertec.check.runner.util.streamIO.StreamEntityToString;
 

@@ -6,10 +6,10 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.modelmapper.ModelMapper;
-import ru.clevertec.check.runner.dto.CheckDto;
-import ru.clevertec.check.runner.dto.ProductInformationDto;
-import ru.clevertec.check.runner.model.Check;
-import ru.clevertec.check.runner.model.ProductInformation;
+import ru.clevertec.check.runner.model.dto.CheckDto;
+import ru.clevertec.check.runner.model.dto.ProductInformationDto;
+import ru.clevertec.check.runner.model.entity.Check;
+import ru.clevertec.check.runner.model.entity.ProductInformation;
 import ru.clevertec.check.runner.repository.impl.jdbc.CheckRepository;
 
 import java.util.List;

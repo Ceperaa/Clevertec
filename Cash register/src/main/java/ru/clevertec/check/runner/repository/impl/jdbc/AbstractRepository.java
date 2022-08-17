@@ -4,8 +4,8 @@ package ru.clevertec.check.runner.repository.impl.jdbc;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import ru.clevertec.check.runner.repository.RepositoryEntity;
-import ru.clevertec.check.runner.repository.impl.jdbc.transactional.EntityManager;
-import ru.clevertec.check.runner.repository.impl.jdbc.transactional.Transactional;
+import ru.clevertec.check.runner.repository.impl.jdbc.connector.EntityManager;
+import ru.clevertec.check.runner.util.beanPostProcessors.annotations.Transactional;
 import ru.clevertec.check.runner.util.exception.ObjectNotFoundException;
 
 import java.sql.*;
