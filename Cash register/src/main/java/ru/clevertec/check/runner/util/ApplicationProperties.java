@@ -1,21 +1,21 @@
 package ru.clevertec.check.runner.util;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import lombok.SneakyThrows;
-import ru.clevertec.check.runner.util.mapper.PdfMapper;
+import ru.clevertec.check.runner.model.DataSourceYaml;
 
-import java.io.IOException;
 import java.io.InputStream;
-import java.util.Properties;
 
 public class ApplicationProperties {
 
-    private static final Properties PROPERTIES = new Properties();
-
-    @SneakyThrows(IOException.class)
-    public static String getByKey(String key) {
-        InputStream resourceAsStream = PdfMapper.class
-                .getClassLoader().getResourceAsStream("application.properties");
-        PROPERTIES.load(resourceAsStream);
-        return PROPERTIES.getProperty(key);
+    @SneakyThrows
+    public static DataSourceYaml getDataSource() {
+        InputStream resourceAsStream = Thread.currentThread().getContextClassLoader()
+                .getResourceAsStream("application.yaml");
+        ObjectMapper om = new ObjectMapper(new YAMLFactory());
+        om.coercionConfigFor(DataSourceYaml.class);
+        DataSourceYaml employee = om.readValue(resourceAsStream, DataSourceYaml.class);
+        return employee;
     }
 }

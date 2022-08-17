@@ -1,7 +1,6 @@
 package ru.clevertec.check.runner.services;
 
 import ru.clevertec.check.runner.dto.ProductDto;
-import ru.clevertec.check.runner.dto.ProductDtoForSave;
 import ru.clevertec.check.runner.dto.ProductInformationDto;
 import ru.clevertec.check.runner.model.Product;
 import ru.clevertec.check.runner.util.exception.ObjectNotFoundException;
@@ -11,11 +10,9 @@ import java.util.List;
 
 public interface ProductService {
 
-    Product findById(Long id) throws SQLException, ObjectNotFoundException;
+    ProductDto findById(Long id) throws SQLException, ObjectNotFoundException;
 
-    List<Product> allListProduct() throws Exception;
-
-    ProductDto saveProduct(ProductDtoForSave product) throws Exception;
+    Product findByProductId(Long id) throws ObjectNotFoundException;
 
     Product update(Product product) throws ObjectNotFoundException;
 

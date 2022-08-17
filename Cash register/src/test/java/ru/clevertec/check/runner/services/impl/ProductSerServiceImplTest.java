@@ -12,8 +12,8 @@ import ru.clevertec.check.runner.dto.ProductDtoForSave;
 import ru.clevertec.check.runner.dto.ProductInformationDto;
 import ru.clevertec.check.runner.model.Product;
 import ru.clevertec.check.runner.repository.impl.jdbc.ProductRepository;
-import ru.clevertec.check.runner.services.ProductService;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,7 +22,7 @@ import static org.mockito.BDDMockito.given;
 
 class ProductSerServiceImplTest {
 
-    private final ProductService productService;
+    private final ProductServiceImpl productService;
     @Mock
     private ProductRepository repository;
 
@@ -51,10 +51,10 @@ class ProductSerServiceImplTest {
 
     @Test
     void findById() throws Exception {
-        Product product1 = new Product();
+        ProductDto product1 = new ProductDto();
         product1.setId(1L);
         given(repository.findById(1L)).willReturn(Optional.ofNullable(product1));
-        Product product = productService.findById(1L);
+        ProductDto product = productService.findById(1L);
         assertEquals(product, product);
     }
 
@@ -64,7 +64,7 @@ class ProductSerServiceImplTest {
         product1.setId(1L);
         List<Product> list = List.of(product1);
         given(repository.findAll(1,1)).willReturn(list);
-        List<Product> list1 = productService.allListProduct();
+        List<Product> list1 = Collections.singletonList((Product) productService.allListProduct());
         assertEquals(list, list1);
     }
 
@@ -73,7 +73,7 @@ class ProductSerServiceImplTest {
     void saveProduct() throws Exception {
         given(repository.add(product)).willReturn(product);
         ProductDtoForSave.builder().name("Apple").build();
-        ProductDto product1 = productService.saveProduct(ProductDtoForSave.builder().name("Apple").build());
+        ProductDto product1 = (ProductDto) productService.create(ProductDtoForSave.builder().name("Apple").build());
         assertEquals(product.getName(), product1.getName());
     }
 

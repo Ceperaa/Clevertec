@@ -1,7 +1,7 @@
 package ru.clevertec.check.runner.services.impl;
 
 import lombok.AllArgsConstructor;
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import ru.clevertec.check.runner.dto.CheckDto;
@@ -32,7 +32,7 @@ import java.util.Map;
  * @author Sergey Degtyarev
  */
 @Service
-@Log4j2
+@Slf4j
 @AllArgsConstructor
 public class CheckRunnerServiceImpl implements CheckRunnerService {
 
@@ -102,9 +102,9 @@ public class CheckRunnerServiceImpl implements CheckRunnerService {
             Map<Long, Integer> map
             , List<ProductInformation> productList
             , List<ProductInformationDto> productInformationDtoList
-    ) throws SQLException, ObjectNotFoundException {
+    ) throws ObjectNotFoundException {
         for (Map.Entry<Long, Integer> integerEntry : map.entrySet()) {
-            Product product = productService.findById(integerEntry.getKey());
+            Product product = productService.findByProductId(integerEntry.getKey());
             productList.add(productInformationService.addDescriptionInCheck(
                     integerEntry
                     , ProductInformation

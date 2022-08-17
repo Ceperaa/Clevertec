@@ -2,6 +2,7 @@ package ru.clevertec.check.runner.repository.impl.jdbc.connector;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import ru.clevertec.check.runner.model.DataSourceYaml;
 import ru.clevertec.check.runner.util.ApplicationProperties;
 
 import java.sql.Connection;
@@ -10,12 +11,9 @@ import java.sql.SQLException;
 
 public class SQLConnector {
 
-    private final String url = ApplicationProperties.getByKey("datasource.url");
-    private final String driverClassName = ApplicationProperties.getByKey("datasource.driver-class-name");
-    private final String user= ApplicationProperties.getByKey("datasource.username");
-    private final String password = ApplicationProperties.getByKey("datasource.password");
     private Connection connection;
     private final Logger logger = LogManager.getLogger(SQLException.class);
+    private final DataSourceYaml dataSourceYaml = ApplicationProperties.getDataSource();
 
     public Connection getConnection() {
         if (connection == null) {
@@ -27,11 +25,11 @@ public class SQLConnector {
     private Connection createConnection() {
         Connection connection;
         try {
-            Class.forName(driverClassName);
+            Class.forName(dataSourceYaml.getDriver());
             try {
-                connection = DriverManager.getConnection(url,
-                        user,
-                        password);
+                connection = DriverManager.getConnection(dataSourceYaml.getUrl(),
+                        dataSourceYaml.getUsername(),
+                        dataSourceYaml.getPassword());
                 logger.info("database connection successful");
                 return connection;
             } catch (SQLException e) {
@@ -39,7 +37,7 @@ public class SQLConnector {
                 return null;
             }
         } catch (Exception e) {
-            logger.warn(driverClassName + e.getMessage());
+            logger.warn(dataSourceYaml.getDriver() + e.getMessage());
             e.printStackTrace();
             return null;
         }

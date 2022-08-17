@@ -9,7 +9,6 @@ import org.modelmapper.ModelMapper;
 import ru.clevertec.check.runner.dto.DiscountCardDtoForSave;
 import ru.clevertec.check.runner.model.DiscountCard;
 import ru.clevertec.check.runner.repository.impl.jdbc.DiscountCardRepository;
-import ru.clevertec.check.runner.services.DiscountCardService;
 import ru.clevertec.check.runner.util.exception.ObjectNotFoundException;
 
 import java.sql.SQLException;
@@ -20,7 +19,7 @@ import static org.mockito.BDDMockito.given;
 
 class DiscountCardServiceImplTest {
 
-    private final DiscountCardService cardServices;
+    private final DiscountCardServiceImpl cardServices;
     @Mock
     private DiscountCardRepository repository;
 
@@ -52,15 +51,15 @@ class DiscountCardServiceImplTest {
     void allListDiscountCard() throws Exception {
         List<DiscountCard> list = List.of(discountCard);
         given(repository.findAll(1,1)).willReturn(list);
-        Assertions.assertEquals(cardServices.allListDiscountCard(10,10), list);
+        Assertions.assertEquals(cardServices.allList(10,10), list);
     }
 
     @Test
     void saveCard() throws Exception {
         DiscountCardDtoForSave discountCardDtoForSave = new DiscountCardDtoForSave(10);
         given(repository.add(discountCard)).willReturn(discountCard);
-        cardServices.saveCard(discountCardDtoForSave);
-        Assertions.assertEquals(cardServices.saveCard(discountCardDtoForSave), discountCard);
+        cardServices.create(discountCardDtoForSave);
+        Assertions.assertEquals(cardServices.create(discountCardDtoForSave), discountCard);
     }
 
 }

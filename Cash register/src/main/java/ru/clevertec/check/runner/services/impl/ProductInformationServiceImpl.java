@@ -33,7 +33,7 @@ public class ProductInformationServiceImpl implements ProductInformationService 
             List<ProductInformation> productList, double total, Long idCard)
             throws SQLException, ObjectNotFoundException {
         if (idCard != 0) {
-            total = subtractPercentage(discountCardService.findById(idCard).get().getDiscount(), total);
+            total = subtractPercentage(discountCardService.findById(idCard).getDiscount(), total);
         }
         if (productList
                 .stream()
