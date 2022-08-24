@@ -51,15 +51,15 @@ class DiscountCardServiceImplTest {
     void allListDiscountCard() throws Exception {
         List<DiscountCard> list = List.of(discountCard);
         given(repository.findAll(1,1)).willReturn(list);
-        Assertions.assertEquals(cardServices.allList(10,10), list);
+        Assertions.assertEquals(cardServices.allListDiscountCard(10,10), list);
     }
 
     @Test
     void saveCard() throws Exception {
         DiscountCardDtoForSave discountCardDtoForSave = new DiscountCardDtoForSave(10);
         given(repository.add(discountCard)).willReturn(discountCard);
-        cardServices.create(discountCardDtoForSave);
-        Assertions.assertEquals(cardServices.create(discountCardDtoForSave), discountCard);
+        cardServices.saveCard(discountCardDtoForSave);
+        Assertions.assertEquals(cardServices.saveCard(discountCardDtoForSave), discountCard);
     }
 
 }

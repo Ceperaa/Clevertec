@@ -1,6 +1,6 @@
 package ru.clevertec.check.runner.services.impl;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -10,10 +10,10 @@ import ru.clevertec.check.runner.model.entity.Check;
 import ru.clevertec.check.runner.model.entity.Product;
 import ru.clevertec.check.runner.model.entity.ProductInformation;
 import ru.clevertec.check.runner.repository.RepositoryEntity;
-import ru.clevertec.check.runner.util.beanPostProcessors.annotations.Transactional;
 import ru.clevertec.check.runner.services.CheckRunnerService;
 import ru.clevertec.check.runner.services.ProductInformationService;
 import ru.clevertec.check.runner.services.ProductService;
+import ru.clevertec.check.runner.util.beanPostProcessors.annotations.Transactional;
 import ru.clevertec.check.runner.util.exception.ObjectNotFoundException;
 import ru.clevertec.check.runner.util.mapper.PdfMapper;
 import ru.clevertec.check.runner.util.validation.DoubleFormatting;
@@ -33,7 +33,7 @@ import java.util.Map;
  */
 @Service
 @Slf4j
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class CheckRunnerServiceImpl implements CheckRunnerService {
 
     private final ProductService productService;
@@ -104,10 +104,10 @@ public class CheckRunnerServiceImpl implements CheckRunnerService {
             , List<ProductInformationDto> productInformationDtoList
     ) throws ObjectNotFoundException {
         for (Map.Entry<Long, Integer> integerEntry : map.entrySet()) {
-            Product product = productService.findByProductId(integerEntry.getKey());
+            Product product = productService.findById(integerEntry.getKey());
             productList.add(productInformationService.addDescriptionInCheck(
-                    integerEntry
-                    , ProductInformation
+                    integerEntry ,
+                    ProductInformation
                             .builder()
                             .totalPrice(Double.parseDouble(product.getPrice()))
                             .discountPercent(product.getDiscountPercent())

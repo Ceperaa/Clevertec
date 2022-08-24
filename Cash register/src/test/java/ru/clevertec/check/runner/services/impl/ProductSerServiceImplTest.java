@@ -54,7 +54,7 @@ class ProductSerServiceImplTest {
         ProductDto product1 = new ProductDto();
         product1.setId(1L);
         given(repository.findById(1L)).willReturn(Optional.ofNullable(product1));
-        ProductDto product = productService.findById(1L);
+        Product product = productService.findById(1L);
         assertEquals(product, product);
     }
 
@@ -64,7 +64,7 @@ class ProductSerServiceImplTest {
         product1.setId(1L);
         List<Product> list = List.of(product1);
         given(repository.findAll(1,1)).willReturn(list);
-        List<Product> list1 = Collections.singletonList((Product) productService.allListProduct());
+        List<Product> list1 = Collections.singletonList((Product) productService.allListProductDto(1,1));
         assertEquals(list, list1);
     }
 
@@ -72,8 +72,8 @@ class ProductSerServiceImplTest {
     @Disabled
     void saveProduct() throws Exception {
         given(repository.add(product)).willReturn(product);
-        ProductDtoForSave.builder().name("Apple").build();
-        ProductDto product1 = (ProductDto) productService.create(ProductDtoForSave.builder().name("Apple").build());
+        ProductDto.builder().name("Apple").build();
+        ProductDto product1 = productService.saveProduct(ProductDtoForSave.builder().name("Apple").build());
         assertEquals(product.getName(), product1.getName());
     }
 

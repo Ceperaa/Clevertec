@@ -5,6 +5,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import ru.clevertec.check.runner.util.ApplicationProperties;
 import ru.clevertec.check.runner.util.entity.ApplicationYaml;
@@ -17,6 +18,7 @@ import ru.clevertec.check.runner.util.entity.ApplicationYaml;
 @SuppressWarnings("ALL")
 @Configuration
 @ComponentScan({"ru.clevertec.check.runner"})
+@PropertySource("classpath:application.yaml")
 public class AppConfig {
 
     private final ApplicationYaml property = ApplicationProperties.getProperty();

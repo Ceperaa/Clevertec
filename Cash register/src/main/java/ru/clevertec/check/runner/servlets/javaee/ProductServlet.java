@@ -1,38 +1,53 @@
 package ru.clevertec.check.runner.servlets.javaee;
 
 import com.google.gson.Gson;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import ru.clevertec.check.runner.model.dto.ProductDto;
 import ru.clevertec.check.runner.model.dto.ProductDtoForSave;
+import ru.clevertec.check.runner.services.ProductServiceForUI;
 import ru.clevertec.check.runner.util.beanPostProcessors.annotations.Servlet;
-import ru.clevertec.check.runner.services.EntityServiceCrud;
+import ru.clevertec.check.runner.util.exception.ObjectNotFoundException;
 
-import javax.annotation.PostConstruct;
 import java.io.BufferedReader;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 
 @Component
 @Servlet(url = "/product/*")
-public class ProductServlet extends AbstractEntityServlet<ProductDto> {
+@RequiredArgsConstructor
+public class ProductServlet extends AbstractEntityServlet{
 
-    @Autowired
-    @Qualifier("productServiceImpl")
-    private EntityServiceCrud<ProductDto> productEntityServiceCrud;
-
-    @PostConstruct
-    public void init(){
-        setEntityServiceCrud(productEntityServiceCrud);
-    }
-
-    @Override
-    protected EntityServiceCrud getEntityServiceCrud() {
-        return productEntityServiceCrud;
-    }
+    private final ProductServiceForUI productService;
 
     @Override
     public Object readObject(BufferedReader reader) {
         ProductDtoForSave  productDtoForSave = new Gson().fromJson(reader, ProductDtoForSave.class);
         return productDtoForSave;
+    }
+
+    @Override
+    public Object createObject(Object o) {
+        return productService.saveProduct((ProductDtoForSave) o);
+    }
+
+    @Override
+    public Object updateObject(Object o) throws ObjectNotFoundException {
+        return productService.updateDto((ProductDtoForSave) o);
+    }
+
+    @Override
+    public void deleteObject(long id) throws ObjectNotFoundException {
+        productService.deleteProduct(id);
+    }
+
+    @Override
+    public Optional findByObjectId(long id) throws ObjectNotFoundException {
+        return Optional.ofNullable(productService.findByProductDtoId(id));
+    }
+
+    @Override
+    public List<Object> findAllObject(int offset, Integer limit) {
+        return Collections.singletonList(productService.allListProductDto(offset,limit));
     }
 }

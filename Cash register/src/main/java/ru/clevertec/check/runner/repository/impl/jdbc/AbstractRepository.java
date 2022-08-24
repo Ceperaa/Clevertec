@@ -1,7 +1,7 @@
 package ru.clevertec.check.runner.repository.impl.jdbc;
 
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import ru.clevertec.check.runner.repository.RepositoryEntity;
 import ru.clevertec.check.runner.repository.impl.jdbc.connector.EntityManager;
@@ -13,7 +13,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 public abstract class AbstractRepository<T> implements RepositoryEntity<T> {
 
     private final String select;
