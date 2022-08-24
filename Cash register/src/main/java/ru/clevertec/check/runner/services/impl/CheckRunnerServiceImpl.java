@@ -4,12 +4,14 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.clevertec.check.runner.model.dto.CheckDto;
 import ru.clevertec.check.runner.model.dto.ProductInformationDto;
 import ru.clevertec.check.runner.model.entity.Check;
 import ru.clevertec.check.runner.model.entity.Product;
 import ru.clevertec.check.runner.model.entity.ProductInformation;
 import ru.clevertec.check.runner.repository.RepositoryEntity;
+import ru.clevertec.check.runner.repository.jpa.CheckRepository;
 import ru.clevertec.check.runner.services.CheckRunnerService;
 import ru.clevertec.check.runner.services.ProductInformationService;
 import ru.clevertec.check.runner.services.ProductService;
@@ -37,7 +39,7 @@ import java.util.Map;
 public class CheckRunnerServiceImpl implements CheckRunnerService {
 
     private final ProductService productService;
-    private final RepositoryEntity<Check> checkRepository;
+    private final CheckRepository checkRepository;
     private final ProductInformationService productInformationService;
     private final ModelMapper modelMapper;
 
@@ -50,9 +52,9 @@ public class CheckRunnerServiceImpl implements CheckRunnerService {
         productListForCheck(splitItemIdQuantity(itemIdQuantity), productList, productInformationList);
 
         double totalPrice = totalPrice(productInformationList);
-        double totalPriceWithDiscount = productInformationService.discountСalculation(productList
-                , productService.totalPriceWithDiscount(productInformationList)
-                , idCard);
+        double totalPriceWithDiscount = productInformationService.discountСalculation(productList,
+                productService.totalPriceWithDiscount(productInformationList),
+                idCard);
         double discountAmount = totalPrice - totalPriceWithDiscount;
 
         Check check = new Check();
@@ -91,7 +93,8 @@ public class CheckRunnerServiceImpl implements CheckRunnerService {
         log.debug("addCheck completed");
     }
 
-    private void saveProductInformationList(List<ProductInformation> productList, Check check) throws IOException, SQLException {
+    private void saveProductInformationList(List<ProductInformation> productList, Check check)
+            throws IOException, SQLException {
         for (ProductInformation productInformation : productList) {
             productInformation.setCheck(check);
             productInformationService.saveProductInformation(productInformation);
@@ -99,27 +102,31 @@ public class CheckRunnerServiceImpl implements CheckRunnerService {
     }
 
     private void productListForCheck(
-            Map<Long, Integer> map
-            , List<ProductInformation> productList
-            , List<ProductInformationDto> productInformationDtoList
+            Map<Long, Integer> map,
+            List<ProductInformation> productList,
+            List<ProductInformationDto> productInformationDtoList
     ) throws ObjectNotFoundException {
         for (Map.Entry<Long, Integer> integerEntry : map.entrySet()) {
-            Product product = productService.findById(integerEntry.getKey());
+            Product product = productService.findByProductId(integerEntry.getKey());
             productList.add(productInformationService.addDescriptionInCheck(
-                    integerEntry ,
+                    integerEntry,
                     ProductInformation
                             .builder()
                             .totalPrice(Double.parseDouble(product.getPrice()))
                             .discountPercent(product.getDiscountPercent())
                             .product(product)
-                            .build()
-                    , productInformationDtoList
+                            .build(),
+                    productInformationDtoList
             ));
         }
     }
 
     private double totalPrice(List<ProductInformationDto> productList) {
-        return productList.stream().map(ProductInformationDto::getTotalPrice).mapToDouble(Double::doubleValue).sum();
+        return productList
+                .stream()
+                .map(ProductInformationDto::getTotalPrice)
+                .mapToDouble(Double::doubleValue)
+                .sum();
     }
 
     public CheckDto mapToCheckDto(Check check, List<ProductInformationDto> productInformationDtoList) {
@@ -138,7 +145,8 @@ public class CheckRunnerServiceImpl implements CheckRunnerService {
     }
 
     public Check saveCheck(Check check) {
-        return checkRepository.add(check);
+        check.setProductList(null);
+        return checkRepository.save(check);
     }
 }
 

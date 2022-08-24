@@ -6,13 +6,13 @@
                         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
     <includeAll path="db-changelog-1.xml"/>
 
-    <changeSet author="Sergey" id="1">
+    <changeSet author="Sergey" id="3.1">
         <sql>
             CREATE TABLE IF NOT EXISTS public.product
             (
-            id SERIAL PRIMARY KEY,
+            id BIGSERIAL PRIMARY KEY,
             name varchar(50) NOT NULL,
-            amount integer NOT NULL,
+            amount varchar(10) NOT NULL,
             discount_percent integer,
             price varchar(10) NOT NULL
             );
@@ -21,7 +21,7 @@
 
             CREATE TABLE IF NOT EXISTS public.discount_card
             (
-            id SERIAL PRIMARY KEY,
+            id BIGSERIAL PRIMARY KEY,
             discount integer NOT NULL
             );
 
@@ -39,13 +39,14 @@
 
             CREATE TABLE IF NOT EXISTS public.product_information
             (
-            id SERIAL PRIMARY KEY,
+            id BIGSERIAL PRIMARY KEY,
             price_with_discount varchar(10) NOT NULL,
             check_id integer NOT NULL,
             product_id integer NOT NULL,
             total_price varchar(10) NOT NULL,
             total_price_with_discount varchar(10) NOT NULL,
             discount_percent integer NOT NULL,
+            amount integer,
             CONSTRAINT "check" FOREIGN KEY (check_id)
             REFERENCES public."check" (id) MATCH SIMPLE
             ON UPDATE NO ACTION
@@ -80,8 +81,8 @@
             INSERT INTO product (name, amount, price,discount_percent) VALUES ('RPhone', 17,2, 34.54);
             INSERT INTO product (name, amount, price,discount_percent) VALUES ('SPhone', 19,6, 34.93);
             INSERT INTO product (name, amount, price,discount_percent) VALUES ('TPhone', 20,5, 34.72);
-            INSERT INTO product (name, amount, price,discount_percent) VALUES ('UPhone',  9,50,34.59);
-            INSERT INTO product (name, amount, price,discount_percent) VALUES ('VPhone',  5,30,34.55);
+            INSERT INTO product (name, amount, price,discount_percent) VALUES ('UPhone', 9,50,34.59);
+            INSERT INTO product (name, amount, price,discount_percent) VALUES ('VPhone', 5,30,34.55);
             INSERT INTO product (name, amount, price,discount_percent) VALUES ('WPhone', 10,5, 34.76);
             INSERT INTO product (name, amount, price,discount_percent) VALUES ('XPhone', 11,8, 34.86);
             INSERT INTO product (name, amount, price,discount_percent) VALUES ('YPhone', 19,8, 34.56);

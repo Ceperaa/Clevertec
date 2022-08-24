@@ -1,11 +1,10 @@
 package ru.clevertec.check.runner.repository.impl.jdbc.connector;
 
 import lombok.SneakyThrows;
-import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 
-@Component
+//@Component
 public class EntityManager {
 
     private final PoolConnect connector = new PoolConnect();

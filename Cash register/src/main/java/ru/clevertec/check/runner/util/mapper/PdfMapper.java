@@ -29,28 +29,28 @@ public class PdfMapper {
 
         StringBuilder builder = new StringBuilder();
         builder.append(".                        CASH RECEIPT                      .\n")
-                .append(String.format("CHECK ID:%3s                              DATE:%8s\n"
-                        , checkDto.getId(), DATE))
-                .append(String.format(".                                         TIME:%8s \n"
-                        , TIME))
+                .append(String.format("CHECK ID:%3s                              DATE:%8s\n",
+                        checkDto.getId(), DATE))
+                .append(String.format(".                                         TIME:%8s \n",
+                        TIME))
                 .append("-----------------------------------------------------------------\n")
                 .append("qty   description                         price       total\n")
                 .append(checkDto.getProductList()
                         .stream()
                         .map(productInformationDto ->
-                                String.format("%-4s  %-35s $ %-10s$ %-5s \n"
-                                        , productInformationDto.getAmount()
-                                        , productInformationDto.getName()
-                                        , productInformationDto.getPrice()
-                                        , productInformationDto.getTotalPrice()))
+                                String.format("%-4s  %-35s $ %-10s$ %-5s \n",
+                                        productInformationDto.getAmount(),
+                                        productInformationDto.getName(),
+                                        productInformationDto.getPrice(),
+                                        productInformationDto.getTotalPrice()))
                         .collect(Collectors.joining()))
                 .append("-----------------------------------------------------------------\n")
-                .append(String.format("TOTAL                                                 $%5s\n"
-                        , checkDto.getTotalPrice()))
-                .append(String.format("DISCOUNT %3s%s                                         $%5s\n"
-                        , checkDto.getTotalPercent(), "%", checkDto.getDiscountAmount()))
-                .append(String.format("TOTAL WITH DISCOUNT.                                  $%5s\n"
-                        , checkDto.getTotalPriceWithDiscount()));
+                .append(String.format("TOTAL                                                 $%5s\n",
+                        checkDto.getTotalPrice()))
+                .append(String.format("DISCOUNT %3s%s                                         $%5s\n",
+                        checkDto.getTotalPercent(), "%", checkDto.getDiscountAmount()))
+                .append(String.format("TOTAL WITH DISCOUNT.                                  $%5s\n",
+                        checkDto.getTotalPriceWithDiscount()));
         System.out.println(builder.toString());
 
         savePdf(builder.toString());

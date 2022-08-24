@@ -11,4 +11,5 @@ public class ApplicationYaml {
 
     private DataSource datasource;
     private Liquibase liquibase;
+    private Hibernate hibernate;
 }

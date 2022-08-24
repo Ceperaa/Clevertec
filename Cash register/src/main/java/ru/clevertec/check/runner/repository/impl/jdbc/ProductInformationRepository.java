@@ -1,7 +1,6 @@
 package ru.clevertec.check.runner.repository.impl.jdbc;
 
 import lombok.SneakyThrows;
-import org.springframework.stereotype.Repository;
 import ru.clevertec.check.runner.model.entity.ProductInformation;
 import ru.clevertec.check.runner.repository.impl.jdbc.connector.EntityManager;
 
@@ -10,7 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-@Repository
+//@Repository
 public class ProductInformationRepository extends AbstractRepository<ProductInformation> {
 
     private static final String SELECT =

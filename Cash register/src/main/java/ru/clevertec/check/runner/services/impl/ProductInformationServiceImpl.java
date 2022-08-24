@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import ru.clevertec.check.runner.model.dto.ProductInformationDto;
 import ru.clevertec.check.runner.model.entity.Product;
 import ru.clevertec.check.runner.model.entity.ProductInformation;
-import ru.clevertec.check.runner.repository.RepositoryEntity;
+import ru.clevertec.check.runner.repository.jpa.ProductInformationRepository;
 import ru.clevertec.check.runner.services.DiscountCardService;
 import ru.clevertec.check.runner.services.ProductInformationService;
 import ru.clevertec.check.runner.services.ProductService;
@@ -21,7 +21,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class ProductInformationServiceImpl implements ProductInformationService {
 
-    private final RepositoryEntity<ProductInformation> productInformationRepository;
+    private final ProductInformationRepository productInformationRepository;
     private final ModelMapper modelMapper;
     private final DiscountCardService discountCardService;
     private final ProductService productService;
@@ -89,6 +89,8 @@ public class ProductInformationServiceImpl implements ProductInformationService 
     }
 
     public ProductInformation saveProductInformation(ProductInformation productInformation) {
-        return productInformationRepository.add(productInformation);
+        ProductInformation save = productInformationRepository.save(productInformation);
+
+        return save;
     }
 }

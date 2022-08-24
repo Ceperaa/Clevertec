@@ -3,5 +3,10 @@ datasource:
   driver: org.postgresql.Driver
   username: postgres
   password: root
+
+hibernate:
+  dialect: org.hibernate.dialect.PostgreSQL82Dialect
+  show_sql: true
+
 liquibase:
   changelog: db-changelog-1.xml

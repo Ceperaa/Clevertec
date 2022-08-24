@@ -11,7 +11,7 @@ import ru.clevertec.check.runner.model.dto.ProductDto;
 import ru.clevertec.check.runner.model.dto.ProductDtoForSave;
 import ru.clevertec.check.runner.model.dto.ProductInformationDto;
 import ru.clevertec.check.runner.model.entity.Product;
-import ru.clevertec.check.runner.repository.impl.jdbc.ProductRepository;
+import ru.clevertec.check.runner.repository.jpa.ProductRepository;
 
 import java.util.Collections;
 import java.util.List;
@@ -53,8 +53,8 @@ class ProductSerServiceImplTest {
     void findById() throws Exception {
         ProductDto product1 = new ProductDto();
         product1.setId(1L);
-        given(repository.findById(1L)).willReturn(Optional.ofNullable(product1));
-        Product product = productService.findById(1L);
+        given(repository.findById(1L)).willReturn(Optional.ofNullable(product));
+        ProductDto product = productService.findById(1L);
         assertEquals(product, product);
     }
 
@@ -63,23 +63,23 @@ class ProductSerServiceImplTest {
         Product product1 = new Product();
         product1.setId(1L);
         List<Product> list = List.of(product1);
-        given(repository.findAll(1,1)).willReturn(list);
-        List<Product> list1 = Collections.singletonList((Product) productService.allListProductDto(1,1));
+        given(repository.findAll()).willReturn(list);
+        List<Product> list1 = Collections.singletonList((Product) productService.allList(1,1));
         assertEquals(list, list1);
     }
 
     @Test
     @Disabled
     void saveProduct() throws Exception {
-        given(repository.add(product)).willReturn(product);
-        ProductDto.builder().name("Apple").build();
-        ProductDto product1 = productService.saveProduct(ProductDtoForSave.builder().name("Apple").build());
-        assertEquals(product.getName(), product1.getName());
+        given(repository.save(product)).willReturn(product);
+        ProductDtoForSave.builder().name("Apple").build();
+        ProductDto product1 = (ProductDto) productService.create(ProductDtoForSave.builder().name("Apple").build());
+
     }
 
     @Test
     void update() throws Exception {
-        given(repository.update(product)).willReturn(product);
+        given(repository.save(product)).willReturn(product);
         Product product1 = productService.update(product);
         assertEquals(product, product1);
     }

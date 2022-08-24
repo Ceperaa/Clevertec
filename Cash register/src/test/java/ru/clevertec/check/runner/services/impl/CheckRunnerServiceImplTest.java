@@ -10,7 +10,7 @@ import ru.clevertec.check.runner.model.dto.CheckDto;
 import ru.clevertec.check.runner.model.dto.ProductInformationDto;
 import ru.clevertec.check.runner.model.entity.Check;
 import ru.clevertec.check.runner.model.entity.ProductInformation;
-import ru.clevertec.check.runner.repository.impl.jdbc.CheckRepository;
+import ru.clevertec.check.runner.repository.jpa.CheckRepository;
 
 import java.util.List;
 
@@ -60,7 +60,7 @@ class CheckRunnerServiceImplTest {
 
     @Test
     void add() throws Exception {
-        given(checkRepository.add(check)).willReturn(check);
+        given(checkRepository.save(check)).willReturn(check);
         Assertions.assertEquals(checkRunnerServices.saveCheck(check), check);
     }
 }

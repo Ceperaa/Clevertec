@@ -3,6 +3,7 @@ package ru.clevertec.check.runner.servlets.javaee;
 import com.google.gson.Gson;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import ru.clevertec.check.runner.services.EntityServiceCrud;
 import ru.clevertec.check.runner.util.exception.ObjectNotFoundException;
 import ru.clevertec.check.runner.util.validation.DataValidation;
 
@@ -13,12 +14,13 @@ import javax.ws.rs.core.MediaType;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
 @Slf4j
-public  abstract class AbstractEntityServlet extends HttpServlet implements EntityCrud {
+public  abstract class AbstractEntityServlet<T> extends HttpServlet {
+
+    private EntityServiceCrud entityServiceCrud;
 
 
     @SneakyThrows

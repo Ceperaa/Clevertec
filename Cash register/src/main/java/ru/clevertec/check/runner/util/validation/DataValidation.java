@@ -79,9 +79,9 @@ public class DataValidation {
     }
 
     private static void inputInvalidData(String str) throws IOException {
-        new StreamEntityToString().fileOutputStream(List.of(new Date().toString() + " | " + str)
-                , INVALID_DATA_FILEPATH
-                , false
+        new StreamEntityToString().fileOutputStream(List.of(new Date().toString() + " | " + str),
+                INVALID_DATA_FILEPATH ,
+                false
         );
     }
 }

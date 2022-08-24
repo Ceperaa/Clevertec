@@ -6,7 +6,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.modelmapper.ModelMapper;
 import ru.clevertec.check.runner.model.entity.ProductInformation;
-import ru.clevertec.check.runner.repository.RepositoryEntity;
+import ru.clevertec.check.runner.repository.jpa.ProductInformationRepository;
 import ru.clevertec.check.runner.util.exception.ObjectNotFoundException;
 
 import java.sql.SQLException;
@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class ProductSerInformationServiceImplTest {
 
     @Mock
-    private RepositoryEntity<ProductInformation> productInformationRepository;
+    private ProductInformationRepository productInformationRepository;
     @Mock
     private final ProductInformationServiceImpl productInformationService;
     @Mock

@@ -25,9 +25,9 @@ public class CheckServlet extends HttpServlet {
 
         String idCard = Optional.ofNullable(req.getParameter("idCard")).orElse("0");
         runnerService.createCheck(
-                DataValidation.validator(req.getParameterValues("productId-quantity"))
-                , Long.valueOf(idCard)
-                , resp.getOutputStream()
+                DataValidation.validator(req.getParameterValues("productId-quantity")),
+                Long.valueOf(idCard),
+                resp.getOutputStream()
         );
     }
 }
