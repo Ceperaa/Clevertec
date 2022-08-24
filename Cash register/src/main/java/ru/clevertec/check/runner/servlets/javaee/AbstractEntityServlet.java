@@ -3,7 +3,6 @@ package ru.clevertec.check.runner.servlets.javaee;
 import com.google.gson.Gson;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import ru.clevertec.check.runner.services.EntityServiceCrud;
 import ru.clevertec.check.runner.util.exception.ObjectNotFoundException;
 import ru.clevertec.check.runner.util.validation.DataValidation;
 
@@ -14,25 +13,16 @@ import javax.ws.rs.core.MediaType;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
 @Slf4j
-public  abstract class AbstractEntityServlet<T> extends HttpServlet {
-
-    private EntityServiceCrud entityServiceCrud;
-
-    protected EntityServiceCrud getEntityServiceCrud() {
-        return entityServiceCrud;
-    }
-
-    protected void setEntityServiceCrud(EntityServiceCrud entityServiceCrud) {
-        this.entityServiceCrud = entityServiceCrud;
-    }
+public  abstract class AbstractEntityServlet extends HttpServlet implements EntityCrud {
 
     @SneakyThrows
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {
-        T object = (T) getEntityServiceCrud().create(readObject(request.getReader()));
+        Object object =  createObject(readObject(request.getReader()));
         try (PrintWriter printWriter = response.getWriter()) {
             response.setStatus(HttpServletResponse.SC_CREATED);
             response.setContentType(MediaType.APPLICATION_JSON);
@@ -55,7 +45,7 @@ public  abstract class AbstractEntityServlet<T> extends HttpServlet {
     @SneakyThrows
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) {
-        T discountCard = (T) getEntityServiceCrud().update(req.getReader());
+        Object discountCard = updateObject(req.getReader());
         try (PrintWriter printWriter = resp.getWriter()) {
             resp.setStatus(HttpServletResponse.SC_CREATED);
             resp.setContentType(MediaType.APPLICATION_JSON);
@@ -68,23 +58,23 @@ public  abstract class AbstractEntityServlet<T> extends HttpServlet {
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) {
         String requestURI = req.getRequestURI();
-        getEntityServiceCrud().delete(DataValidation.validatorHttpUrlSearchId(requestURI));
+        deleteObject(DataValidation.validatorHttpUrlSearchId(requestURI));
         resp.setStatus(HttpServletResponse.SC_NO_CONTENT);
         resp.setContentType(MediaType.APPLICATION_JSON);
         log.debug("delete completed");
     }
 
-    private void findById(long id, HttpServletResponse resp) throws ObjectNotFoundException, IOException {
+    private void findById(long id, HttpServletResponse resp) throws IOException, ObjectNotFoundException, SQLException {
         try (PrintWriter printWriter = resp.getWriter()) {
             resp.setStatus(HttpServletResponse.SC_OK);
             resp.setContentType(MediaType.APPLICATION_JSON);
-            printWriter.write(new Gson().toJson(getEntityServiceCrud().findById(id)));
+            printWriter.write(new Gson().toJson(findByObjectId(id)));
             log.debug("findById completed");
         }
     }
 
-    private void findAll(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        List<T> list = (List<T>) getEntityServiceCrud().allList(Integer.parseInt(
+    private void findAll(HttpServletRequest req, HttpServletResponse resp) throws IOException, SQLException {
+        List<Object> list = findAllObject(Integer.parseInt(
                 Optional.ofNullable(req.getParameter("offset")).orElse("0"))
                 , Integer.parseInt(
                         Optional.ofNullable(req.getParameter("limit")).orElse("0"))

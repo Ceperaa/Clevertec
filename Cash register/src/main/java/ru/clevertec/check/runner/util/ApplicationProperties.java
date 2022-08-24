@@ -1,21 +1,28 @@
 package ru.clevertec.check.runner.util;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
-import lombok.SneakyThrows;
-import ru.clevertec.check.runner.util.entity.ApplicationYaml;
+import org.springframework.beans.factory.config.YamlPropertiesFactoryBean;
+import org.springframework.core.env.PropertiesPropertySource;
+import org.springframework.core.env.PropertySource;
+import org.springframework.core.io.support.EncodedResource;
+import org.springframework.core.io.support.PropertySourceFactory;
 
-import java.io.InputStream;
+import java.util.Objects;
+import java.util.Properties;
 
-public class ApplicationProperties {
+public class ApplicationProperties implements PropertySourceFactory {
 
-    @SneakyThrows
-    public static ApplicationYaml getProperty() {
-        InputStream resourceAsStream = Thread.currentThread().getContextClassLoader()
-                .getResourceAsStream("application.yaml");
-        ObjectMapper om = new ObjectMapper(new YAMLFactory());
-        om.coercionConfigFor(ApplicationYaml.class);
-        ApplicationYaml employee = om.readValue(resourceAsStream, ApplicationYaml.class);
-        return employee;
+    private static Properties properties;
+
+    @Override
+    public PropertySource<?> createPropertySource(String name, EncodedResource resource) {
+        YamlPropertiesFactoryBean yamlPropertiesFactoryBean = new YamlPropertiesFactoryBean();
+        yamlPropertiesFactoryBean.setResources(resource.getResource());
+        Properties properties = Objects.requireNonNull(yamlPropertiesFactoryBean.getObject());
+        ApplicationProperties.properties = properties;
+        return new PropertiesPropertySource("application", properties);
+    }
+
+    public static Properties getProp(){
+        return properties;
     }
 }

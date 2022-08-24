@@ -13,6 +13,7 @@ import java.util.Map;
 @Component
 public class LoggerServicesMethods implements BeanPostProcessor {
 
+
     private static final Map<String, Class<?>> map = new HashMap<>();
 
     @Override

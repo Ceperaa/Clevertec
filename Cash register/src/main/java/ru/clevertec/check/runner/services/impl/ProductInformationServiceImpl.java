@@ -1,6 +1,6 @@
 package ru.clevertec.check.runner.services.impl;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import ru.clevertec.check.runner.model.dto.ProductInformationDto;
@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class ProductInformationServiceImpl implements ProductInformationService {
 
     private final RepositoryEntity<ProductInformation> productInformationRepository;
@@ -33,7 +33,7 @@ public class ProductInformationServiceImpl implements ProductInformationService 
             List<ProductInformation> productList, double total, Long idCard)
             throws SQLException, ObjectNotFoundException {
         if (idCard != 0) {
-            total = subtractPercentage(discountCardService.findById(idCard).getDiscount(), total);
+            total = subtractPercentage(discountCardService.findById(idCard).get().getDiscount(), total);
         }
         if (productList
                 .stream()
@@ -46,14 +46,14 @@ public class ProductInformationServiceImpl implements ProductInformationService 
     }
 
     public ProductInformation addDescriptionInCheck(
-            Map.Entry<Long, Integer> integerMap
-            , ProductInformation productInformation
-            , List<ProductInformationDto> productInformationDtoList
+            Map.Entry<Long, Integer> integerMap,
+            ProductInformation productInformation,
+            List<ProductInformationDto> productInformationDtoList
     ) throws ObjectNotFoundException {
         int amountProduct = integerMap.getValue();
         Product product = productInformation.getProduct();
-        productInformation.setPriceWithDiscount(subtractPercentage(product.getDiscountPercent()
-                , Double.parseDouble(product.getPrice())));
+        productInformation.setPriceWithDiscount(subtractPercentage(product.getDiscountPercent(),
+                Double.parseDouble(product.getPrice())));
         if (Integer.parseInt(product.getAmount()) >= amountProduct) {
             mapDescription(productInformation, product, amountProduct);
             int result = Integer.parseInt(product.getAmount()) - amountProduct;

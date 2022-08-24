@@ -1,6 +1,5 @@
 package ru.clevertec.check.runner.util.beanPostProcessors;
 
-import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
@@ -15,18 +14,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
-@AllArgsConstructor
+//@RequiredArgsConstructor
 public class TransactionManager implements BeanPostProcessor {
 
     private static final Map<String, Class<?>> map = new HashMap<>();
-    private final EntityManager entityManager;
+    private EntityManager entityManager;
 
     @SneakyThrows
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
         Class<?> beanClass = bean.getClass();
-
-
+        if (beanName.equals("entityManager")){
+            setEntityManager((EntityManager) bean);
+        }
         for (Method method : beanClass.getMethods()) {
             if (method.isAnnotationPresent(Transactional.class)) {
                 map.put(beanName, beanClass);
@@ -45,6 +45,10 @@ public class TransactionManager implements BeanPostProcessor {
                     , new DynamicHandlerTransaction(bean, entityManager, beanClass));
         }
         return bean;
+    }
+
+    public void setEntityManager(EntityManager entityManager) {
+        this.entityManager = entityManager;
     }
 
     private Class<?>[] interfacesArray(Class<?> beanClass) {
