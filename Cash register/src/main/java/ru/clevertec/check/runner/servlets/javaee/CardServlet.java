@@ -10,8 +10,6 @@ import ru.clevertec.check.runner.util.beanPostProcessors.annotations.Servlet;
 import ru.clevertec.check.runner.util.exception.ObjectNotFoundException;
 
 import java.io.BufferedReader;
-import java.io.IOException;
-import java.sql.SQLException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -19,7 +17,7 @@ import java.util.Optional;
 @Component
 @Servlet(url = "/card/*")
 @RequiredArgsConstructor
-public class CardServlet extends AbstractEntityServlet{
+public class CardServlet extends AbstractEntityServlet {
 
     private final DiscountCardService discountCardService;
 
@@ -33,12 +31,12 @@ public class CardServlet extends AbstractEntityServlet{
     }
 
     @Override
-    public Object createObject(Object o) throws IOException, SQLException {
+    public Object createObject(Object o) {
         return discountCardService.saveCard((DiscountCardDtoForSave) o);
     }
 
     @Override
-    public Object updateObject(Object o) throws IOException, SQLException {
+    public Object updateObject(Object o) {
         return discountCardService.updateDiscountCard((DiscountCardDtoForSave) o);
     }
 
@@ -48,12 +46,12 @@ public class CardServlet extends AbstractEntityServlet{
     }
 
     @Override
-    public Optional findByObjectId(long id) throws SQLException, ObjectNotFoundException {
+    public Optional findByObjectId(long id) {
         return discountCardService.findById(id);
     }
 
     @Override
-    public List<Object> findAllObject(int offset, Integer limit) throws IOException, SQLException {
+    public List<Object> findAllObject(int offset, Integer limit) {
         return Collections.singletonList(discountCardService.allListDiscountCard(offset, limit));
     }
 }

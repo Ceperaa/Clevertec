@@ -3,7 +3,6 @@ package ru.clevertec.check.runner.servlets.javaee;
 import com.google.gson.Gson;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import ru.clevertec.check.runner.services.EntityServiceCrud;
 import ru.clevertec.check.runner.util.exception.ObjectNotFoundException;
 import ru.clevertec.check.runner.util.validation.DataValidation;
 
@@ -18,9 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Slf4j
-public  abstract class AbstractEntityServlet<T> extends HttpServlet {
-
-    private EntityServiceCrud entityServiceCrud;
+public  abstract class AbstractEntityServlet<T> extends HttpServlet implements EntityCrud {
 
 
     @SneakyThrows
@@ -67,7 +64,7 @@ public  abstract class AbstractEntityServlet<T> extends HttpServlet {
         log.debug("delete completed");
     }
 
-    private void findById(long id, HttpServletResponse resp) throws IOException, ObjectNotFoundException, SQLException {
+    private void findById(long id, HttpServletResponse resp) throws IOException, ObjectNotFoundException {
         try (PrintWriter printWriter = resp.getWriter()) {
             resp.setStatus(HttpServletResponse.SC_OK);
             resp.setContentType(MediaType.APPLICATION_JSON);
@@ -76,7 +73,7 @@ public  abstract class AbstractEntityServlet<T> extends HttpServlet {
         }
     }
 
-    private void findAll(HttpServletRequest req, HttpServletResponse resp) throws IOException, SQLException {
+    private void findAll(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         List<Object> list = findAllObject(Integer.parseInt(
                 Optional.ofNullable(req.getParameter("offset")).orElse("0"))
                 , Integer.parseInt(

@@ -3,20 +3,19 @@ package ru.clevertec.check.runner.configuration;
 import liquibase.integration.spring.SpringLiquibase;
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import ru.clevertec.check.runner.util.ApplicationProperties;
-import ru.clevertec.check.runner.util.entity.ApplicationYaml;
 
-import javax.validation.Valid;
 import java.util.Properties;
 
 /**
@@ -27,17 +26,32 @@ import java.util.Properties;
 @SuppressWarnings("ALL")
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories("ru.clevertec.check.runner.repository.jpa")
+@EnableJpaRepositories("ru.clevertec.check.runner.repository")
 @ComponentScan({"ru.clevertec.check.runner"})
-@PropertySource("classpath:application.yaml")
+@PropertySource(value = "classpath:application.yaml",factory = ApplicationProperties.class)
 public class AppConfig {
 
-    private final ApplicationYaml property = ApplicationProperties.getProperty();
+    @Value("${datasource.url}")
+    private String url;
+    @Value("${datasource.driver}")
+    private String driver;
+    @Value("${datasource.user}")
+    private String user;
+    @Value("${datasource.password}")
+    private String password;
+
+    @Value("${hibernate.dialect}")
+    private String dialect;
+    @Value("${hibernate.show_sql}")
+    private String showSql;
+
+    @Value("${liquibase.changelog}")
+    private String changelog;
 
     @Bean
     public SpringLiquibase liquibase() {
         SpringLiquibase liquibase = new SpringLiquibase();
-        liquibase.setChangeLog(property.getLiquibase().getChangelog());
+        liquibase.setChangeLog(changelog);
         liquibase.setDataSource(dataSource());
         return liquibase;
     }
@@ -52,10 +66,10 @@ public class AppConfig {
     @Bean
     public DriverManagerDataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(property.getDatasource().getDriver());
-        dataSource.setUrl(property.getDatasource().getUrl());
-        dataSource.setUsername(property.getDatasource().getUsername());
-        dataSource.setPassword(property.getDatasource().getPassword());
+        dataSource.setDriverClassName(driver);
+        dataSource.setUrl(url);
+        dataSource.setUsername(user);
+        dataSource.setPassword(password);
         return dataSource;
     }
 
@@ -64,8 +78,8 @@ public class AppConfig {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setPackagesToScan("ru.clevertec.check.runner");
         Properties properties = new Properties();
-        properties.put("hibernate.dialect", property.getHibernate().getDialect());
-        properties.put("hibernate.show_sql", property.getHibernate().getShow_sql());
+        properties.put("hibernate.dialect", dialect);
+        properties.put("hibernate.show_sql", showSql);
         em.setJpaProperties(properties);
         em.setDataSource(dataSource);
         em.setPersistenceProviderClass(HibernatePersistenceProvider.class);

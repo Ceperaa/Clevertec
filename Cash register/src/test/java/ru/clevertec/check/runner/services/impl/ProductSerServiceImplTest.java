@@ -11,7 +11,7 @@ import ru.clevertec.check.runner.model.dto.ProductDto;
 import ru.clevertec.check.runner.model.dto.ProductDtoForSave;
 import ru.clevertec.check.runner.model.dto.ProductInformationDto;
 import ru.clevertec.check.runner.model.entity.Product;
-import ru.clevertec.check.runner.repository.jpa.ProductRepository;
+import ru.clevertec.check.runner.repository.ProductRepository;
 
 import java.util.Collections;
 import java.util.List;
@@ -54,7 +54,7 @@ class ProductSerServiceImplTest {
         ProductDto product1 = new ProductDto();
         product1.setId(1L);
         given(repository.findById(1L)).willReturn(Optional.ofNullable(product));
-        ProductDto product = productService.findById(1L);
+        Product product = productService.findById(1L);
         assertEquals(product, product);
     }
 
@@ -64,7 +64,7 @@ class ProductSerServiceImplTest {
         product1.setId(1L);
         List<Product> list = List.of(product1);
         given(repository.findAll()).willReturn(list);
-        List<Product> list1 = Collections.singletonList((Product) productService.allList(1,1));
+        List<Product> list1 = Collections.singletonList((Product) productService.allListProductDto(1,1));
         assertEquals(list, list1);
     }
 
@@ -73,7 +73,7 @@ class ProductSerServiceImplTest {
     void saveProduct() throws Exception {
         given(repository.save(product)).willReturn(product);
         ProductDtoForSave.builder().name("Apple").build();
-        ProductDto product1 = (ProductDto) productService.create(ProductDtoForSave.builder().name("Apple").build());
+        ProductDto product1 = (ProductDto) productService.saveProduct(ProductDtoForSave.builder().name("Apple").build());
 
     }
 

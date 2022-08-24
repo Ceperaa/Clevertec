@@ -4,45 +4,43 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import ru.clevertec.check.runner.model.dto.DiscountCardDtoForSave;
 import ru.clevertec.check.runner.model.entity.DiscountCard;
-import ru.clevertec.check.runner.repository.jpa.DiscountCardRepository;
+import ru.clevertec.check.runner.repository.DiscountCardRepository;
 import ru.clevertec.check.runner.services.DiscountCardService;
-import ru.clevertec.check.runner.services.EntityServiceCrud;
-import ru.clevertec.check.runner.util.exception.ObjectNotFoundException;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class DiscountCardServiceImpl implements DiscountCardService {
 
-    private final DiscountCardRepository  discountCardRepository;
+    private final DiscountCardRepository discountCardRepository;
     private final ModelMapper modelMapper;
 
     @Override
-    public DiscountCard findById(Long id) throws ObjectNotFoundException {
-        return discountCardRepository.findById(id)
-                .orElseThrow(()-> new ObjectNotFoundException(DiscountCard.class, id));
+    public Optional<DiscountCard> findById(long id) {
+        return discountCardRepository.findById(id);
     }
 
-    public List<DiscountCard> allList(int offset, int limit) {
+    @Override
+    public List<DiscountCard> allListDiscountCard(int offset, Integer limit) {
         return discountCardRepository.findAll(PageRequest.of(offset, limit)).toList();
     }
 
-    public DiscountCard update(Object card) {
+    @Override
+    public DiscountCard saveCard(DiscountCardDtoForSave card) {
         return discountCardRepository.save(modelMapper.map(card, DiscountCard.class));
     }
 
-    public DiscountCard create(Object card) {
-        return discountCardRepository.save(modelMapper.map(card, DiscountCard.class));
-    }
-
-    public void delete(long id) throws ObjectNotFoundException {
+    @Override
+    public void deleteCard(long id) {
         discountCardRepository.deleteById(id);
     }
 
     @Override
-    public DiscountCard findById(long id) {
-       return findById(id);
+    public DiscountCard updateDiscountCard(DiscountCardDtoForSave card) {
+        return discountCardRepository.save(modelMapper.map(card, DiscountCard.class));
     }
 }

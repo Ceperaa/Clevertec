@@ -20,44 +20,62 @@ war {
     enabled true
 }
 
+ext.versions = [
+        'spring'    : '5.3.22',
+        'lombok'    : '1.18.24',
+        'itext7'    : '7.2.1',
+
+        'snakeYaml' : '1.30',
+        'gson'      : '2.9.0',
+        'databind'  : '2.13.3',
+        'slf4j'     : '1.7.36',
+        'log4j'     : '2.18.0',
+        'yaml'      : '2.13.3',
+
+        'javaEE'    : '8.0.1',
+        'postgresql': '42.4.0',
+
+        'junit'     : '5.8.2',
+        'mockito'   : '4.7.0',
+        'liquibase' : '4.3.5',
+]
+
 dependencies {
-    implementation 'org.springframework:spring-jdbc:5.3.22'
-    implementation 'org.springframework:spring-core:5.3.22'
-    implementation 'org.springframework:spring-context:5.3.22'
-    implementation 'org.springframework:spring-tx:5.3.22'
-    implementation 'org.springframework.data:spring-data-jpa:2.6.1'
-    implementation 'org.springframework:spring-orm:5.3.22'
+    implementation "org.springframework:spring-jdbc:${versions.spring}"
+    implementation "org.springframework:spring-core:${versions.spring}"
+    implementation "org.springframework:spring-context:${versions.spring}"
+    implementation "org.springframework:spring-tx:${versions.spring}"
+    implementation "org.springframework:spring-orm:${versions.spring}"
+    implementation "org.springframework.data:spring-data-jpa:2.6.1"
 
+    implementation "org.hibernate:hibernate-core:5.6.1.Final"
+    implementation "com.google.code.gson:gson:${versions.gson}"
 
-    implementation 'org.hibernate:hibernate-core:5.6.1.Final'
-    implementation 'com.google.code.gson:gson:2.9.0'
+    compileOnly "javax:javaee-api:${versions.javaEE}"
 
-    compileOnly 'javax:javaee-api:8.0.1'
+    implementation "com.fasterxml.jackson.core:jackson-databind:${versions.databind}"
+    implementation "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:${versions.yaml}"
 
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.3'
-    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.13.3'
+    implementation "org.slf4j:slf4j-api:${versions.slf4j}"
+    implementation "org.apache.logging.log4j:log4j-core:${versions.log4j}"
+    implementation "org.apache.logging.log4j:log4j-slf4j-impl:${versions.log4j}"
 
-    implementation 'org.slf4j:slf4j-api:1.7.36'
-    implementation 'org.apache.logging.log4j:log4j-core:2.18.0'
-    implementation 'org.apache.logging.log4j:log4j-slf4j-impl:2.18.0'
+    implementation "org.modelmapper:modelmapper:3.1.0"
 
-    implementation 'org.modelmapper:modelmapper:3.1.0'
+    testCompile "junit:junit:4.13.2"
+    testImplementation "org.junit.jupiter:junit-jupiter-engine:${versions.junit}"
+    testImplementation "org.mockito:mockito-all:1.10.19"
 
-    testCompile 'junit:junit:4.12'
-    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
-    testImplementation 'org.mockito:mockito-all:1.10.19'
+    compileOnly "org.projectlombok:lombok:${versions.lombok}"
+    annotationProcessor "org.projectlombok:lombok:${versions.lombok}"
+    testAnnotationProcessor "org.projectlombok:lombok:${versions.lombok}"
+    testCompileOnly "org.projectlombok:lombok:${versions.lombok}"
 
+    implementation "org.postgresql:postgresql:${versions.postgresql}"
 
-    compileOnly 'org.projectlombok:lombok:1.18.24'
-    annotationProcessor 'org.projectlombok:lombok:1.18.24'
-    testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
-    testCompileOnly 'org.projectlombok:lombok:1.18.24'
-
-    implementation 'org.postgresql:postgresql:42.4.0'
-
-    implementation 'com.itextpdf:itext7-core:7.2.1'
-    implementation 'org.liquibase:liquibase-core:4.3.5'
-    compile 'org.codehaus.groovy:groovy-all:2.3.11'
+    implementation "com.itextpdf:itext7-core:${versions.itext7}"
+    implementation "org.liquibase:liquibase-core:${versions.liquibase}"
+    compile "org.codehaus.groovy:groovy-all:2.3.11"
 }
 
 test {

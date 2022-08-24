@@ -6,14 +6,13 @@ import org.springframework.stereotype.Service;
 import ru.clevertec.check.runner.model.dto.ProductInformationDto;
 import ru.clevertec.check.runner.model.entity.Product;
 import ru.clevertec.check.runner.model.entity.ProductInformation;
-import ru.clevertec.check.runner.repository.jpa.ProductInformationRepository;
+import ru.clevertec.check.runner.repository.ProductInformationRepository;
 import ru.clevertec.check.runner.services.DiscountCardService;
 import ru.clevertec.check.runner.services.ProductInformationService;
 import ru.clevertec.check.runner.services.ProductService;
 import ru.clevertec.check.runner.util.exception.ObjectNotFoundException;
 import ru.clevertec.check.runner.util.validation.DoubleFormatting;
 
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
@@ -30,8 +29,7 @@ public class ProductInformationServiceImpl implements ProductInformationService 
 
     @Override
     public double discountСalculation(
-            List<ProductInformation> productList, double total, Long idCard)
-            throws SQLException, ObjectNotFoundException {
+            List<ProductInformation> productList, double total, Long idCard) {
         if (idCard != 0) {
             total = subtractPercentage(discountCardService.findById(idCard).get().getDiscount(), total);
         }

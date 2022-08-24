@@ -15,13 +15,13 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "name")
+    @Column
     private String name;
-    @Column(name = "amount")
+    @Column
     private String amount;
     @Column(name = "discount_percent")
     private Integer discountPercent;
-    @Column(name = "price")
+    @Column
     private String price;
     @OneToOne(mappedBy = "product",fetch = FetchType.EAGER)
     private transient ProductInformation productInformation;

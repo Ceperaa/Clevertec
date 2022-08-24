@@ -10,12 +10,10 @@ import ru.clevertec.check.runner.model.dto.ProductInformationDto;
 import ru.clevertec.check.runner.model.entity.Check;
 import ru.clevertec.check.runner.model.entity.Product;
 import ru.clevertec.check.runner.model.entity.ProductInformation;
-import ru.clevertec.check.runner.repository.RepositoryEntity;
-import ru.clevertec.check.runner.repository.jpa.CheckRepository;
+import ru.clevertec.check.runner.repository.CheckRepository;
 import ru.clevertec.check.runner.services.CheckRunnerService;
 import ru.clevertec.check.runner.services.ProductInformationService;
 import ru.clevertec.check.runner.services.ProductService;
-import ru.clevertec.check.runner.util.beanPostProcessors.annotations.Transactional;
 import ru.clevertec.check.runner.util.exception.ObjectNotFoundException;
 import ru.clevertec.check.runner.util.mapper.PdfMapper;
 import ru.clevertec.check.runner.util.validation.DoubleFormatting;
@@ -107,7 +105,7 @@ public class CheckRunnerServiceImpl implements CheckRunnerService {
             List<ProductInformationDto> productInformationDtoList
     ) throws ObjectNotFoundException {
         for (Map.Entry<Long, Integer> integerEntry : map.entrySet()) {
-            Product product = productService.findByProductId(integerEntry.getKey());
+            Product product = productService.findById(integerEntry.getKey());
             productList.add(productInformationService.addDescriptionInCheck(
                     integerEntry,
                     ProductInformation

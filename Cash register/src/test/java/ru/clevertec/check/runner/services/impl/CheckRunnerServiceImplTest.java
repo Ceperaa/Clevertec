@@ -10,7 +10,7 @@ import ru.clevertec.check.runner.model.dto.CheckDto;
 import ru.clevertec.check.runner.model.dto.ProductInformationDto;
 import ru.clevertec.check.runner.model.entity.Check;
 import ru.clevertec.check.runner.model.entity.ProductInformation;
-import ru.clevertec.check.runner.repository.jpa.CheckRepository;
+import ru.clevertec.check.runner.repository.CheckRepository;
 
 import java.util.List;
 

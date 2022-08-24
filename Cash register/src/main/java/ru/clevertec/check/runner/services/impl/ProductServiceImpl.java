@@ -2,12 +2,13 @@ package ru.clevertec.check.runner.services.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import ru.clevertec.check.runner.model.dto.ProductDto;
 import ru.clevertec.check.runner.model.dto.ProductDtoForSave;
 import ru.clevertec.check.runner.model.dto.ProductInformationDto;
 import ru.clevertec.check.runner.model.entity.Product;
-import ru.clevertec.check.runner.repository.RepositoryEntity;
+import ru.clevertec.check.runner.repository.ProductRepository;
 import ru.clevertec.check.runner.services.ProductService;
 import ru.clevertec.check.runner.services.ProductServiceForUI;
 import ru.clevertec.check.runner.util.exception.ObjectNotFoundException;
@@ -20,7 +21,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService, ProductServiceForUI {
 
-    private final RepositoryEntity<Product> productRepository;
+    private final ProductRepository productRepository;
     private final ModelMapper modelMapper;
 
     @Override
@@ -32,18 +33,18 @@ public class ProductServiceImpl implements ProductService, ProductServiceForUI {
     @Override
     public ProductDto saveProduct(ProductDtoForSave product) {
         return modelMapper
-                .map(productRepository.add(
+                .map(productRepository.save(
                         modelMapper.map(product, Product.class)), ProductDto.class);
     }
 
     @Override
-    public void deleteProduct(long id) throws ObjectNotFoundException {
-        productRepository.delete(id);
+    public void deleteProduct(long id) {
+        productRepository.deleteById(id);
     }
 
     @Override
     public ProductDtoForSave updateDto(ProductDtoForSave product) {
-        return modelMapper.map(productRepository.update(modelMapper.map(product, Product.class)), ProductDtoForSave.class);
+        return modelMapper.map(productRepository.save(modelMapper.map(product, Product.class)), ProductDtoForSave.class);
     }
 
     @Override
@@ -55,13 +56,13 @@ public class ProductServiceImpl implements ProductService, ProductServiceForUI {
 
     @Override
     public Product update(Product product) {
-       return productRepository.update(product);
+       return productRepository.save(product);
     }
 
 
     @Override
     public List<ProductDtoForSave> allListProductDto(int offset, int limit) {
-        return productRepository.findAll(limit, offset)
+        return productRepository.findAll(PageRequest.of(offset, limit))
                 .stream()
                 .map(product -> modelMapper.map(product, ProductDtoForSave.class))
                  .collect(Collectors.toList());

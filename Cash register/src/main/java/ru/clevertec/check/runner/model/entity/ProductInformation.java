@@ -24,7 +24,7 @@ public class ProductInformation {
     private double totalPriceWithDiscount;
     @Column(name = "discount_percent")
     private Integer discountPercent;
-    @Column(name = "amount")
+    @Column
     private int amount;
     @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "product_id")
