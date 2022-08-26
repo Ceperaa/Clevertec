@@ -34,6 +34,7 @@ Configutation:
     Logger:
       - name: ru.clevertec
         level: debug
+        additivity: false
         AppenderRef:
           - ref: Console_Appender
             level: debug

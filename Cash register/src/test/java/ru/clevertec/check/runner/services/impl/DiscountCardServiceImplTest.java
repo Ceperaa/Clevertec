@@ -10,6 +10,7 @@ import ru.clevertec.check.runner.model.dto.DiscountCardDtoForSave;
 import ru.clevertec.check.runner.model.entity.DiscountCard;
 import ru.clevertec.check.runner.repository.DiscountCardRepository;
 import ru.clevertec.check.runner.util.exception.ObjectNotFoundException;
+import ru.clevertec.check.runner.util.mapstruct.SimpleSourceDestinationMapper;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -24,13 +25,16 @@ class DiscountCardServiceImplTest {
     private DiscountCardRepository repository;
 
     @Mock
+    private SimpleSourceDestinationMapper mapper;
+
+    @Mock
     private ModelMapper modelMapper;
 
     private DiscountCard discountCard;
 
     DiscountCardServiceImplTest() {
         MockitoAnnotations.initMocks(this);
-        this.cardServices = new DiscountCardServiceImpl(repository, modelMapper);
+        this.cardServices = new DiscountCardServiceImpl(mapper, repository, modelMapper);
     }
 
     @BeforeEach

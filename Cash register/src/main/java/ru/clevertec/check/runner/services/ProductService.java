@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface ProductService {
 
-    Product findById(Long id) throws ObjectNotFoundException;
+    Product findById(long id) throws ObjectNotFoundException;
 
     Product update(Product product) throws ObjectNotFoundException;
 

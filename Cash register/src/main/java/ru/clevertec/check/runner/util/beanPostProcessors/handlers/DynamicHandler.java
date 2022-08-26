@@ -1,5 +1,6 @@
 package ru.clevertec.check.runner.util.beanPostProcessors.handlers;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.apache.logging.log4j.LogManager;
@@ -28,14 +29,14 @@ public class DynamicHandler implements InvocationHandler {
         Logger logger = LogManager.getLogger(bean.getClass());
         try {
             Object retVal = method.invoke(bean, args);
-            logger.debug(gson.toJson(
+            logger.debug(new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString((
                     LogObject
                             .builder()
                             .methodName(method.getName())
                             .params(Arrays.toString(args))
                             .returnParam(retVal)
                             .build()
-            ));
+            )));
             return retVal;
         } catch (InvocationTargetException e) {
             e.printStackTrace();

@@ -8,6 +8,7 @@ import ru.clevertec.check.runner.model.dto.DiscountCardDtoForSave;
 import ru.clevertec.check.runner.model.entity.DiscountCard;
 import ru.clevertec.check.runner.repository.DiscountCardRepository;
 import ru.clevertec.check.runner.services.DiscountCardService;
+import ru.clevertec.check.runner.util.mapstruct.SimpleSourceDestinationMapper;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,6 +17,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class DiscountCardServiceImpl implements DiscountCardService {
 
+    private final SimpleSourceDestinationMapper mapper;
     private final DiscountCardRepository discountCardRepository;
     private final ModelMapper modelMapper;
 
@@ -32,6 +34,7 @@ public class DiscountCardServiceImpl implements DiscountCardService {
     @Override
     public DiscountCard saveCard(DiscountCardDtoForSave card) {
         return discountCardRepository.save(modelMapper.map(card, DiscountCard.class));
+
     }
 
     @Override

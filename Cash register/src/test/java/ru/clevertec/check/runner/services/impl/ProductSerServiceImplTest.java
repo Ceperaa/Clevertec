@@ -12,6 +12,7 @@ import ru.clevertec.check.runner.model.dto.ProductDtoForSave;
 import ru.clevertec.check.runner.model.dto.ProductInformationDto;
 import ru.clevertec.check.runner.model.entity.Product;
 import ru.clevertec.check.runner.repository.ProductRepository;
+import ru.clevertec.check.runner.util.mapstruct.SimpleSourceDestinationMapper;
 
 import java.util.Collections;
 import java.util.List;
@@ -31,12 +32,15 @@ class ProductSerServiceImplTest {
 
     private ModelMapper modelMapper;
 
+    @Mock
+    private SimpleSourceDestinationMapper mapper;
+
     private Product product;
 
     ProductSerServiceImplTest() {
         MockitoAnnotations.initMocks(this);
         this.modelMapper = new ModelMapper();
-        this.productService = new ProductServiceImpl(repository,modelMapper);
+        this.productService = new ProductServiceImpl( repository,modelMapper,mapper);
     }
 
     @BeforeEach

@@ -23,19 +23,18 @@ import java.util.Properties;
  *
  * @author Sergey Degtyarev
  */
-@SuppressWarnings("ALL")
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories("ru.clevertec.check.runner.repository")
 @ComponentScan({"ru.clevertec.check.runner"})
-@PropertySource(value = "classpath:application.yaml",factory = ApplicationProperties.class)
+@PropertySource(value = "classpath:application.yaml", factory = ApplicationProperties.class)
 public class AppConfig {
 
     @Value("${datasource.url}")
     private String url;
     @Value("${datasource.driver}")
     private String driver;
-    @Value("${datasource.user}")
+    @Value("${datasource.username}")
     private String user;
     @Value("${datasource.password}")
     private String password;
@@ -44,6 +43,8 @@ public class AppConfig {
     private String dialect;
     @Value("${hibernate.show_sql}")
     private String showSql;
+    @Value("${hibernate.format_sql}")
+    private String formatSql;
 
     @Value("${liquibase.changelog}")
     private String changelog;
@@ -57,7 +58,7 @@ public class AppConfig {
     }
 
     @Bean
-    public JpaTransactionManager transactionManager(LocalContainerEntityManagerFactoryBean entityManagerFactoryBean){
+    public JpaTransactionManager transactionManager(LocalContainerEntityManagerFactoryBean entityManagerFactoryBean) {
         JpaTransactionManager jpaTransactionManager = new JpaTransactionManager();
         jpaTransactionManager.setEntityManagerFactory(entityManagerFactoryBean.getObject());
         return jpaTransactionManager;
@@ -74,12 +75,13 @@ public class AppConfig {
     }
 
     @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DriverManagerDataSource dataSource){
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DriverManagerDataSource dataSource) {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setPackagesToScan("ru.clevertec.check.runner");
         Properties properties = new Properties();
         properties.put("hibernate.dialect", dialect);
         properties.put("hibernate.show_sql", showSql);
+        properties.put("hibernate.format_sql", formatSql);
         em.setJpaProperties(properties);
         em.setDataSource(dataSource);
         em.setPersistenceProviderClass(HibernatePersistenceProvider.class);

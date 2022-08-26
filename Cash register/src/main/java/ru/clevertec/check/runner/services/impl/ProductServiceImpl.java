@@ -12,6 +12,7 @@ import ru.clevertec.check.runner.repository.ProductRepository;
 import ru.clevertec.check.runner.services.ProductService;
 import ru.clevertec.check.runner.services.ProductServiceForUI;
 import ru.clevertec.check.runner.util.exception.ObjectNotFoundException;
+import ru.clevertec.check.runner.util.mapstruct.SimpleSourceDestinationMapper;
 import ru.clevertec.check.runner.util.validation.DoubleFormatting;
 
 import java.util.List;
@@ -23,10 +24,12 @@ public class ProductServiceImpl implements ProductService, ProductServiceForUI {
 
     private final ProductRepository productRepository;
     private final ModelMapper modelMapper;
+    private final SimpleSourceDestinationMapper mapper;
 
     @Override
-    public ProductDtoForSave findByProductDtoId(Long id) {
-        return modelMapper.map(findByProductDtoId(id), ProductDtoForSave.class);
+    public ProductDtoForSave findByProductDtoId(Long id) throws ObjectNotFoundException {
+       // return modelMapper.map(findByProductDtoId(id), ProductDtoForSave.class);
+        return mapper.sourceToProductDtoForSave(findById(id));
     }
 
 
@@ -45,10 +48,11 @@ public class ProductServiceImpl implements ProductService, ProductServiceForUI {
     @Override
     public ProductDtoForSave updateDto(ProductDtoForSave product) {
         return modelMapper.map(productRepository.save(modelMapper.map(product, Product.class)), ProductDtoForSave.class);
+
     }
 
     @Override
-    public Product findById(Long id) throws ObjectNotFoundException {
+    public Product findById(long id) throws ObjectNotFoundException {
         return productRepository
                 .findById(id)
                 .orElseThrow(() -> new ObjectNotFoundException(Product.class, id));

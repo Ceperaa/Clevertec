@@ -5,8 +5,9 @@ datasource:
   password: root
 
 hibernate:
-  dialect: org.hibernate.dialect.PostgreSQL82Dialect
+  dialect: org.hibernate.dialect.PostgreSQL10Dialect
   show_sql: true
+  format_sql: true
 
 liquibase:
   changelog: db-changelog-1.xml

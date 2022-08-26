@@ -1,16 +1,16 @@
 package ru.clevertec.check.runner.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
 
 @Data
-@ToString(includeFieldNames = false)
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "public.product_information")
+@Table(name = "product_information")
 public class ProductInformation {
 
     @Id
@@ -26,10 +26,17 @@ public class ProductInformation {
     private Integer discountPercent;
     @Column
     private int amount;
-    @OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name = "product_id")
-    private transient Product product;
+
     @ManyToOne(cascade=CascadeType.ALL,fetch = FetchType.LAZY)
-    @JoinColumn(name = "check_id")
-    private transient Check check;
+    @JoinColumn//(name = "product_id")
+    @ToString.Exclude
+    @JsonIgnore
+    private Product product;
+
+    @ManyToOne(cascade=CascadeType.ALL,fetch = FetchType.LAZY/*,optional = false*/)
+    @JoinColumn//(name = "check_id")
+    @ToString.Exclude
+    @JsonIgnore
+    private Check check;
 }
+//cascade=CascadeType.ALL - джойны тоже добаятся

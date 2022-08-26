@@ -143,7 +143,7 @@ public class CheckRunnerServiceImpl implements CheckRunnerService {
     }
 
     public Check saveCheck(Check check) {
-        check.setProductList(null);
+     //   check.setProductList(null);
         return checkRepository.save(check);
     }
 }
