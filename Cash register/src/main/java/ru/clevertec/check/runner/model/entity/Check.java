@@ -11,19 +11,19 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "public.check")
+@Table
 public class Check {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(name = "total_price_with_discount")
+    @Column
     private double totalPriceWithDiscount;
-    @Column(name = "total_price")
+    @Column
     private double totalPrice;
-    @Column(name = "discount_amount")
+    @Column
     private double discountAmount;
-    @Column(name = "total_percent")
+    @Column
     private int totalPercent;
 
     @ToString.Exclude

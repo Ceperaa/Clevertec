@@ -1,6 +1,9 @@
 package ru.clevertec.check.runner.model.dto;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
@@ -13,4 +16,5 @@ public class ProductDto {
     private String amount;
     private Integer discountPercent;
     private String price;
+
 }

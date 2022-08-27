@@ -10,33 +10,32 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "product_information")
+@Table
 public class ProductInformation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(name = "price_with_discount")
+    @Column
     private double priceWithDiscount;
-    @Column(name = "total_price")
+    @Column
     private double totalPrice;
-    @Column(name = "total_price_with_discount")
+    @Column
     private double totalPriceWithDiscount;
-    @Column(name = "discount_percent")
+    @Column
     private Integer discountPercent;
     @Column
     private int amount;
 
     @ManyToOne(cascade=CascadeType.ALL,fetch = FetchType.LAZY)
-    @JoinColumn//(name = "product_id")
+    @JoinColumn
     @ToString.Exclude
     @JsonIgnore
     private Product product;
 
-    @ManyToOne(cascade=CascadeType.ALL,fetch = FetchType.LAZY/*,optional = false*/)
-    @JoinColumn//(name = "check_id")
     @ToString.Exclude
     @JsonIgnore
+    @ManyToOne(cascade=CascadeType.ALL,fetch = FetchType.LAZY)
+    @JoinColumn
     private Check check;
 }
-//cascade=CascadeType.ALL - джойны тоже добаятся

@@ -2,7 +2,6 @@ package ru.clevertec.check.runner.services.impl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.clevertec.check.runner.model.dto.CheckDto;
@@ -16,6 +15,7 @@ import ru.clevertec.check.runner.services.ProductInformationService;
 import ru.clevertec.check.runner.services.ProductService;
 import ru.clevertec.check.runner.util.exception.ObjectNotFoundException;
 import ru.clevertec.check.runner.util.mapper.PdfMapper;
+import ru.clevertec.check.runner.util.mapperMapstruct.CheckMapper;
 import ru.clevertec.check.runner.util.validation.DoubleFormatting;
 
 import java.io.File;
@@ -39,7 +39,7 @@ public class CheckRunnerServiceImpl implements CheckRunnerService {
     private final ProductService productService;
     private final CheckRepository checkRepository;
     private final ProductInformationService productInformationService;
-    private final ModelMapper modelMapper;
+    private final CheckMapper mapper;
 
     @Transactional
     public CheckDto createCheck(List<String> itemIdQuantity, Long idCard, OutputStream stream)
@@ -128,7 +128,7 @@ public class CheckRunnerServiceImpl implements CheckRunnerService {
     }
 
     public CheckDto mapToCheckDto(Check check, List<ProductInformationDto> productInformationDtoList) {
-        CheckDto checkDto = modelMapper.map(check, CheckDto.class);
+        CheckDto checkDto = mapper.entityToDto(check);
         checkDto.setProductList(productInformationDtoList);
         return checkDto;
     }
@@ -143,7 +143,6 @@ public class CheckRunnerServiceImpl implements CheckRunnerService {
     }
 
     public Check saveCheck(Check check) {
-     //   check.setProductList(null);
         return checkRepository.save(check);
     }
 }

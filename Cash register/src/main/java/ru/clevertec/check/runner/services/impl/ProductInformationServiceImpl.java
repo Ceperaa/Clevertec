@@ -1,7 +1,6 @@
 package ru.clevertec.check.runner.services.impl;
 
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import ru.clevertec.check.runner.model.dto.ProductInformationDto;
 import ru.clevertec.check.runner.model.entity.Product;
@@ -11,6 +10,7 @@ import ru.clevertec.check.runner.services.DiscountCardService;
 import ru.clevertec.check.runner.services.ProductInformationService;
 import ru.clevertec.check.runner.services.ProductService;
 import ru.clevertec.check.runner.util.exception.ObjectNotFoundException;
+import ru.clevertec.check.runner.util.mapperMapstruct.ProductInformationMapper;
 import ru.clevertec.check.runner.util.validation.DoubleFormatting;
 
 import java.util.List;
@@ -21,7 +21,7 @@ import java.util.Map;
 public class ProductInformationServiceImpl implements ProductInformationService {
 
     private final ProductInformationRepository productInformationRepository;
-    private final ModelMapper modelMapper;
+    private final ProductInformationMapper mapper;
     private final DiscountCardService discountCardService;
     private final ProductService productService;
     private static final int NUMBER_PRODUCT_ON_SALE = 5;
@@ -50,7 +50,8 @@ public class ProductInformationServiceImpl implements ProductInformationService 
     ) throws ObjectNotFoundException {
         int amountProduct = integerMap.getValue();
         Product product = productInformation.getProduct();
-        productInformation.setPriceWithDiscount(subtractPercentage(product.getDiscountPercent(),
+        productInformation.setPriceWithDiscount(
+                subtractPercentage(product.getDiscountPercent(),
                 Double.parseDouble(product.getPrice())));
         if (Integer.parseInt(product.getAmount()) >= amountProduct) {
             mapDescription(productInformation, product, amountProduct);
@@ -67,7 +68,7 @@ public class ProductInformationServiceImpl implements ProductInformationService 
     }
 
     private ProductInformationDto mapProductDto(Product product, ProductInformation productInformation) {
-        ProductInformationDto productInformationDto = modelMapper.map(productInformation, ProductInformationDto.class);
+        ProductInformationDto productInformationDto = mapper.dtoToEntity(productInformation);
         productInformationDto.setPrice(String.valueOf(product.getPrice()));
         productInformationDto.setName(product.getName());
         return productInformationDto;

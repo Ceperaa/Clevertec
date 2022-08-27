@@ -2,7 +2,6 @@ package ru.clevertec.check.runner.configuration;
 
 import liquibase.integration.spring.SpringLiquibase;
 import org.hibernate.jpa.HibernatePersistenceProvider;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -87,10 +86,5 @@ public class AppConfig {
         em.setPersistenceProviderClass(HibernatePersistenceProvider.class);
         em.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
         return em;
-    }
-
-    @Bean
-    public ModelMapper getMapper() {
-        return new ModelMapper();
     }
 }

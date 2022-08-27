@@ -11,7 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "product")
+@Table
 public class Product {
 
     @Id
@@ -21,7 +21,7 @@ public class Product {
     private String name;
     @Column
     private String amount;
-    @Column(name = "discount_percent")
+    @Column
     private Integer discountPercent;
     @Column
     private String price;

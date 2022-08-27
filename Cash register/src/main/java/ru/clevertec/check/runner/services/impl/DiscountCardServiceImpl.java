@@ -1,14 +1,13 @@
 package ru.clevertec.check.runner.services.impl;
 
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import ru.clevertec.check.runner.model.dto.DiscountCardDtoForSave;
 import ru.clevertec.check.runner.model.entity.DiscountCard;
 import ru.clevertec.check.runner.repository.DiscountCardRepository;
 import ru.clevertec.check.runner.services.DiscountCardService;
-import ru.clevertec.check.runner.util.mapstruct.SimpleSourceDestinationMapper;
+import ru.clevertec.check.runner.util.mapperMapstruct.DiscountCardMapper;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,9 +16,8 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class DiscountCardServiceImpl implements DiscountCardService {
 
-    private final SimpleSourceDestinationMapper mapper;
+    private final DiscountCardMapper mapper;
     private final DiscountCardRepository discountCardRepository;
-    private final ModelMapper modelMapper;
 
     @Override
     public Optional<DiscountCard> findById(long id) {
@@ -33,8 +31,7 @@ public class DiscountCardServiceImpl implements DiscountCardService {
 
     @Override
     public DiscountCard saveCard(DiscountCardDtoForSave card) {
-        return discountCardRepository.save(modelMapper.map(card, DiscountCard.class));
-
+        return discountCardRepository.save(mapper.dtoToEntity(card));
     }
 
     @Override
@@ -44,6 +41,6 @@ public class DiscountCardServiceImpl implements DiscountCardService {
 
     @Override
     public DiscountCard updateDiscountCard(DiscountCardDtoForSave card) {
-        return discountCardRepository.save(modelMapper.map(card, DiscountCard.class));
+        return discountCardRepository.save(mapper.dtoToEntity(card));
     }
 }
