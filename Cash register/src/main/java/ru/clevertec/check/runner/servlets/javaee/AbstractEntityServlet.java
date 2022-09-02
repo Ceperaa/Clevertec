@@ -60,7 +60,6 @@ public  abstract class AbstractEntityServlet<T> extends HttpServlet implements E
         String requestURI = req.getRequestURI();
         deleteObject(DataValidation.validatorHttpUrlSearchId(requestURI));
         resp.setStatus(HttpServletResponse.SC_NO_CONTENT);
-        resp.setContentType(MediaType.APPLICATION_JSON);
         log.debug("delete completed");
     }
 

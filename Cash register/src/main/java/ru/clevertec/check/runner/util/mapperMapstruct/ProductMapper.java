@@ -13,8 +13,6 @@ public interface ProductMapper {
 
     ProductDto entityToDto(Product source);
 
-    Product dtoToEntity(ProductDto destination);
-
     List<ProductDtoForSave> listEntityToListDto(List<Product> productList);
 
     ProductDtoForSave entityToDtoForSave(Product source);

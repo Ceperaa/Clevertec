@@ -7,7 +7,6 @@ import ru.clevertec.check.runner.util.exception.ObjectNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Map;
 
 public interface ProductInformationService {
 
@@ -17,9 +16,8 @@ public interface ProductInformationService {
             throws SQLException, ObjectNotFoundException;
 
     ProductInformation addDescriptionInCheck(
-            Map.Entry<Long, Integer> integerMap
-            , ProductInformation productInformation
-            , List<ProductInformationDto> productCreatDtoList
+            ProductInformation productInformation,
+            List<ProductInformationDto> productInformationDtoList
     ) throws ObjectNotFoundException;
 
 }

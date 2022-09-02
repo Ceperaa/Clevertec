@@ -6,7 +6,7 @@
                         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
     <includeAll path="db-changelog-1.xml"/>
 
-    <changeSet author="Sergey" id="3.1">
+    <changeSet author="Sergey" id="5.4">
         <sql>
             CREATE TABLE IF NOT EXISTS public.product
             (
@@ -25,13 +25,14 @@
             discount integer NOT NULL
             );
 
-            --DROP TABLE IF EXISTS public."check";
+            --DROP TABLE IF EXISTS public."checks";
 
-            CREATE TABLE IF NOT EXISTS public."check"
+            CREATE TABLE IF NOT EXISTS public."checks"
             (
             id SERIAL PRIMARY KEY,
-            total_price_with_discount varchar(10) NOT NULL,
-            total_price varchar(10) NOT NULL,
+            total_price_with_discount varchar(15) NOT NULL,
+            total_price varchar(15) NOT NULL,
+            date timestamp,
             discount_amount integer,
             total_percent integer
             );
@@ -47,10 +48,10 @@
             total_price_with_discount varchar(10) NOT NULL,
             discount_percent integer NOT NULL,
             amount integer,
-            CONSTRAINT "check" FOREIGN KEY (check_id)
-            REFERENCES public."check" (id) MATCH SIMPLE
-            ON UPDATE NO ACTION
-            ON DELETE NO ACTION,
+            CONSTRAINT "checks" FOREIGN KEY (check_id)
+            REFERENCES public."checks" (id) MATCH SIMPLE
+            ON UPDATE cascade
+            ON DELETE cascade,
             CONSTRAINT product FOREIGN KEY (product_id)
             REFERENCES public.product (id) MATCH SIMPLE
             ON UPDATE NO ACTION

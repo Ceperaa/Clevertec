@@ -15,27 +15,20 @@ public class ProductInformation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    @Column
+    private Long id;
     private double priceWithDiscount;
-    @Column
     private double totalPrice;
-    @Column
     private double totalPriceWithDiscount;
-    @Column
     private Integer discountPercent;
-    @Column
     private int amount;
 
-    @ManyToOne(cascade=CascadeType.ALL,fetch = FetchType.LAZY)
-    @JoinColumn
+    @ManyToOne(fetch = FetchType.LAZY)
     @ToString.Exclude
     @JsonIgnore
     private Product product;
 
     @ToString.Exclude
     @JsonIgnore
-    @ManyToOne(cascade=CascadeType.ALL,fetch = FetchType.LAZY)
-    @JoinColumn
+    @ManyToOne(fetch = FetchType.LAZY)
     private Check check;
 }

@@ -3,7 +3,7 @@ package ru.clevertec.check.runner.util.exception;
 public class ObjectNotFoundException extends Exception {
 
     private static final String message = " not found";
-    private final long id;
+    private long id;
 
     public ObjectNotFoundException(Class<?> object, long id) {
         super(object.getName() + " id: " + id + message);
@@ -14,6 +14,10 @@ public class ObjectNotFoundException extends Exception {
     public ObjectNotFoundException(String message, long id) {
         super(message);
         this.id = id;
+    }
+
+    public ObjectNotFoundException(Class<?> object) {
+        super(object.getName().concat(message));
     }
 
     public long getId() {

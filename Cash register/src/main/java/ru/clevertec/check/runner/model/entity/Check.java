@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -11,23 +12,21 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table
+@Table(name = "checks")
 public class Check {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    @Column
+    private Long id;
     private double totalPriceWithDiscount;
-    @Column
+    private LocalDateTime date;
     private double totalPrice;
-    @Column
     private double discountAmount;
-    @Column
     private int totalPercent;
 
     @ToString.Exclude
     @JsonIgnore
-    @OneToMany(mappedBy = "check", fetch = FetchType.LAZY)
+    @JoinColumn(name = "check_id")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<ProductInformation> productList;
 }

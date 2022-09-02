@@ -11,23 +11,18 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table
 public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    @Column
+    private Long id;
     private String name;
-    @Column
     private String amount;
-    @Column
     private Integer discountPercent;
-    @Column
     private String price;
 
     @ToString.Exclude
     @OneToMany(mappedBy = "product",fetch = FetchType.LAZY)
     @JsonIgnore
-    private List< ProductInformation> productInformation;
+    private List<ProductInformation> productInformation;
 }

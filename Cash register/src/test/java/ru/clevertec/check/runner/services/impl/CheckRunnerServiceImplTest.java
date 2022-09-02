@@ -45,7 +45,7 @@ class CheckRunnerServiceImplTest {
     @BeforeEach
     void setUp() {
         check = new Check();
-        check.setId(1);
+        check.setId(1L);
         check.setProductList(List.of(new ProductInformation()));
     }
 

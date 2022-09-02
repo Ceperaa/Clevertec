@@ -35,7 +35,7 @@ class DiscountCardServiceImplTest {
     @BeforeEach
     void setUp() {
         discountCard = new DiscountCard();
-        discountCard.setId(1);
+        discountCard.setId(1L);
         discountCard.setDiscount(10);
     }
 

@@ -44,6 +44,8 @@ public class AppConfig {
     private String showSql;
     @Value("${hibernate.format_sql}")
     private String formatSql;
+    @Value("${hibernate.physical_naming_strategy}")
+    private String strategy;
 
     @Value("${liquibase.changelog}")
     private String changelog;
@@ -81,6 +83,7 @@ public class AppConfig {
         properties.put("hibernate.dialect", dialect);
         properties.put("hibernate.show_sql", showSql);
         properties.put("hibernate.format_sql", formatSql);
+        properties.put("hibernate.physical_naming_strategy", strategy);
         em.setJpaProperties(properties);
         em.setDataSource(dataSource);
         em.setPersistenceProviderClass(HibernatePersistenceProvider.class);

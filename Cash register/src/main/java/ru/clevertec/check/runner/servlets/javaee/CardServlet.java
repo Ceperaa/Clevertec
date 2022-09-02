@@ -3,7 +3,6 @@ package ru.clevertec.check.runner.servlets.javaee;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
 import ru.clevertec.check.runner.model.dto.DiscountCardDtoForSave;
 import ru.clevertec.check.runner.services.DiscountCardService;
 import ru.clevertec.check.runner.util.beanPostProcessors.annotations.Servlet;
@@ -14,7 +13,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-@Component
 @Servlet(url = "/card/*")
 @RequiredArgsConstructor
 public class CardServlet extends AbstractEntityServlet {

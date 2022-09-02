@@ -2,7 +2,6 @@ package ru.clevertec.check.runner.servlets.javaee;
 
 import com.google.gson.Gson;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
 import ru.clevertec.check.runner.model.dto.ProductDtoForSave;
 import ru.clevertec.check.runner.services.ProductServiceForUI;
 import ru.clevertec.check.runner.util.beanPostProcessors.annotations.Servlet;
@@ -13,12 +12,13 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-@Component
+
 @Servlet(url = "/product/*")
 @RequiredArgsConstructor
 public class ProductServlet extends AbstractEntityServlet{
 
     private final ProductServiceForUI productService;
+
 
     @Override
     public Object readObject(BufferedReader reader) {

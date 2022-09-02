@@ -32,6 +32,7 @@ ext.versions = [
         'log4j'     : '2.18.0',
         'yaml'      : '2.13.3',
         'mapStruct' : '1.5.2.Final',
+        'hibernate' : '5.6.10.Final',
 
         'javaEE'    : '8.0.1',
         'postgresql': '42.4.0',
@@ -56,7 +57,7 @@ dependencies {
     implementation "org.mapstruct:mapstruct:${versions.mapStruct}"
     annotationProcessor "org.mapstruct:mapstruct-processor:${versions.mapStruct}"
 
-    implementation 'org.hibernate:hibernate-core:5.6.1.Final'
+    implementation "org.hibernate:hibernate-core:${versions.hibernate}"
     implementation "com.google.code.gson:gson:${versions.gson}"
 
     compileOnly "javax:javaee-api:${versions.javaEE}"
@@ -71,7 +72,6 @@ dependencies {
     testCompileOnly "junit:junit:4.13.2"
     testImplementation "org.junit.jupiter:junit-jupiter-engine:${versions.junit}"
     testImplementation "org.mockito:mockito-all:1.10.19"
-
 
 
     implementation "org.postgresql:postgresql:${versions.postgresql}"

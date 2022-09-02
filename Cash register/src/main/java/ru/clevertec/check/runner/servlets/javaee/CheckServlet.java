@@ -1,8 +1,8 @@
 package ru.clevertec.check.runner.servlets.javaee;
 
 import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import ru.clevertec.check.runner.services.CheckRunnerService;
 import ru.clevertec.check.runner.util.beanPostProcessors.annotations.Servlet;
 import ru.clevertec.check.runner.util.validation.DataValidation;
@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Optional;
 
-@Component
 @Servlet(url = "/check/*")
+@Slf4j
 public class CheckServlet extends HttpServlet {
 
     @Autowired
@@ -29,5 +29,12 @@ public class CheckServlet extends HttpServlet {
                 Long.valueOf(idCard),
                 resp.getOutputStream()
         );
+    }
+
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) {
+        runnerService.deleteChecksOlderThanWeek();
+        resp.setStatus(HttpServletResponse.SC_NO_CONTENT);
+        log.debug("delete completed");
     }
 }

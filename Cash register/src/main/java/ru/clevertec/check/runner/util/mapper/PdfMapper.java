@@ -12,9 +12,6 @@ import com.itextpdf.layout.element.Paragraph;
 import ru.clevertec.check.runner.model.dto.CheckDto;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -22,17 +19,14 @@ public class PdfMapper {
 
     public static final String PDF_FILE_PATH = "classpath:check.pdf";
 
-    private static final LocalDate DATE = LocalDateTime.now().toLocalDate();
-    private static final LocalTime TIME = LocalDateTime.now().toLocalTime().withNano(0);
-
     public static void checkPdf(CheckDto checkDto) throws IOException {
 
         StringBuilder builder = new StringBuilder();
         builder.append(".                        CASH RECEIPT                      .\n")
                 .append(String.format("CHECK ID:%3s                              DATE:%8s\n",
-                        checkDto.getId(), DATE))
+                        checkDto.getId(), checkDto.getDate().toLocalDate()))
                 .append(String.format(".                                         TIME:%8s \n",
-                        TIME))
+                        checkDto.getDate().toLocalTime().withNano(0)))
                 .append("-----------------------------------------------------------------\n")
                 .append("qty   description                         price       total\n")
                 .append(checkDto.getProductList()
@@ -45,11 +39,11 @@ public class PdfMapper {
                                         productInformationDto.getTotalPrice()))
                         .collect(Collectors.joining()))
                 .append("-----------------------------------------------------------------\n")
-                .append(String.format("TOTAL                                                 $%5s\n",
+                .append(String.format("TOTAL                                                 $ %-5s\n",
                         checkDto.getTotalPrice()))
-                .append(String.format("DISCOUNT %3s%s                                         $%5s\n",
+                .append(String.format("DISCOUNT %3s%s                                         $ %-5s\n",
                         checkDto.getTotalPercent(), "%", checkDto.getDiscountAmount()))
-                .append(String.format("TOTAL WITH DISCOUNT.                                  $%5s\n",
+                .append(String.format("TOTAL WITH DISCOUNT.                                  $ %-5s\n",
                         checkDto.getTotalPriceWithDiscount()));
         System.out.println(builder.toString());
 
@@ -62,7 +56,7 @@ public class PdfMapper {
                         .getClassLoader().getResourceAsStream("Anonymous.ttf")).readAllBytes());
 
         PdfFont font = PdfFontFactory.createFont(
-                fontProgram, PdfEncodings.UTF8);
+                fontProgram, PdfEncodings.IDENTITY_H);
         PdfDocument pdf = new PdfDocument(new PdfWriter(PDF_FILE_PATH));
         Document document = new Document(pdf);
         Paragraph paragraph = new Paragraph(checkToString);

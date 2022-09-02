@@ -3,6 +3,7 @@ package ru.clevertec.check.runner.services.impl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import ru.clevertec.check.runner.model.dto.MaxOfSaleProductDto;
 import ru.clevertec.check.runner.model.dto.ProductDto;
 import ru.clevertec.check.runner.model.dto.ProductDtoForSave;
 import ru.clevertec.check.runner.model.dto.ProductInformationDto;
@@ -16,7 +17,7 @@ import ru.clevertec.check.runner.util.validation.DoubleFormatting;
 
 import java.util.List;
 
-@Service("productServiceImpl")
+@Service
 @RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService, ProductServiceForUI {
 
@@ -27,7 +28,6 @@ public class ProductServiceImpl implements ProductService, ProductServiceForUI {
     public ProductDtoForSave findByProductDtoId(Long id) throws ObjectNotFoundException {
         return mapper.entityToDtoForSave(findById(id));
     }
-
 
     @Override
     public ProductDto saveProduct(ProductDtoForSave product) {
@@ -46,7 +46,6 @@ public class ProductServiceImpl implements ProductService, ProductServiceForUI {
         return mapper
                 .entityToDtoForSave(
                         productRepository.save(mapper.dtoToEntity(product)));
-
     }
 
     @Override
@@ -58,7 +57,7 @@ public class ProductServiceImpl implements ProductService, ProductServiceForUI {
 
     @Override
     public Product update(Product product) {
-       return productRepository.save(product);
+        return productRepository.save(product);
     }
 
 
@@ -69,6 +68,10 @@ public class ProductServiceImpl implements ProductService, ProductServiceForUI {
                         productRepository.findAll(PageRequest.of(offset, limit)).toList());
     }
 
+    public MaxOfSaleProductDto findProductMostSales() {
+        return productRepository
+                .findByProduct();
+    }
 
     public double totalPriceWithDiscount(List<ProductInformationDto> productList) {
         return DoubleFormatting.formatting(productList.stream()

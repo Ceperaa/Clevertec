@@ -14,7 +14,6 @@ import ru.clevertec.check.runner.util.mapperMapstruct.ProductInformationMapper;
 import ru.clevertec.check.runner.util.validation.DoubleFormatting;
 
 import java.util.List;
-import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -44,15 +43,22 @@ public class ProductInformationServiceImpl implements ProductInformationService 
     }
 
     public ProductInformation addDescriptionInCheck(
-            Map.Entry<Long, Integer> integerMap,
             ProductInformation productInformation,
             List<ProductInformationDto> productInformationDtoList
     ) throws ObjectNotFoundException {
-        int amountProduct = integerMap.getValue();
         Product product = productInformation.getProduct();
         productInformation.setPriceWithDiscount(
                 subtractPercentage(product.getDiscountPercent(),
-                Double.parseDouble(product.getPrice())));
+                        Double.parseDouble(product.getPrice()))
+        );
+        saveAmountProduct(product, productInformation);
+        productService.update(product);
+        productInformationDtoList.add(mapProductDto(product, productInformation));
+        return productInformation;
+    }
+
+    private void saveAmountProduct(Product product, ProductInformation productInformation) {
+        int amountProduct = productInformation.getAmount();
         if (Integer.parseInt(product.getAmount()) >= amountProduct) {
             mapDescription(productInformation, product, amountProduct);
             int result = Integer.parseInt(product.getAmount()) - amountProduct;
@@ -61,10 +67,6 @@ public class ProductInformationServiceImpl implements ProductInformationService 
             mapDescription(productInformation, product, Integer.parseInt(product.getAmount()));
             product.setAmount("0");
         }
-        productInformation.setAmount(amountProduct);
-        productService.update(product);
-        productInformationDtoList.add(mapProductDto(product, productInformation));
-        return productInformation;
     }
 
     private ProductInformationDto mapProductDto(Product product, ProductInformation productInformation) {
@@ -89,7 +91,6 @@ public class ProductInformationServiceImpl implements ProductInformationService 
 
     public ProductInformation saveProductInformation(ProductInformation productInformation) {
         ProductInformation save = productInformationRepository.save(productInformation);
-
         return save;
     }
 }

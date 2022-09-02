@@ -9,4 +9,6 @@ public interface CheckRunnerService {
 
     CheckDto createCheck(List<String> itemIdQuantity1, Long idCard, OutputStream stream) throws Exception;
 
+    void deleteChecksOlderThanWeek();
+
 }

@@ -23,10 +23,11 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * @author Sergey Degtyarev
@@ -40,35 +41,35 @@ public class CheckRunnerServiceImpl implements CheckRunnerService {
     private final CheckRepository checkRepository;
     private final ProductInformationService productInformationService;
     private final CheckMapper mapper;
+    private static final LocalDateTime DATE = LocalDateTime.now();
 
     @Transactional
     public CheckDto createCheck(List<String> itemIdQuantity, Long idCard, OutputStream stream)
             throws SQLException, ObjectNotFoundException, IOException {
-
         List<ProductInformationDto> productInformationList = new ArrayList<>();
         List<ProductInformation> productList = new ArrayList<>();
         productListForCheck(splitItemIdQuantity(itemIdQuantity), productList, productInformationList);
-
-        double totalPrice = totalPrice(productInformationList);
-        double totalPriceWithDiscount = productInformationService.discountСalculation(productList,
-                productService.totalPriceWithDiscount(productInformationList),
-                idCard);
-        double discountAmount = totalPrice - totalPriceWithDiscount;
-
-        Check check = new Check();
-        check.setProductList(productList);
-        check.setTotalPrice(totalPrice);
-        check.setTotalPriceWithDiscount(totalPriceWithDiscount);
-        check.setDiscountAmount(DoubleFormatting.formatting(discountAmount));
         final int TOTAL_PERCENT = 100;
-        if (check.getTotalPrice() != 0) {
-            check.setTotalPercent((int) ((discountAmount * TOTAL_PERCENT) / check.getTotalPrice()));
-        } else {
-            check.setDiscountAmount(0);
+        double totalPriceWithDiscount = 0;
+        double discountAmount = 0;
+        int totalPercent = 0;
+        double totalPrice = totalPrice(productInformationList);
+        if (totalPrice != 0) {
+            totalPriceWithDiscount = productInformationService.discountСalculation(productList,
+                    productService.totalPriceWithDiscount(productInformationList),
+                    idCard);
+            discountAmount = totalPrice - totalPriceWithDiscount;
+            totalPercent = (int) ((discountAmount * TOTAL_PERCENT) / totalPrice);
         }
-
+        Check check = Check.builder()
+                .date(DATE)
+                .productList(productList)
+                .totalPriceWithDiscount(DoubleFormatting.formatting(totalPriceWithDiscount))
+                .discountAmount(DoubleFormatting.formatting(discountAmount))
+                .totalPercent(totalPercent)
+                .totalPrice(DoubleFormatting.formatting(totalPrice))
+                .build();
         check = saveCheck(check);
-        saveProductInformationList(productList, check);
         CheckDto checkDto = mapToCheckDto(check, productInformationList);
         checkMapToPdf(checkDto, stream);
         return checkDto;
@@ -91,14 +92,6 @@ public class CheckRunnerServiceImpl implements CheckRunnerService {
         log.debug("addCheck completed");
     }
 
-    private void saveProductInformationList(List<ProductInformation> productList, Check check)
-            throws IOException, SQLException {
-        for (ProductInformation productInformation : productList) {
-            productInformation.setCheck(check);
-            productInformationService.saveProductInformation(productInformation);
-        }
-    }
-
     private void productListForCheck(
             Map<Long, Integer> map,
             List<ProductInformation> productList,
@@ -107,12 +100,12 @@ public class CheckRunnerServiceImpl implements CheckRunnerService {
         for (Map.Entry<Long, Integer> integerEntry : map.entrySet()) {
             Product product = productService.findById(integerEntry.getKey());
             productList.add(productInformationService.addDescriptionInCheck(
-                    integerEntry,
                     ProductInformation
                             .builder()
                             .totalPrice(Double.parseDouble(product.getPrice()))
                             .discountPercent(product.getDiscountPercent())
                             .product(product)
+                            .amount(integerEntry.getValue())
                             .build(),
                     productInformationDtoList
             ));
@@ -134,12 +127,16 @@ public class CheckRunnerServiceImpl implements CheckRunnerService {
     }
 
     private Map<Long, Integer> splitItemIdQuantity(List<String> itemIdQuantity) {
-        Map<Long, Integer> integerMap = new HashMap<>();
-        for (String s : itemIdQuantity) {
-            String[] strings = s.split("-");
-            integerMap.put(Long.parseLong(strings[0]), Integer.parseInt(strings[1]));
-        }
-        return integerMap;
+        return itemIdQuantity
+                .stream()
+                .map(s->  s.split("-"))
+                .collect(Collectors.toMap(s-> Long.parseLong(s[0]),s->Integer.parseInt(s[1])));
+    }
+
+    @Transactional
+    public void deleteChecksOlderThanWeek() {
+        int WEEKS = 1;
+        checkRepository.deleteCheck(LocalDateTime.now().minusWeeks(WEEKS));
     }
 
     public Check saveCheck(Check check) {
