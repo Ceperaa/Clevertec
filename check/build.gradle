@@ -1,0 +1,66 @@
+plugins {
+    id 'org.springframework.boot' version '2.7.3'
+    id 'io.spring.dependency-management' version '1.0.13.RELEASE'
+    id 'java'
+}
+
+group = 'ru.clevertec'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+compileJava.options.encoding = 'UTF-8'
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+ext.versions = [
+        'itext7'   : '7.2.1',
+        'gson'     : '2.9.0',
+        'mapStruct': '1.5.2.Final',
+        'junit'    : '5.8.2',
+        'mockito'  : '4.7.0',
+        'yaml'      : '2.13.3',
+        'log4j'     : '2.18.0',
+        'slf4j'     : '1.7.36',
+]
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-logging'
+    implementation 'org.springframework.boot:spring-boot-starter-log4j2'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    implementation 'org.liquibase:liquibase-core'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    runtimeOnly 'org.postgresql:postgresql'
+
+    implementation "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:${versions.yaml}"
+    testImplementation "org.junit.jupiter:junit-jupiter-engine:${versions.junit}"
+    implementation "org.mapstruct:mapstruct:${versions.mapStruct}"
+    annotationProcessor "org.mapstruct:mapstruct-processor:${versions.mapStruct}"
+    implementation "com.itextpdf:itext7-core:${versions.itext7}"
+    implementation "com.google.code.gson:gson:${versions.gson}"
+
+    testCompileOnly "junit:junit:4.13.2"
+    testImplementation "org.mockito:mockito-all:1.10.19"
+}
+
+configurations {
+    all*.exclude module : 'spring-boot-starter-logging'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
