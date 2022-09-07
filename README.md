@@ -1,19 +1,58 @@
 # Cash register
 
 Программа реализующяя функционал формирования чека в магазине
-## Запуск
-- Собранный Cash register-1.0.war положить в папку webapps
-- Запустить Tomcat
 ## Использование
 Доступные адреса для запроса:
-- POST 
-  - /check/ - формирование чека.
- Параметры запроса:
-     - productId-quantity={productId-quantity} - id продукта, количество
-     - idCard={id} - id дисконтной карты
-- POST,PUT,DELETE,GET -
-  - /product/{id} - работа с продуктами
-  -  /card/{id} - работа с дисконтными картами
-     Возможные параметры:
-      - limit={pageSize}
-      - offset={page}
+ - формирование чека:
+```sh
+POST/check?productId-quantity={productId-quantity}&idCard={id}
+```
+ - удаление чеков старше недели
+```sh
+DELETE/check
+```
+  - работа с продуктами
+  Product:
+    - id
+    - name
+     - amount
+     - discountPercent
+     - price
+```sh
+POST/product
+```
+```sh
+GET/product/{id}
+```
+```sh
+GET/product?limit={pageSize}&offset={page}
+```
+```sh
+PUT/product
+```
+```sh
+DELETE/product/{id}
+```
+ - продукт который чаще всего продавался
+```sh
+GET/product/maxSale
+```
+  - работа с дисконтными картами
+  DiscountCard
+     - id
+     - discount
+ ```sh
+POST/card
+```
+```sh
+GET/card/{id}
+```
+```sh
+GET/card?limit={pageSize}&offset={page}
+```
+```sh
+PUT/card
+```
+```sh
+DELETE/card/{id}
+```  
