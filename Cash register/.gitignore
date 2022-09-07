@@ -1,0 +1,7 @@
+/Cash register/
+.idea
+.gradle
+.build
+.log
+/.idea/
+/build/

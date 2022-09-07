@@ -1,0 +1,7 @@
+datasource:
+  url: jdbc:postgresql://localhost:5432/cash register
+  driver: org.postgresql.Driver
+  username: postgres
+  password: root
+liquibase:
+  changelog: db-changelog-1.xml
