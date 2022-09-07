@@ -12,7 +12,7 @@ POST/check?productId-quantity={productId-quantity}&idCard={id}
 DELETE/check
 ```
   - работа с продуктами
-  Product:
+ > Product:
     - id
     - name
      - amount
@@ -38,7 +38,7 @@ DELETE/product/{id}
 GET/product/maxSale
 ```
   - работа с дисконтными картами
-  DiscountCard
+  >DiscountCard
      - id
      - discount
  ```sh
