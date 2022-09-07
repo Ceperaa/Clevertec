@@ -13,11 +13,11 @@ DELETE/check
 ```
   - работа с продуктами
  > Product:
-    - id
-    - name
-     - amount
-     - discountPercent
-     - price
+     id,
+     name,
+      amount,
+      discountPercent,
+      price
 ```sh
 POST/product
 ```
@@ -39,8 +39,8 @@ GET/product/maxSale
 ```
   - работа с дисконтными картами
   >DiscountCard
-     - id
-     - discount
+      id,
+      discount
  ```sh
 POST/card
 ```
